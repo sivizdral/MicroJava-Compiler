@@ -1,16 +1,21 @@
-INFO  17:33:40,481 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
-INFO  17:33:40,489 - #1 program
-INFO  17:33:40,489 - #4 MJProgram
-INFO  17:33:40,489 - #4 int
-INFO  17:33:40,489 - #4 x
-INFO  17:33:40,490 - #8 ,
-INFO  17:33:40,490 - #4 y
-INFO  17:33:40,490 - #9 ;
-INFO  17:33:40,490 - #12 {
-INFO  17:33:40,490 - #15 void
-INFO  17:33:40,490 - #4 main
-INFO  17:33:40,490 - #10 (
-INFO  17:33:40,490 - #11 )
-INFO  17:33:40,491 - #12 {
-INFO  17:33:40,491 - #13 }
-INFO  17:33:40,491 - #13 }
+INFO  18:36:59,331 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:36:59,336 - #1 program
+INFO  18:36:59,336 - #19 MJProgram
+INFO  18:36:59,336 - #19 int
+INFO  18:36:59,336 - #19 x
+INFO  18:36:59,337 - #41 ,
+INFO  18:36:59,337 - #19 y
+INFO  18:36:59,337 - #39 ;
+INFO  18:36:59,337 - #47 {
+INFO  18:36:59,337 - #14 void
+INFO  18:36:59,337 - #19 main
+INFO  18:36:59,337 - #43 (
+INFO  18:36:59,337 - #44 )
+INFO  18:36:59,337 - #47 {
+INFO  18:36:59,338 - #19 bool
+INFO  18:36:59,338 - #19 a
+INFO  18:36:59,338 - #36 =
+INFO  18:36:59,338 - #22 true
+INFO  18:36:59,338 - #39 ;
+INFO  18:36:59,338 - #48 }
+INFO  18:36:59,338 - #48 }
