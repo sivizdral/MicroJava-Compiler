@@ -1,0 +1,19 @@
+INFO  18:18:11,899 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:18:11,960 - #2 program
+INFO  18:18:11,961 - #48 MJProgram
+INFO  18:18:11,961 - #48 int
+INFO  18:18:11,962 - #48 x
+INFO  18:18:11,962 - #38 ,
+INFO  18:18:11,963 - #48 y
+INFO  18:18:11,963 - #36 ;
+INFO  18:18:11,963 - #44 {
+INFO  18:18:11,964 - #15 void
+INFO  18:18:11,965 - #48 main
+INFO  18:18:11,966 - #40 (
+INFO  18:18:11,967 - #41 )
+INFO  18:18:11,968 - #44 {
+INFO  18:18:11,970 - #48 bool
+INFO  18:18:11,970 - #48 a
+ERROR 18:18:11,971 - 
+Sintaksna greska na liniji 5
+ERROR 18:18:11,971 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 5

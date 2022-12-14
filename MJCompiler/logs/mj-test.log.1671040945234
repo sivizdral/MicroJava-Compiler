@@ -1,0 +1,129 @@
+INFO  19:01:30,193 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  19:01:30,259 - #2 program
+INFO  19:01:30,259 - #48 p
+INFO  19:01:30,259 - #7 const
+INFO  19:01:30,260 - #48 int
+INFO  19:01:30,260 - #48 size
+INFO  19:01:30,261 - #33 =
+INFO  19:01:30,261 - #47 10
+INFO  19:01:30,261 - #36 ;
+INFO  19:01:30,262 - #4 class
+INFO  19:01:30,262 - #48 Table
+INFO  19:01:30,262 - #44 {
+INFO  19:01:30,263 - #48 int
+INFO  19:01:30,264 - #48 pos
+INFO  19:01:30,264 - #42 [
+INFO  19:01:30,264 - #43 ]
+INFO  19:01:30,264 - #38 ,
+INFO  19:01:30,265 - #48 neg
+INFO  19:01:30,265 - #42 [
+INFO  19:01:30,266 - #43 ]
+INFO  19:01:30,266 - #38 ,
+INFO  19:01:30,266 - #48 factor
+INFO  19:01:30,268 - #36 ;
+INFO  19:01:30,268 - #44 {
+INFO  19:01:30,269 - #48 Table
+INFO  19:01:30,270 - #40 (
+INFO  19:01:30,270 - #48 int
+INFO  19:01:30,270 - #48 factor
+INFO  19:01:30,270 - #41 )
+INFO  19:01:30,273 - #48 int
+INFO  19:01:30,273 - #48 a
+INFO  19:01:30,273 - #36 ;
+INFO  19:01:30,273 - #44 {
+INFO  19:01:30,274 - #45 }
+INFO  19:01:30,274 - #45 }
+INFO  19:01:30,275 - #45 }
+INFO  19:01:30,275 - #44 {
+INFO  19:01:30,276 - #45 }
+INFO  19:01:30,277 - ProgramX(
+ p
+  ConstDeclListClass(
+    ConstDeclListConst(
+      NoConstDeclList(
+      ) [NoConstDeclList]
+      ConstDeclDerived1(
+        Type(
+         int
+        ) [Type]
+       size
+        FirstConstNum(
+         10
+        ) [FirstConstNum]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclDerived1]
+    ) [ConstDeclListConst]
+    ClassDecl(
+     Table
+      NoExtension(
+      ) [NoExtension]
+      VarDeclListX(
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        VarDecl(
+          Type(
+           int
+          ) [Type]
+          FirstVarDeclArrayIdent(
+           pos
+          ) [FirstVarDeclArrayIdent]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               neg
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             factor
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDecl]
+      ) [VarDeclListX]
+      ConstructorMethodListsX(
+        Lists6(
+         Table
+          NoConstructorDeclList(
+            FirstConstructorDeclDerived1(
+              FormParsOptionalX(
+                FormPars(
+                  Type(
+                   int
+                  ) [Type]
+                 factor
+                  NoOptionalSquares(
+                  ) [NoOptionalSquares]
+                  NoTypeIdentList(
+                  ) [NoTypeIdentList]
+                ) [FormPars]
+              ) [FormParsOptionalX]
+              VarDeclListX(
+                NoVarDeclList(
+                ) [NoVarDeclList]
+                VarDecl(
+                  Type(
+                   int
+                  ) [Type]
+                  FirstVarDeclIdentOnly(
+                   a
+                  ) [FirstVarDeclIdentOnly]
+                  NoOtherVarDeclList(
+                  ) [NoOtherVarDeclList]
+                ) [VarDecl]
+              ) [VarDeclListX]
+              NoStatementList(
+              ) [NoStatementList]
+            ) [FirstConstructorDeclDerived1]
+          ) [NoConstructorDeclList]
+        ) [Lists6]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [ProgramX]
+INFO  19:01:30,277 - ===================================
+INFO  19:01:30,281 -  Print count calls = 0
+INFO  19:01:30,281 -  Deklarisanih promenljivih ima = 2

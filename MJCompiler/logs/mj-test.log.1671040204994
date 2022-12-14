@@ -1,0 +1,45 @@
+INFO  18:49:23,225 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:49:23,346 - #2 program
+INFO  18:49:23,346 - #48 p
+INFO  18:49:23,346 - #7 const
+INFO  18:49:23,348 - #48 int
+INFO  18:49:23,348 - #48 size
+INFO  18:49:23,349 - #33 =
+INFO  18:49:23,349 - #47 10
+INFO  18:49:23,350 - #36 ;
+INFO  18:49:23,351 - #4 class
+INFO  18:49:23,351 - #48 Table
+INFO  18:49:23,351 - #44 {
+INFO  18:49:23,353 - #48 int
+INFO  18:49:23,355 - #48 pos
+INFO  18:49:23,355 - #42 [
+INFO  18:49:23,355 - #43 ]
+INFO  18:49:23,355 - #38 ,
+INFO  18:49:23,357 - #48 neg
+INFO  18:49:23,357 - #42 [
+INFO  18:49:23,357 - #43 ]
+INFO  18:49:23,358 - #38 ,
+INFO  18:49:23,358 - #48 factor
+INFO  18:49:23,358 - #36 ;
+INFO  18:49:23,358 - #44 {
+INFO  18:49:23,360 - #48 Table
+INFO  18:49:23,360 - #40 (
+INFO  18:49:23,360 - #48 int
+INFO  18:49:23,360 - #48 factor
+INFO  18:49:23,360 - #41 )
+INFO  18:49:23,366 - #44 {
+INFO  18:49:23,366 - #45 }
+INFO  18:49:23,367 - #15 void
+INFO  18:49:23,368 - #48 putp
+INFO  18:49:23,368 - #40 (
+INFO  18:49:23,368 - #48 int
+INFO  18:49:23,368 - #48 a
+INFO  18:49:23,368 - #38 ,
+INFO  18:49:23,368 - #48 int
+INFO  18:49:23,368 - #48 idx
+INFO  18:49:23,368 - #41 )
+INFO  18:49:23,369 - #44 {
+INFO  18:49:23,369 - #18 this
+ERROR 18:49:23,369 - 
+Sintaksna greska na liniji 7
+ERROR 18:49:23,369 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 7

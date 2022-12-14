@@ -1,0 +1,105 @@
+INFO  18:19:59,666 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:19:59,732 - #2 program
+INFO  18:19:59,732 - #48 MJProgram
+INFO  18:19:59,732 - #48 int
+INFO  18:19:59,733 - #48 x
+INFO  18:19:59,733 - #38 ,
+INFO  18:19:59,734 - #48 y
+INFO  18:19:59,735 - #36 ;
+INFO  18:19:59,735 - #44 {
+INFO  18:19:59,736 - #15 void
+INFO  18:19:59,737 - #48 main
+INFO  18:19:59,738 - #40 (
+INFO  18:19:59,738 - #41 )
+INFO  18:19:59,739 - #48 bool
+INFO  18:19:59,740 - #48 a
+INFO  18:19:59,741 - #36 ;
+INFO  18:19:59,741 - #44 {
+INFO  18:19:59,741 - #48 a
+INFO  18:19:59,743 - #33 =
+INFO  18:19:59,746 - #49 true
+INFO  18:19:59,748 - #36 ;
+INFO  18:19:59,752 - #45 }
+INFO  18:19:59,753 - #45 }
+INFO  18:19:59,755 - ProgramX(
+ MJProgram
+  ConstDeclListVar(
+    NoConstDeclList(
+    ) [NoConstDeclList]
+    VarDecl(
+      Type(
+       int
+      ) [Type]
+      FirstVarDeclIdentOnly(
+       x
+      ) [FirstVarDeclIdentOnly]
+      OtherVarDeclListX(
+        NoOtherVarDeclList(
+        ) [NoOtherVarDeclList]
+        FirstVarDeclIdentOnly(
+         y
+        ) [FirstVarDeclIdentOnly]
+      ) [OtherVarDeclListX]
+    ) [VarDecl]
+  ) [ConstDeclListVar]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      NoFormParsOptional(
+      ) [NoFormParsOptional]
+      VarDeclListX(
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        VarDecl(
+          Type(
+           bool
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           a
+          ) [FirstVarDeclIdentOnly]
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+        ) [VarDecl]
+      ) [VarDeclListX]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            FirstTypeDesignatorStmt(
+              Designator(
+               a
+                NoIdentExprList(
+                ) [NoIdentExprList]
+              ) [Designator]
+              AssignDsgStmtEnd(
+                Assignop(
+                ) [Assignop]
+                Expr(
+                  NoOptMinus(
+                  ) [NoOptMinus]
+                  Term(
+                    FactorBoolConst(
+                     true
+                    ) [FactorBoolConst]
+                    NoMulopFactorList(
+                    ) [NoMulopFactorList]
+                  ) [Term]
+                  NoAddopTermList(
+                  ) [NoAddopTermList]
+                ) [Expr]
+              ) [AssignDsgStmtEnd]
+            ) [FirstTypeDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [ProgramX]
+INFO  18:19:59,755 - ===================================
+INFO  18:19:59,761 -  Print count calls = 0
+INFO  18:19:59,761 -  Deklarisanih promenljivih ima = 2

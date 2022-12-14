@@ -1,0 +1,259 @@
+INFO  19:04:45,593 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  19:04:45,657 - #2 program
+INFO  19:04:45,657 - #48 p
+INFO  19:04:45,657 - #7 const
+INFO  19:04:45,658 - #48 int
+INFO  19:04:45,658 - #48 size
+INFO  19:04:45,659 - #33 =
+INFO  19:04:45,659 - #47 10
+INFO  19:04:45,659 - #36 ;
+INFO  19:04:45,660 - #4 class
+INFO  19:04:45,660 - #48 Table
+INFO  19:04:45,660 - #44 {
+INFO  19:04:45,661 - #48 int
+INFO  19:04:45,662 - #48 pos
+INFO  19:04:45,662 - #42 [
+INFO  19:04:45,662 - #43 ]
+INFO  19:04:45,662 - #38 ,
+INFO  19:04:45,663 - #48 neg
+INFO  19:04:45,663 - #42 [
+INFO  19:04:45,663 - #43 ]
+INFO  19:04:45,664 - #38 ,
+INFO  19:04:45,664 - #48 factor
+INFO  19:04:45,664 - #36 ;
+INFO  19:04:45,664 - #44 {
+INFO  19:04:45,665 - #48 Table
+INFO  19:04:45,665 - #40 (
+INFO  19:04:45,665 - #48 int
+INFO  19:04:45,665 - #48 factor
+INFO  19:04:45,666 - #41 )
+INFO  19:04:45,670 - #48 int
+INFO  19:04:45,670 - #48 a
+INFO  19:04:45,670 - #38 ,
+INFO  19:04:45,670 - #48 x
+INFO  19:04:45,670 - #36 ;
+INFO  19:04:45,670 - #44 {
+INFO  19:04:45,670 - #48 a
+INFO  19:04:45,671 - #39 .
+INFO  19:04:45,671 - #19 foreach
+INFO  19:04:45,672 - #40 (
+INFO  19:04:45,673 - #48 x
+INFO  19:04:45,673 - #46 =>
+INFO  19:04:45,673 - #12 print
+INFO  19:04:45,673 - #40 (
+INFO  19:04:45,673 - #48 x
+INFO  19:04:45,674 - #41 )
+INFO  19:04:45,679 - #36 ;
+INFO  19:04:45,679 - #41 )
+INFO  19:04:45,679 - #36 ;
+INFO  19:04:45,679 - #45 }
+INFO  19:04:45,680 - #45 }
+INFO  19:04:45,680 - #45 }
+INFO  19:04:45,680 - #44 {
+INFO  19:04:45,681 - #15 void
+INFO  19:04:45,682 - #48 main
+INFO  19:04:45,683 - #40 (
+INFO  19:04:45,684 - #41 )
+INFO  19:04:45,684 - #48 int
+INFO  19:04:45,684 - #48 x
+INFO  19:04:45,684 - #38 ,
+INFO  19:04:45,684 - #48 i
+INFO  19:04:45,685 - #36 ;
+INFO  19:04:45,685 - #48 char
+INFO  19:04:45,685 - #48 c
+INFO  19:04:45,685 - #36 ;
+INFO  19:04:45,685 - #48 int
+INFO  19:04:45,685 - #48 arr
+INFO  19:04:45,685 - #42 [
+INFO  19:04:45,685 - #43 ]
+INFO  19:04:45,686 - #36 ;
+INFO  19:04:45,686 - #44 {
+INFO  19:04:45,686 - #45 }
+INFO  19:04:45,686 - #45 }
+INFO  19:04:45,688 - ProgramX(
+ p
+  ConstDeclListClass(
+    ConstDeclListConst(
+      NoConstDeclList(
+      ) [NoConstDeclList]
+      ConstDeclDerived1(
+        Type(
+         int
+        ) [Type]
+       size
+        FirstConstNum(
+         10
+        ) [FirstConstNum]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclDerived1]
+    ) [ConstDeclListConst]
+    ClassDecl(
+     Table
+      NoExtension(
+      ) [NoExtension]
+      VarDeclListX(
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        VarDecl(
+          Type(
+           int
+          ) [Type]
+          FirstVarDeclArrayIdent(
+           pos
+          ) [FirstVarDeclArrayIdent]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               neg
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             factor
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDecl]
+      ) [VarDeclListX]
+      ConstructorMethodListsX(
+        Lists6(
+         Table
+          NoConstructorDeclList(
+            FirstConstructorDeclDerived1(
+              FormParsOptionalX(
+                FormPars(
+                  Type(
+                   int
+                  ) [Type]
+                 factor
+                  NoOptionalSquares(
+                  ) [NoOptionalSquares]
+                  NoTypeIdentList(
+                  ) [NoTypeIdentList]
+                ) [FormPars]
+              ) [FormParsOptionalX]
+              VarDeclListX(
+                NoVarDeclList(
+                ) [NoVarDeclList]
+                VarDecl(
+                  Type(
+                   int
+                  ) [Type]
+                  FirstVarDeclIdentOnly(
+                   a
+                  ) [FirstVarDeclIdentOnly]
+                  OtherVarDeclListX(
+                    NoOtherVarDeclList(
+                    ) [NoOtherVarDeclList]
+                    FirstVarDeclIdentOnly(
+                     x
+                    ) [FirstVarDeclIdentOnly]
+                  ) [OtherVarDeclListX]
+                ) [VarDecl]
+              ) [VarDeclListX]
+              StatementListX(
+                NoStatementList(
+                ) [NoStatementList]
+                MatchedStmt(
+                  ForeachStmt(
+                    DesignatorFE(
+                     a
+                      NoIdentExprList(
+                      ) [NoIdentExprList]
+                    ) [DesignatorFE]
+                   x
+                    MatchedStmt(
+                      PrintStmt(
+                        Expr(
+                          NoOptMinus(
+                          ) [NoOptMinus]
+                          Term(
+                            FactorActPars(
+                              Designator(
+                               x
+                                NoIdentExprList(
+                                ) [NoIdentExprList]
+                              ) [Designator]
+                              NoOptOptActPars(
+                              ) [NoOptOptActPars]
+                            ) [FactorActPars]
+                            NoMulopFactorList(
+                            ) [NoMulopFactorList]
+                          ) [Term]
+                          NoAddopTermList(
+                          ) [NoAddopTermList]
+                        ) [Expr]
+                        NoOptionalNumConst(
+                        ) [NoOptionalNumConst]
+                      ) [PrintStmt]
+                    ) [MatchedStmt]
+                  ) [ForeachStmt]
+                ) [MatchedStmt]
+              ) [StatementListX]
+            ) [FirstConstructorDeclDerived1]
+          ) [NoConstructorDeclList]
+        ) [Lists6]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      NoFormParsOptional(
+      ) [NoFormParsOptional]
+      VarDeclListX(
+        VarDeclListX(
+          VarDeclListX(
+            NoVarDeclList(
+            ) [NoVarDeclList]
+            VarDecl(
+              Type(
+               int
+              ) [Type]
+              FirstVarDeclIdentOnly(
+               x
+              ) [FirstVarDeclIdentOnly]
+              OtherVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 i
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherVarDeclListX]
+            ) [VarDecl]
+          ) [VarDeclListX]
+          VarDecl(
+            Type(
+             char
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             c
+            ) [FirstVarDeclIdentOnly]
+            NoOtherVarDeclList(
+            ) [NoOtherVarDeclList]
+          ) [VarDecl]
+        ) [VarDeclListX]
+        VarDecl(
+          Type(
+           int
+          ) [Type]
+          FirstVarDeclArrayIdent(
+           arr
+          ) [FirstVarDeclArrayIdent]
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+        ) [VarDecl]
+      ) [VarDeclListX]
+      NoStatementList(
+      ) [NoStatementList]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [ProgramX]
+INFO  19:04:45,689 - ===================================
+INFO  19:04:45,694 -  Print count calls = 1
+INFO  19:04:45,694 -  Deklarisanih promenljivih ima = 5

@@ -1,7 +1,13 @@
-program MJProgram
-	int x, y;
-{
-	void main() {
-		bool a = true;
+program p
+const int size = 10;
+class Table {
+	int pos[], neg[], factor;
+	{
+		Table(int factor) int a, x; { a.foreach(x => print(x););
+		this.factor = 5; }
 	}
+}
+{
+void main() int x, i; char c; int arr[]; {
+}
 }
