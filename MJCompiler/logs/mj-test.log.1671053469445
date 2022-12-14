@@ -1,0 +1,39 @@
+INFO  22:22:37,001 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  22:22:37,070 - #2 program
+INFO  22:22:37,070 - #48 p
+INFO  22:22:37,070 - #7 const
+INFO  22:22:37,071 - #48 int
+INFO  22:22:37,071 - #48 size
+INFO  22:22:37,072 - #33 =
+INFO  22:22:37,072 - #47 10
+INFO  22:22:37,072 - #36 ;
+INFO  22:22:37,073 - #4 class
+INFO  22:22:37,074 - #48 Table
+INFO  22:22:37,074 - #44 {
+INFO  22:22:37,074 - #48 int
+INFO  22:22:37,075 - #48 pos
+INFO  22:22:37,075 - #42 [
+INFO  22:22:37,075 - #43 ]
+INFO  22:22:37,076 - #38 ,
+INFO  22:22:37,077 - #48 neg
+INFO  22:22:37,077 - #42 [
+INFO  22:22:37,077 - #43 ]
+INFO  22:22:37,077 - #38 ,
+INFO  22:22:37,077 - #48 factor
+INFO  22:22:37,078 - #36 ;
+INFO  22:22:37,078 - #44 {
+INFO  22:22:37,080 - #48 Table
+INFO  22:22:37,080 - #40 (
+INFO  22:22:37,080 - #48 int
+INFO  22:22:37,080 - #48 factor
+INFO  22:22:37,080 - #41 )
+INFO  22:22:37,084 - #48 int
+INFO  22:22:37,084 - #48 a
+INFO  22:22:37,084 - #38 ,
+INFO  22:22:37,084 - #48 x
+INFO  22:22:37,084 - #36 ;
+INFO  22:22:37,084 - #44 {
+INFO  22:22:37,084 - #18 this
+ERROR 22:22:37,085 - 
+Sintaksna greska na liniji 7
+ERROR 22:22:37,085 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 7
