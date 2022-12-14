@@ -55,6 +55,14 @@ terminal String IDENT;
 terminal Boolean BOOLCONST;
 terminal Char CHARCONST;
 
+nonterminal Program, ConstDeclList, MethodDeclList, ConstDecl, FirstConst, OtherConstList;
+nonterminal VarDecl, FirstVarDecl, OtherVarDeclList, ClassDecl, Extension, VarDeclList, ConstructorMethodLists, ConstructorDeclList;
+nonterminal ConstructorDecl, FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList, Type;
+nonterminal Statement, Unmatched, Matched, OptionalElse, OptionalExpr, OptionalNumConst;
+nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
+nonterminal Condition, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, Expr, OptMinus, AddopTermList;
+nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Designator, IdentExprList, Label, Assignop, Relop, Addop, Mulop;
+
 /* PROGRAM */
 
 Program ::= (Program) PROGRAM IDENT ConstDeclList LEFT_WIGGLY_PARENTHESES MethodDeclList RIGHT_WIGGLY_PARENTHESES;
@@ -77,7 +85,7 @@ FirstConst ::= (FirstConstNum) NUMCONST |
 			   
 OtherConstList ::= (OtherConstList) OtherConstList COMMA IDENT EQUALS FirstConst |
 				   (NoOtherConstList) /* epsilon */;
-				   
+
 /* VAR DECL */
 				   
 VarDecl ::= (VarDecl) Type FirstVarDecl OtherVarDeclList SEMICOLON;
@@ -92,6 +100,9 @@ OtherVarDeclList ::= (OtherVarDeclList) OtherVarDeclList COMMA FirstVarDecl |
 
 ClassDecl ::= (ClassDecl) CLASS IDENT Extension LEFT_WIGGLY_PARENTHESES VarDeclList ConstructorMethodLists RIGHT_WIGGLY_PARENTHESES;
 
+Extension ::= (Extension) EXTENDS Type |
+			  (NoExtension) /* epsilon */;
+
 VarDeclList ::= (VarDeclList) VarDeclList VarDecl |
 				(NoVarDeclList) /* epsilon */;
 				
@@ -100,7 +111,7 @@ ConstructorMethodLists ::= (ConstructorMethodLists) LEFT_WIGGLY_PARENTHESES Cons
 
 ConstructorDeclList ::= (ConstructorDeclList) ConstructorDeclList ConstructorDecl |
 						(NoConstructorDeclList) /* epsilon */;
-					 
+
 /* CONSTRUCTOR DECL */
 
 ConstructorDecl ::= (ConstructorDecl) IDENT LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
@@ -137,11 +148,11 @@ Type ::= (Type) IDENT;
 Statement ::= (MatchedStmt) Matched |
 			  (UnmatchedStmt) Unmatched;
 			  
-Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES Statement |
-			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES Matched ELSE Unmatched;
+Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Statement |
+			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Matched ELSE Unmatched;
 
 Matched ::= (DesigStmt) DesignatorStatement SEMICOLON |
-			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES Matched ELSE Matched |
+			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Matched ELSE Matched |
 			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Statement |
 			(BreakStmt) BREAK SEMICOLON |
 			(ContinueStmt) CONTINUE SEMICOLON |
@@ -159,7 +170,7 @@ OptionalExpr ::= (OptionalExpr) Expr |
 				 
 OptionalNumConst ::= (OptionalNumConst) COMMA NUMCONST |
 					 (NoOptionalNumConst) /* epsilon */;
-					 
+
 /* DESIGNATOR STATEMENT */
 
 DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd |
@@ -185,7 +196,7 @@ ActPars ::= (ActPars) Expr ExprList;
 
 ExprList ::= (ExprList) ExprList COMMA Expr |
 			 (NoExprList) /* epsilon */;
-			 
+
 /* CONDITION */
 
 Condition ::= (Condition) CondTerm CondTermOrList;
@@ -216,7 +227,7 @@ OptMinus ::= (OptMinus) MINUS |
 			 
 AddopTermList ::= (AddopTermList) AddopTermList Addop Term |
 				  (NoAddopTermList) /* epsilon */;
-				  
+ 				  
 /* TERM */
 
 Term ::= (Term) Factor MulopFactorList;
@@ -238,7 +249,7 @@ OptOptActPars ::= (OptOptActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_R
 
 ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
 				  (ExprOrActParsActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES;
-				  
+			  
 /* DESIGNATOR */
 
 Designator ::= (Designator) IDENT IdentExprList;
@@ -274,3 +285,4 @@ Addop ::= (AddopP) PLUS |
 Mulop ::= (MulopM) MUL |
 		  (MulopD) DIV |
 		  (MulopP) PERCENT;
+		  
