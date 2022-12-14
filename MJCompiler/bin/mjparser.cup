@@ -1,0 +1,276 @@
+
+
+package rs.ac.bg.etf.pp1;
+
+import java_cup.runtime.*;
+import org.apache.log4j.*;
+import rs.ac.bg.etf.pp1.ast.*;
+
+parser code {:
+
+	Logger log = Logger.getLogger(getClass());
+   
+   
+    // slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
+     
+    public void report_fatal_error(String message, Object info) throws java.lang.Exception {
+      done_parsing();
+      report_error(message, info);
+    }
+  
+    public void syntax_error(Symbol cur_token) {
+        report_error("\nSintaksna greska", cur_token);
+    }
+  
+    public void unrecovered_syntax_error(Symbol cur_token) throws java.lang.Exception {
+        report_fatal_error("Fatalna greska, parsiranje se ne moze nastaviti", cur_token);
+    }
+
+    public void report_error(String message, Object info) {
+    	StringBuilder msg = new StringBuilder(message); 
+    	if (info instanceof Symbol)
+            msg.append (" na liniji ").append(((Symbol)info).left);
+        log.error(msg.toString());
+    }
+
+
+:}
+
+
+scan with {:
+	Symbol s = this.getScanner().next_token();
+	if (s != null && s.value != null) 
+		log.info(s.toString() + " " + s.value.toString());
+	return s;
+:}
+
+terminal PROGRAM, BREAK, CLASS, ENUM, ELSE, CONST, IF, DO, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
+terminal THIS, FOREACH, PLUS, MINUS, MUL, DIV, PERCENT, EQUALS_EQUALS, NOT_EQUALS;
+terminal GT, GTE, LT, LTE, AND, OR, EQUALS, INCREMENT, DECREMENT, SEMICOLON, COLON, COMMA, DOT;
+terminal LEFT_ROUND_PARENTHESES, RIGHT_ROUND_PARENTHESES, LEFT_SQUARE_PARENTHESES, RIGHT_SQUARE_PARENTHESES;
+terminal LEFT_WIGGLY_PARENTHESES, RIGHT_WIGGLY_PARENTHESES, ARROW, EOF;
+
+terminal Integer NUMCONST;
+terminal String IDENT;
+terminal Boolean BOOLCONST;
+terminal Char CHARCONST;
+
+/* PROGRAM */
+
+Program ::= (Program) PROGRAM IDENT ConstDeclList LEFT_WIGGLY_PARENTHESES MethodDeclList RIGHT_WIGGLY_PARENTHESES;
+
+ConstDeclList ::= (ConstDeclListConst) ConstDeclList ConstDecl |
+				  (ConstDeclListVar) ConstDeclList VarDecl   |
+				  (ConstDeclListClass) ConstDeclList ClassDecl |
+				  (NoConstDeclList) /* epsilon */;
+				  
+MethodDeclList ::= (MethodDeclList) MethodDeclList MethodDecl |
+				   (NoMethodDeclList) /* epsilon */;
+				   
+/* CONST DECL */		   
+				   
+ConstDecl ::= CONST Type IDENT EQUALS FirstConst OtherConstList SEMICOLON;
+
+FirstConst ::= (FirstConstNum) NUMCONST |
+			   (FirstConstChar) CHARCONST |
+			   (FirstConstBool) BOOLCONST;
+			   
+OtherConstList ::= (OtherConstList) OtherConstList COMMA IDENT EQUALS FirstConst |
+				   (NoOtherConstList) /* epsilon */;
+				   
+/* VAR DECL */
+				   
+VarDecl ::= (VarDecl) Type FirstVarDecl OtherVarDeclList SEMICOLON;
+
+FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT |
+				 (FirstVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES;
+				 
+OtherVarDeclList ::= (OtherVarDeclList) OtherVarDeclList COMMA FirstVarDecl |
+					 (NoOtherVarDeclList) /* epsilon */;
+					 
+/* CLASS DECL */
+
+ClassDecl ::= (ClassDecl) CLASS IDENT Extension LEFT_WIGGLY_PARENTHESES VarDeclList ConstructorMethodLists RIGHT_WIGGLY_PARENTHESES;
+
+VarDeclList ::= (VarDeclList) VarDeclList VarDecl |
+				(NoVarDeclList) /* epsilon */;
+				
+ConstructorMethodLists ::= (ConstructorMethodLists) LEFT_WIGGLY_PARENTHESES ConstructorDeclList MethodDeclList RIGHT_WIGGLY_PARENTHESES |
+						   (NoConstructorMethodLists) /* epsilon */;
+
+ConstructorDeclList ::= (ConstructorDeclList) ConstructorDeclList ConstructorDecl |
+						(NoConstructorDeclList) /* epsilon */;
+					 
+/* CONSTRUCTOR DECL */
+
+ConstructorDecl ::= (ConstructorDecl) IDENT LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
+
+FormParsOptional ::= (FormParsOptional) FormPars |
+					(NoFormParsOptional) /* epsilon */;
+					
+StatementList ::= (StatementList) StatementList Statement |
+				  (NoStatementList) /* epsilon */;
+			
+/* METHOD DECL */
+
+MethodDecl ::= (MethodDecl) ReturnType IDENT LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
+
+ReturnType ::= (ReturnType) Type |
+			   (NoReturnType) VOID;
+			   
+/* FORM PARS */
+
+FormPars ::= (FormPars) Type IDENT OptionalSquares TypeIdentList;
+
+OptionalSquares ::= (OptionalSquares) LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
+					(NoOptionalSquares) /* epsilon */;
+					
+TypeIdentList ::= (TypeIdentList) TypeIdentList COMMA Type IDENT OptionalSquares |
+				  (NoTypeIdentList) /* epsilon */;
+				  
+/* TYPE */
+
+Type ::= (Type) IDENT;
+
+/* STATEMENT */
+
+Statement ::= (MatchedStmt) Matched |
+			  (UnmatchedStmt) Unmatched;
+			  
+Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES Statement |
+			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES Matched ELSE Unmatched;
+
+Matched ::= (DesigStmt) DesignatorStatement SEMICOLON |
+			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES Matched ELSE Matched |
+			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Statement |
+			(BreakStmt) BREAK SEMICOLON |
+			(ContinueStmt) CONTINUE SEMICOLON |
+			(ReturnStmt) RETURN OptinalExpr SEMICOLON |
+			(ReadStmt) READ LEFT_ROUND_PARENTHESES Designator RIGHT_ROUND_PARENTHESES SEMICOLON |
+			(PrintStmt) PRINT LEFT_ROUND_PARENTHESES Expr OptionalNumConst RIGHT_ROUND_PARENTHESES SEMICOLON |
+			(ForeachStmt) Designator DOT FOREACH LEFT_ROUND_PARENTHESES IDENT ARROW Statement RIGHT_ROUND_PARENTHESES SEMICOLON |
+			(BlockStmt) LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;		  
+			  
+OptionalElse ::= (OptionalElse) ELSE Statement |
+				 (NoOptionalElse) /* epsilon */;
+				 
+OptionalExpr ::= (OptionalExpr) Expr |
+				 (NoOptionalExpr) /* epsilon */;
+				 
+OptionalNumConst ::= (OptionalNumConst) COMMA NUMCONST |
+					 (NoOptionalNumConst) /* epsilon */;
+					 
+/* DESIGNATOR STATEMENT */
+
+DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd |
+						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator;
+						
+DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop Expr |
+			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+			   (IncDsgStmtEnd) INCREMENT |
+			   (DecDsgStmtEnd) DECREMENT;
+
+OptionalActPars ::= (OptionalActPars) ActPars |
+				    (NoOptionalActPars) /* epsilon */;
+				    
+OptionalDesignator ::= (OptionalDesignator) Designator |
+					   (NoOptionalDesignator) /* epsilon */;
+					   
+OptionalDesignatorList ::= (OptionalDesignatorList) OptionalDesignatorList COMMA OptionalDesignator |
+						   (NoOptionalDesignatorList) /* epsilon */;
+						   
+/* ACT PARS */
+
+ActPars ::= (ActPars) Expr ExprList;
+
+ExprList ::= (ExprList) ExprList COMMA Expr |
+			 (NoExprList) /* epsilon */;
+			 
+/* CONDITION */
+
+Condition ::= (Condition) CondTerm CondTermOrList;
+
+CondTermOrList ::= (CondTermOrList) CondTermOrList OR CondTerm |
+				   (NoCondTermOrList) /* epsilon */;
+
+/* COND TERM */
+
+CondTerm ::= (CondTerm) CondFact CondFactAndList;
+
+CondFactAndList ::= (CondFactAndList) CondFactAndList AND CondFact |
+					(NoCondFactAndList) /* epsilon */;
+
+/* COND FACT */
+
+CondFact ::= (CondFact) Expr OptionalRelopExpr;
+
+OptionalRelopExpr ::= (OptionalRelopExpr) Relop Expr |
+					  (NoOptionalRelopExpr) /* epsilon */;
+					  
+/* EXPR */
+
+Expr ::= (Expr) OptMinus Term AddopTermList;
+
+OptMinus ::= (OptMinus) MINUS |
+			 (NoOptMinus) /* epsilon */;
+			 
+AddopTermList ::= (AddopTermList) AddopTermList Addop Term |
+				  (NoAddopTermList) /* epsilon */;
+				  
+/* TERM */
+
+Term ::= (Term) Factor MulopFactorList;
+
+MulopFactorList ::= (MulopFactorList) MulopFactorList Mulop Factor |
+					(NoMulopFactorList) /* epsilon */;
+					
+/* FACTOR */
+
+Factor ::= (FactorActPars) Designator OptOptActPars |
+		   (FactorNumConst) NUMCONST |
+		   (FactorCharConst) CHARCONST |
+		   (FactorBoolConst) BOOLCONST |
+		   (FactorExprActPars) NEW Type ExprOrActPars |
+		   (FactorExpr) LEFT_ROUND_PARENTHESES Expr RIGHT_ROUND_PARENTHESES;
+
+OptOptActPars ::= (OptOptActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+				  (NoOptOptActPars) /* epsilon */;
+
+ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
+				  (ExprOrActParsActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES;
+				  
+/* DESIGNATOR */
+
+Designator ::= (Designator) IDENT IdentExprList;
+
+IdentExprList ::= (IdentExprListIdent) IdentExprList DOT IDENT |
+				  (IdentExprListExpr) IdentExprList LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
+				  (NoIdentExprList) /* epsilon */;
+				  
+/* LABEL */
+
+Label ::= (Label) IDENT;
+
+/* ASSIGNOP */
+
+Assignop ::= (Assignop) EQUALS;
+
+/* RELOP */
+
+Relop ::= (RelopEq) EQUALS_EQUALS |
+		  (RelopNE) NOT_EQUALS |
+		  (RelopGT) GT |
+		  (RelopGTE) GTE |
+		  (RelopLT) LT |
+		  (RelopLTE) LTE;
+		  
+/* ADDOP */
+
+Addop ::= (AddopP) PLUS |
+		  (AddopM) MINUS;
+		  
+/* MULOP */
+
+Mulop ::= (MulopM) MUL |
+		  (MulopD) DIV |
+		  (MulopP) PERCENT;
