@@ -82,7 +82,7 @@ MethodDeclList ::= (MethodDeclListX) MethodDeclList MethodDecl |
 /* CONST DECL */		   
 				   
 ConstDecl ::= (ConstDeclX) CONST Type IDENT EQUALS FirstConst OtherConstList SEMICOLON |
-			  (ConstDeclError) error SEMICOLON;
+			  (ConstDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :} SEMICOLON;
 
 FirstConst ::= (FirstConstNum) NUMCONST |
 			   (FirstConstChar) CHARCONST |
@@ -92,24 +92,24 @@ OtherConstList ::= (OtherConstListX) OtherConstList COMMA ConstTail |
 				   (NoOtherConstList) /* epsilon */;
 				   
 ConstTail ::= (ConstTailX) IDENT EQUALS FirstConst |
-			  (ConstTailError) error;
+			  (ConstTailError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :};
 
 /* VAR DECL */
 				   
 VarDecl ::= (VarDeclX) Type FirstVarDecl OtherVarDeclList SEMICOLON;
 
 ClassVarDecl ::= (ClassVarDeclX) Type FirstClassVarDecl OtherClassVarDeclList SEMICOLON |
-				 (ClassVarDeclError) error;
+				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :};
 
 FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT |
 				 (FirstVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
-				 (FirstVarDeclError) error;
+				 (FirstVarDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :};
 				 
 FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT |
 				 	  (FirstClassVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES;
 				 
 OtherVarDeclList ::= (OtherVarDeclListX) OtherVarDeclList COMMA FirstVarDecl |
-					 (OtherVarDeclListError) error |
+					 (OtherVarDeclListError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} |
 					 (NoOtherVarDeclList) /* epsilon */;
 					 
 OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList COMMA FirstVarDecl |
@@ -120,7 +120,7 @@ OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList COMMA FirstV
 ClassDecl ::= (ClassDecl) CLASS IDENT Extension LEFT_WIGGLY_PARENTHESES ClassVarDeclList ConstructorMethodLists RIGHT_WIGGLY_PARENTHESES;
 
 Extension ::= (ExtensionX) EXTENDS Type |
-			  (ExtensionError) error:l {: parser.report_error("Greska u ekstenziji klase u liniji " + lleft, null); :}|
+			  (ExtensionError) error:l {: parser.report_error("Greska u proširenju natklase u liniji " + lleft, null); :}|
 			  (NoExtension) /* epsilon */;
 			  
 ClassVarDeclList ::= (ClassVarDeclListX) ClassVarDeclList ClassVarDecl |
@@ -178,7 +178,7 @@ TypeIdentList ::= (TypeIdentListX) TypeIdentList COMMA IdentSquares |
 				  (NoTypeIdentList) /* epsilon */;
 				  
 IdentSquares ::= (IdentSquaresX) Type IDENT OptionalSquares |
-				 (IdentSquaresError) error;
+				 (IdentSquaresError) error:l {: parser.report_error("Greska u deklaraciji formalnog parametra funkcije u liniji " + lleft, null); :};
 				  
 /* TYPE */
 
@@ -215,7 +215,7 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST |
 
 DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd |
 						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator |
-						(ErrorDesignatorStmt) error;
+						(ErrorDesignatorStmt) error:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :};
 						
 DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop Expr |
 			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
@@ -241,7 +241,7 @@ ExprList ::= (ExprListX) ExprList COMMA Expr |
 /* CONDITION */
 
 ConditionIF ::= (ConditionIFX) CondTerm CondTermOrList |
-				(ConditionIFError) error;
+				(ConditionIFError) error:l {: parser.report_error("Greska u logickom izrazu za IF grananje u liniji " + lleft, null); :};
 
 ConditionWHILE ::= (ConditionWHILE) CondTerm CondTermOrList;
 

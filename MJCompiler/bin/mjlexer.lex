@@ -96,7 +96,7 @@ import java_cup.runtime.Symbol;
 '[\x20-\x7e]' 					{return new_symbol(sym.CHARCONST, new Character(yytext().charAt(1))); } 
 ([a-z]|[A-Z])[a-z|A-Z|0-9|_]* 	{return new_symbol (sym.IDENT, yytext()); }
 
-. { System.err.println("Leksicka greska ("+yytext()+") u liniji "+(yyline+1)); }
+. { System.err.println("Leksicka greska ("+yytext()+") u liniji "+(yyline+1) + " na poziciji " + yycolumn); }
 
 
 

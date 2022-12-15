@@ -142,7 +142,7 @@ MethodDeclList ::= (MethodDeclListX) MethodDeclList:M1 MethodDecl:M2 {: RESULT=n
 /* CONST DECL */		   
 				   
 ConstDecl ::= (ConstDeclX) CONST Type:T1 IDENT:I2 EQUALS FirstConst:F3 OtherConstList:O4 SEMICOLON {: RESULT=new ConstDeclX(T1, I2, F3, O4); RESULT.setLine(T1left); :} |
-			  (ConstDeclError) error SEMICOLON {: RESULT=new ConstDeclError(); :};
+			  (ConstDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :} SEMICOLON {: RESULT=new ConstDeclError(); :};
 
 FirstConst ::= (FirstConstNum) NUMCONST:N1 {: RESULT=new FirstConstNum(N1); RESULT.setLine(N1left); :} |
 			   (FirstConstChar) CHARCONST:C1 {: RESULT=new FirstConstChar(C1); RESULT.setLine(C1left); :} |
@@ -152,24 +152,24 @@ OtherConstList ::= (OtherConstListX) OtherConstList:O1 COMMA ConstTail:C2 {: RES
 				   (NoOtherConstList) {: RESULT=new NoOtherConstList(); :} /* epsilon */;
 				   
 ConstTail ::= (ConstTailX) IDENT:I1 EQUALS FirstConst:F2 {: RESULT=new ConstTailX(I1, F2); RESULT.setLine(I1left); :} |
-			  (ConstTailError) error {: RESULT=new ConstTailError(); :};
+			  (ConstTailError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :} {: RESULT=new ConstTailError(); :};
 
 /* VAR DECL */
 				   
 VarDecl ::= (VarDeclX) Type:T1 FirstVarDecl:F2 OtherVarDeclList:O3 SEMICOLON {: RESULT=new VarDeclX(T1, F2, O3); RESULT.setLine(T1left); :};
 
 ClassVarDecl ::= (ClassVarDeclX) Type:T1 FirstClassVarDecl:F2 OtherClassVarDeclList:O3 SEMICOLON {: RESULT=new ClassVarDeclX(T1, F2, O3); RESULT.setLine(T1left); :} |
-				 (ClassVarDeclError) error {: RESULT=new ClassVarDeclError(); :};
+				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} {: RESULT=new ClassVarDeclError(); :};
 
 FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
 				 (FirstVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstVarDeclArrayIdent(I1); RESULT.setLine(I1left); :} |
-				 (FirstVarDeclError) error {: RESULT=new FirstVarDeclError(); :};
+				 (FirstVarDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} {: RESULT=new FirstVarDeclError(); :};
 				 
 FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstClassVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
 				 	  (FirstClassVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstClassVarDeclArrayIdent(I1); RESULT.setLine(I1left); :};
 				 
 OtherVarDeclList ::= (OtherVarDeclListX) OtherVarDeclList:O1 COMMA FirstVarDecl:F2 {: RESULT=new OtherVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
-					 (OtherVarDeclListError) error {: RESULT=new OtherVarDeclListError(); :} |
+					 (OtherVarDeclListError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} {: RESULT=new OtherVarDeclListError(); :} |
 					 (NoOtherVarDeclList) {: RESULT=new NoOtherVarDeclList(); :} /* epsilon */;
 					 
 OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList:O1 COMMA FirstVarDecl:F2 {: RESULT=new OtherClassVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
@@ -180,7 +180,7 @@ OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList:O1 COMMA Fir
 ClassDecl ::= (ClassDecl) CLASS IDENT:I1 Extension:E2 LEFT_WIGGLY_PARENTHESES ClassVarDeclList:C3 ConstructorMethodLists:C4 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ClassDecl(I1, E2, C3, C4); RESULT.setLine(I1left); :};
 
 Extension ::= (ExtensionX) EXTENDS Type:T1 {: RESULT=new ExtensionX(T1); RESULT.setLine(T1left); :} |
-			  (ExtensionError) error:l {: parser.report_error("Greska u ekstenziji klase u liniji " + lleft, null); :} {: RESULT=new ExtensionError(); :}|
+			  (ExtensionError) error:l {: parser.report_error("Greska u proširenju natklase u liniji " + lleft, null); :} {: RESULT=new ExtensionError(); :}|
 			  (NoExtension) {: RESULT=new NoExtension(); :} /* epsilon */;
 			  
 ClassVarDeclList ::= (ClassVarDeclListX) ClassVarDeclList:C1 ClassVarDecl:C2 {: RESULT=new ClassVarDeclListX(C1, C2); RESULT.setLine(C1left); :} |
@@ -238,7 +238,7 @@ TypeIdentList ::= (TypeIdentListX) TypeIdentList:T1 COMMA IdentSquares:I2 {: RES
 				  (NoTypeIdentList) {: RESULT=new NoTypeIdentList(); :} /* epsilon */;
 				  
 IdentSquares ::= (IdentSquaresX) Type:T1 IDENT:I2 OptionalSquares:O3 {: RESULT=new IdentSquaresX(T1, I2, O3); RESULT.setLine(T1left); :} |
-				 (IdentSquaresError) error {: RESULT=new IdentSquaresError(); :};
+				 (IdentSquaresError) error:l {: parser.report_error("Greska u deklaraciji formalnog parametra funkcije u liniji " + lleft, null); :} {: RESULT=new IdentSquaresError(); :};
 				  
 /* TYPE */
 
@@ -275,7 +275,7 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:N1 {: RESULT=new Optiona
 
 DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator:D1 DsgStmtEnd:D2 {: RESULT=new FirstTypeDesignatorStmt(D1, D2); RESULT.setLine(D1left); :} |
 						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :} |
-						(ErrorDesignatorStmt) error {: RESULT=new ErrorDesignatorStmt(); :};
+						(ErrorDesignatorStmt) error:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :} {: RESULT=new ErrorDesignatorStmt(); :};
 						
 DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop:A1 Expr:E2 {: RESULT=new AssignDsgStmtEnd(A1, E2); RESULT.setLine(A1left); :} |
 			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars:O1 RIGHT_ROUND_PARENTHESES {: RESULT=new ActParsDsgStmtEnd(O1); RESULT.setLine(O1left); :} |
@@ -301,7 +301,7 @@ ExprList ::= (ExprListX) ExprList:E1 COMMA Expr:E2 {: RESULT=new ExprListX(E1, E
 /* CONDITION */
 
 ConditionIF ::= (ConditionIFX) CondTerm:C1 CondTermOrList:C2 {: RESULT=new ConditionIFX(C1, C2); RESULT.setLine(C1left); :} |
-				(ConditionIFError) error {: RESULT=new ConditionIFError(); :};
+				(ConditionIFError) error:l {: parser.report_error("Greska u logickom izrazu za IF grananje u liniji " + lleft, null); :} {: RESULT=new ConditionIFError(); :};
 
 ConditionWHILE ::= (ConditionWHILE) CondTerm:C1 CondTermOrList:C2 {: RESULT=new ConditionWHILE(C1, C2); RESULT.setLine(C1left); :};
 

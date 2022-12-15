@@ -15,7 +15,7 @@ public class Compiler {
 	
 	public static void main(String[] args) throws Exception {
 		
-		Logger log = Logger.getLogger(MJParserTest.class);
+		Logger log = Logger.getLogger(Compiler.class);
 				
 				Reader br = null;
 				try {
