@@ -1,0 +1,38 @@
+INFO  15:15:35,433 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  15:15:35,504 - #2 program
+INFO  15:15:35,504 - #48 p
+INFO  15:15:35,504 - #7 const
+INFO  15:15:35,505 - #48 int
+INFO  15:15:35,505 - #48 size
+INFO  15:15:35,506 - #33 =
+INFO  15:15:35,506 - #47 10
+INFO  15:15:35,506 - #38 ,
+INFO  15:15:35,507 - #48 p
+INFO  15:15:35,508 - #47 2
+ERROR 15:15:35,508 - 
+Sintaksna greska na liniji 2
+INFO  15:15:35,508 - #38 ,
+INFO  15:15:35,508 - #48 q
+INFO  15:15:35,508 - #33 =
+INFO  15:15:35,509 - #47 3
+INFO  15:15:35,509 - #36 ;
+INFO  15:15:35,509 - #4 class
+INFO  15:15:35,509 - #48 Table
+INFO  15:15:35,510 - #44 {
+INFO  15:15:35,512 - #48 int
+INFO  15:15:35,513 - #48 pos
+INFO  15:15:35,513 - #42 [
+INFO  15:15:35,513 - #43 ]
+INFO  15:15:35,513 - #38 ,
+INFO  15:15:35,515 - #48 neg
+INFO  15:15:35,515 - #42 [
+INFO  15:15:35,515 - #43 ]
+INFO  15:15:35,515 - #38 ,
+INFO  15:15:35,515 - #48 factor
+INFO  15:15:35,515 - #36 ;
+INFO  15:15:35,516 - #44 {
+INFO  15:15:35,517 - #45 }
+INFO  15:15:35,518 - #45 }
+ERROR 15:15:35,519 - 
+Sintaksna greska na liniji 8
+ERROR 15:15:35,519 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 8

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/11/2022 22:30:51
+// 15/11/2022 17:4:46
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -16,15 +16,19 @@ public interface Visitor {
     public void visit(DsgStmtEnd DsgStmtEnd);
     public void visit(Matched Matched);
     public void visit(Relop Relop);
+    public void visit(OtherClassVarDeclList OtherClassVarDeclList);
     public void visit(CondTermOrList CondTermOrList);
     public void visit(MulopFactorList MulopFactorList);
     public void visit(OtherConstList OtherConstList);
     public void visit(FirstVarDecl FirstVarDecl);
     public void visit(OptMinus OptMinus);
+    public void visit(FirstClassVarDecl FirstClassVarDecl);
     public void visit(StatementList StatementList);
+    public void visit(ClassVarDecl ClassVarDecl);
     public void visit(OptOptActPars OptOptActPars);
     public void visit(Addop Addop);
     public void visit(Factor Factor);
+    public void visit(ClassVarDeclList ClassVarDeclList);
     public void visit(OptionalExpr OptionalExpr);
     public void visit(TypeIdentList TypeIdentList);
     public void visit(FormParsOptional FormParsOptional);
@@ -34,6 +38,7 @@ public interface Visitor {
     public void visit(ExprList ExprList);
     public void visit(ConstructorDeclList ConstructorDeclList);
     public void visit(MethodDecl2 MethodDecl2);
+    public void visit(ConditionIF ConditionIF);
     public void visit(VarDeclList VarDeclList);
     public void visit(OptionalActPars OptionalActPars);
     public void visit(OptionalRelopExpr OptionalRelopExpr);
@@ -43,6 +48,8 @@ public interface Visitor {
     public void visit(Extension Extension);
     public void visit(MethodDeclList2 MethodDeclList2);
     public void visit(Statement Statement);
+    public void visit(VarDecl VarDecl);
+    public void visit(IdentSquares IdentSquares);
     public void visit(ExprOrActPars ExprOrActPars);
     public void visit(ConstDecl ConstDecl);
     public void visit(MethodDeclList MethodDeclList);
@@ -50,6 +57,7 @@ public interface Visitor {
     public void visit(FirstConstructorDecl FirstConstructorDecl);
     public void visit(Program Program);
     public void visit(OptionalSquares OptionalSquares);
+    public void visit(ConstTail ConstTail);
     public void visit(IdentExprList IdentExprList);
     public void visit(AddopTermList AddopTermList);
     public void visit(MulopP MulopP);
@@ -96,7 +104,9 @@ public interface Visitor {
     public void visit(CondTerm CondTerm);
     public void visit(NoCondTermOrList NoCondTermOrList);
     public void visit(CondTermOrListX CondTermOrListX);
-    public void visit(Condition Condition);
+    public void visit(ConditionWHILE ConditionWHILE);
+    public void visit(ConditionIFError ConditionIFError);
+    public void visit(ConditionIFX ConditionIFX);
     public void visit(NoExprList NoExprList);
     public void visit(ExprListX ExprListX);
     public void visit(ActPars ActPars);
@@ -110,6 +120,7 @@ public interface Visitor {
     public void visit(IncDsgStmtEnd IncDsgStmtEnd);
     public void visit(ActParsDsgStmtEnd ActParsDsgStmtEnd);
     public void visit(AssignDsgStmtEnd AssignDsgStmtEnd);
+    public void visit(ErrorDesignatorStmt ErrorDesignatorStmt);
     public void visit(SecondTypeDesignatorStmt SecondTypeDesignatorStmt);
     public void visit(FirstTypeDesignatorStmt FirstTypeDesignatorStmt);
     public void visit(NoOptionalNumConst NoOptionalNumConst);
@@ -132,6 +143,8 @@ public interface Visitor {
     public void visit(UnmatchedStmt UnmatchedStmt);
     public void visit(MatchedStmt MatchedStmt);
     public void visit(Type Type);
+    public void visit(IdentSquaresError IdentSquaresError);
+    public void visit(IdentSquaresX IdentSquaresX);
     public void visit(NoTypeIdentList NoTypeIdentList);
     public void visit(TypeIdentListX TypeIdentListX);
     public void visit(NoOptionalSquares NoOptionalSquares);
@@ -162,20 +175,34 @@ public interface Visitor {
     public void visit(ConstructorMethodListsX ConstructorMethodListsX);
     public void visit(NoVarDeclList NoVarDeclList);
     public void visit(VarDeclListX VarDeclListX);
+    public void visit(NoClassVarDeclList NoClassVarDeclList);
+    public void visit(ClassVarDeclListX ClassVarDeclListX);
     public void visit(NoExtension NoExtension);
+    public void visit(ExtensionError ExtensionError);
     public void visit(ExtensionX ExtensionX);
     public void visit(ClassDecl ClassDecl);
+    public void visit(NoOtherClassVarDeclList NoOtherClassVarDeclList);
+    public void visit(OtherClassVarDeclListX OtherClassVarDeclListX);
     public void visit(NoOtherVarDeclList NoOtherVarDeclList);
+    public void visit(OtherVarDeclListError OtherVarDeclListError);
     public void visit(OtherVarDeclListX OtherVarDeclListX);
+    public void visit(FirstClassVarDeclArrayIdent FirstClassVarDeclArrayIdent);
+    public void visit(FirstClassVarDeclIdentOnly FirstClassVarDeclIdentOnly);
+    public void visit(FirstVarDeclError FirstVarDeclError);
     public void visit(FirstVarDeclArrayIdent FirstVarDeclArrayIdent);
     public void visit(FirstVarDeclIdentOnly FirstVarDeclIdentOnly);
-    public void visit(VarDecl VarDecl);
+    public void visit(ClassVarDeclError ClassVarDeclError);
+    public void visit(ClassVarDeclX ClassVarDeclX);
+    public void visit(VarDeclX VarDeclX);
+    public void visit(ConstTailError ConstTailError);
+    public void visit(ConstTailX ConstTailX);
     public void visit(NoOtherConstList NoOtherConstList);
     public void visit(OtherConstListX OtherConstListX);
     public void visit(FirstConstBool FirstConstBool);
     public void visit(FirstConstChar FirstConstChar);
     public void visit(FirstConstNum FirstConstNum);
-    public void visit(ConstDeclDerived1 ConstDeclDerived1);
+    public void visit(ConstDeclError ConstDeclError);
+    public void visit(ConstDeclX ConstDeclX);
     public void visit(NoMethodDeclList NoMethodDeclList);
     public void visit(MethodDeclListX MethodDeclListX);
     public void visit(NoConstDeclList NoConstDeclList);

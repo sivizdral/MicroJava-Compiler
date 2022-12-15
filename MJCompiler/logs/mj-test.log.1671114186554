@@ -1,0 +1,59 @@
+INFO  15:22:22,592 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  15:22:22,659 - #2 program
+INFO  15:22:22,659 - #48 p
+INFO  15:22:22,659 - #7 const
+INFO  15:22:22,660 - #48 int
+INFO  15:22:22,660 - #48 size
+INFO  15:22:22,661 - #33 =
+INFO  15:22:22,661 - #47 10
+INFO  15:22:22,662 - #38 ,
+INFO  15:22:22,662 - #48 p
+INFO  15:22:22,663 - #33 =
+INFO  15:22:22,663 - #47 2
+INFO  15:22:22,663 - #38 ,
+INFO  15:22:22,663 - #48 q
+INFO  15:22:22,663 - #33 =
+INFO  15:22:22,663 - #47 3
+INFO  15:22:22,663 - #36 ;
+INFO  15:22:22,664 - #44 {
+INFO  15:22:22,664 - #45 }
+INFO  15:22:22,666 - ProgramX(
+ p
+  ConstDeclListConst(
+    NoConstDeclList(
+    ) [NoConstDeclList]
+    ConstDeclX(
+      Type(
+       int
+      ) [Type]
+     size
+      FirstConstNum(
+       10
+      ) [FirstConstNum]
+      OtherConstListX(
+        OtherConstListX(
+          NoOtherConstList(
+          ) [NoOtherConstList]
+          ConstTailX(
+           p
+            FirstConstNum(
+             2
+            ) [FirstConstNum]
+          ) [ConstTailX]
+        ) [OtherConstListX]
+        ConstTailX(
+         q
+          FirstConstNum(
+           3
+          ) [FirstConstNum]
+        ) [ConstTailX]
+      ) [OtherConstListX]
+    ) [ConstDeclX]
+  ) [ConstDeclListConst]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [ProgramX]
+INFO  15:22:22,666 - ===================================
+INFO  15:22:22,671 -  Print count calls = 0
+INFO  15:22:22,671 -  Deklarisanih promenljivih ima = 0
+INFO  15:22:22,672 - Deklarisanih konstanti ima = 1

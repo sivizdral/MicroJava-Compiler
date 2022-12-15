@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/11/2022 22:30:50
+// 15/11/2022 17:4:46
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,43 +9,22 @@ public class FormPars implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private Type Type;
-    private String I2;
-    private OptionalSquares OptionalSquares;
+    private IdentSquares IdentSquares;
     private TypeIdentList TypeIdentList;
 
-    public FormPars (Type Type, String I2, OptionalSquares OptionalSquares, TypeIdentList TypeIdentList) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
-        this.I2=I2;
-        this.OptionalSquares=OptionalSquares;
-        if(OptionalSquares!=null) OptionalSquares.setParent(this);
+    public FormPars (IdentSquares IdentSquares, TypeIdentList TypeIdentList) {
+        this.IdentSquares=IdentSquares;
+        if(IdentSquares!=null) IdentSquares.setParent(this);
         this.TypeIdentList=TypeIdentList;
         if(TypeIdentList!=null) TypeIdentList.setParent(this);
     }
 
-    public Type getType() {
-        return Type;
+    public IdentSquares getIdentSquares() {
+        return IdentSquares;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
-    }
-
-    public String getI2() {
-        return I2;
-    }
-
-    public void setI2(String I2) {
-        this.I2=I2;
-    }
-
-    public OptionalSquares getOptionalSquares() {
-        return OptionalSquares;
-    }
-
-    public void setOptionalSquares(OptionalSquares OptionalSquares) {
-        this.OptionalSquares=OptionalSquares;
+    public void setIdentSquares(IdentSquares IdentSquares) {
+        this.IdentSquares=IdentSquares;
     }
 
     public TypeIdentList getTypeIdentList() {
@@ -77,21 +56,18 @@ public class FormPars implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
-        if(OptionalSquares!=null) OptionalSquares.accept(visitor);
+        if(IdentSquares!=null) IdentSquares.accept(visitor);
         if(TypeIdentList!=null) TypeIdentList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
-        if(OptionalSquares!=null) OptionalSquares.traverseTopDown(visitor);
+        if(IdentSquares!=null) IdentSquares.traverseTopDown(visitor);
         if(TypeIdentList!=null) TypeIdentList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
-        if(OptionalSquares!=null) OptionalSquares.traverseBottomUp(visitor);
+        if(IdentSquares!=null) IdentSquares.traverseBottomUp(visitor);
         if(TypeIdentList!=null) TypeIdentList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -101,17 +77,8 @@ public class FormPars implements SyntaxNode {
         buffer.append(tab);
         buffer.append("FormPars(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I2);
-        buffer.append("\n");
-
-        if(OptionalSquares!=null)
-            buffer.append(OptionalSquares.toString("  "+tab));
+        if(IdentSquares!=null)
+            buffer.append(IdentSquares.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

@@ -1,0 +1,81 @@
+INFO  15:36:00,056 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  15:36:00,132 - #2 program
+INFO  15:36:00,132 - #48 p
+INFO  15:36:00,132 - #7 const
+INFO  15:36:00,133 - #48 int
+INFO  15:36:00,133 - #48 size
+INFO  15:36:00,134 - #33 =
+INFO  15:36:00,134 - #47 10
+INFO  15:36:00,134 - #38 ,
+INFO  15:36:00,135 - #48 p
+INFO  15:36:00,135 - #33 =
+INFO  15:36:00,135 - #47 2
+INFO  15:36:00,136 - #38 ,
+INFO  15:36:00,136 - #48 q
+INFO  15:36:00,136 - #33 =
+INFO  15:36:00,136 - #47 3
+INFO  15:36:00,136 - #36 ;
+INFO  15:36:00,137 - #48 int
+INFO  15:36:00,137 - #48 p
+INFO  15:36:00,137 - #38 ,
+INFO  15:36:00,138 - #48 q
+INFO  15:36:00,138 - #36 ;
+INFO  15:36:00,140 - #44 {
+INFO  15:36:00,141 - #45 }
+INFO  15:36:00,142 - ProgramX(
+ p
+  ConstDeclListVar(
+    ConstDeclListConst(
+      NoConstDeclList(
+      ) [NoConstDeclList]
+      ConstDeclX(
+        Type(
+         int
+        ) [Type]
+       size
+        FirstConstNum(
+         10
+        ) [FirstConstNum]
+        OtherConstListX(
+          OtherConstListX(
+            NoOtherConstList(
+            ) [NoOtherConstList]
+            ConstTailX(
+             p
+              FirstConstNum(
+               2
+              ) [FirstConstNum]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+          ConstTailX(
+           q
+            FirstConstNum(
+             3
+            ) [FirstConstNum]
+          ) [ConstTailX]
+        ) [OtherConstListX]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    VarDeclX(
+      Type(
+       int
+      ) [Type]
+      FirstVarDeclIdentOnly(
+       p
+      ) [FirstVarDeclIdentOnly]
+      OtherVarDeclListX(
+        NoOtherVarDeclList(
+        ) [NoOtherVarDeclList]
+        FirstVarDeclIdentOnly(
+         q
+        ) [FirstVarDeclIdentOnly]
+      ) [OtherVarDeclListX]
+    ) [VarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [ProgramX]
+INFO  15:36:00,142 - ===================================
+INFO  15:36:00,147 -  Print count calls = 0
+INFO  15:36:00,147 -  Deklarisanih promenljivih ima = 2
+INFO  15:36:00,147 - Deklarisanih konstanti ima = 3

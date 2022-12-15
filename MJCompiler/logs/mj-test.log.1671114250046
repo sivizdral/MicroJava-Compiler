@@ -1,0 +1,56 @@
+INFO  15:23:59,944 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  15:24:00,006 - #2 program
+INFO  15:24:00,007 - #48 p
+INFO  15:24:00,007 - #7 const
+INFO  15:24:00,007 - #48 int
+INFO  15:24:00,007 - #48 size
+INFO  15:24:00,007 - #33 =
+INFO  15:24:00,007 - #47 10
+INFO  15:24:00,009 - #38 ,
+INFO  15:24:00,009 - #48 p
+INFO  15:24:00,010 - #47 2
+ERROR 15:24:00,010 - 
+Sintaksna greska na liniji 2
+INFO  15:24:00,010 - #38 ,
+INFO  15:24:00,010 - #48 q
+INFO  15:24:00,010 - #33 =
+INFO  15:24:00,013 - #47 3
+INFO  15:24:00,015 - #36 ;
+INFO  15:24:00,016 - #44 {
+INFO  15:24:00,017 - #45 }
+INFO  15:24:00,019 - ProgramX(
+ p
+  ConstDeclListConst(
+    NoConstDeclList(
+    ) [NoConstDeclList]
+    ConstDeclX(
+      Type(
+       int
+      ) [Type]
+     size
+      FirstConstNum(
+       10
+      ) [FirstConstNum]
+      OtherConstListX(
+        OtherConstListX(
+          NoOtherConstList(
+          ) [NoOtherConstList]
+          ConstTailError(
+          ) [ConstTailError]
+        ) [OtherConstListX]
+        ConstTailX(
+         q
+          FirstConstNum(
+           3
+          ) [FirstConstNum]
+        ) [ConstTailX]
+      ) [OtherConstListX]
+    ) [ConstDeclX]
+  ) [ConstDeclListConst]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [ProgramX]
+INFO  15:24:00,019 - ===================================
+INFO  15:24:00,024 -  Print count calls = 0
+INFO  15:24:00,025 -  Deklarisanih promenljivih ima = 0
+INFO  15:24:00,025 - Deklarisanih konstanti ima = 2

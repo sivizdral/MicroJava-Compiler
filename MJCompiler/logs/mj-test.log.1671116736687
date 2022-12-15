@@ -1,0 +1,308 @@
+INFO  16:05:08,797 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  16:05:08,864 - #2 program
+INFO  16:05:08,865 - #48 p
+INFO  16:05:08,865 - #7 const
+INFO  16:05:08,865 - #48 int
+INFO  16:05:08,866 - #48 size
+INFO  16:05:08,867 - #33 =
+INFO  16:05:08,867 - #47 10
+INFO  16:05:08,867 - #38 ,
+INFO  16:05:08,868 - #48 p
+INFO  16:05:08,869 - #33 =
+INFO  16:05:08,869 - #47 2
+INFO  16:05:08,869 - #38 ,
+INFO  16:05:08,869 - #48 q
+INFO  16:05:08,869 - #33 =
+INFO  16:05:08,869 - #47 3
+INFO  16:05:08,869 - #36 ;
+INFO  16:05:08,870 - #48 int
+INFO  16:05:08,870 - #48 p
+INFO  16:05:08,870 - #38 ,
+INFO  16:05:08,871 - #48 q
+INFO  16:05:08,872 - #36 ;
+INFO  16:05:08,874 - #48 char
+INFO  16:05:08,874 - #48 c
+INFO  16:05:08,874 - #38 ,
+INFO  16:05:08,874 - #48 int
+INFO  16:05:08,874 - #42 [
+INFO  16:05:08,874 - #43 ]
+INFO  16:05:08,874 - #38 ,
+INFO  16:05:08,874 - #48 arr
+INFO  16:05:08,874 - #36 ;
+INFO  16:05:08,875 - #44 {
+INFO  16:05:08,875 - #15 void
+INFO  16:05:08,876 - #48 main
+INFO  16:05:08,877 - #40 (
+INFO  16:05:08,877 - #48 int
+INFO  16:05:08,877 - #48 a
+INFO  16:05:08,877 - #38 ,
+INFO  16:05:08,880 - #48 int
+INFO  16:05:08,880 - #48 b
+INFO  16:05:08,880 - #38 ,
+INFO  16:05:08,880 - #48 int
+INFO  16:05:08,880 - #48 c
+INFO  16:05:08,880 - #48 int
+ERROR 16:05:08,881 - 
+Sintaksna greska na liniji 5
+INFO  16:05:08,881 - #48 d
+INFO  16:05:08,881 - #41 )
+INFO  16:05:08,881 - #44 {
+INFO  16:05:08,882 - #8 if
+INFO  16:05:08,882 - #40 (
+INFO  16:05:08,884 - #48 a
+INFO  16:05:08,885 - #27 >
+INFO  16:05:08,890 - #47 5
+INFO  16:05:08,893 - #41 )
+INFO  16:05:08,896 - #44 {
+INFO  16:05:08,896 - #45 }
+INFO  16:05:08,896 - #6 else
+INFO  16:05:08,896 - #44 {
+INFO  16:05:08,897 - #45 }
+INFO  16:05:08,897 - #10 while
+INFO  16:05:08,897 - #40 (
+INFO  16:05:08,897 - #48 a
+INFO  16:05:08,897 - #27 >
+INFO  16:05:08,897 - #47 5
+INFO  16:05:08,897 - #41 )
+INFO  16:05:08,898 - #44 {
+INFO  16:05:08,898 - #45 }
+INFO  16:05:08,898 - #45 }
+INFO  16:05:08,898 - #45 }
+INFO  16:05:08,900 - ProgramX(
+ p
+  ConstDeclListVar(
+    ConstDeclListVar(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         size
+          FirstConstNum(
+           10
+          ) [FirstConstNum]
+          OtherConstListX(
+            OtherConstListX(
+              NoOtherConstList(
+              ) [NoOtherConstList]
+              ConstTailX(
+               p
+                FirstConstNum(
+                 2
+                ) [FirstConstNum]
+              ) [ConstTailX]
+            ) [OtherConstListX]
+            ConstTailX(
+             q
+              FirstConstNum(
+               3
+              ) [FirstConstNum]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      VarDeclX(
+        Type(
+         int
+        ) [Type]
+        FirstVarDeclIdentOnly(
+         p
+        ) [FirstVarDeclIdentOnly]
+        OtherVarDeclListX(
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+          FirstVarDeclIdentOnly(
+           q
+          ) [FirstVarDeclIdentOnly]
+        ) [OtherVarDeclListX]
+      ) [VarDeclX]
+    ) [ConstDeclListVar]
+    VarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstVarDeclIdentOnly(
+       c
+      ) [FirstVarDeclIdentOnly]
+      OtherVarDeclListX(
+        OtherVarDeclListX(
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+          FirstVarDeclArrayIdent(
+           int
+          ) [FirstVarDeclArrayIdent]
+        ) [OtherVarDeclListX]
+        FirstVarDeclIdentOnly(
+         arr
+        ) [FirstVarDeclIdentOnly]
+      ) [OtherVarDeclListX]
+    ) [VarDeclX]
+  ) [ConstDeclListVar]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        StatementListX(
+          NoStatementList(
+          ) [NoStatementList]
+          MatchedStmt(
+            MatchedIfElseStmt(
+              ConditionIFX(
+                CondTerm(
+                  CondFact(
+                    Expr(
+                      NoOptMinus(
+                      ) [NoOptMinus]
+                      Term(
+                        FactorActPars(
+                          Designator(
+                           a
+                            NoIdentExprList(
+                            ) [NoIdentExprList]
+                          ) [Designator]
+                          NoOptOptActPars(
+                          ) [NoOptOptActPars]
+                        ) [FactorActPars]
+                        NoMulopFactorList(
+                        ) [NoMulopFactorList]
+                      ) [Term]
+                      NoAddopTermList(
+                      ) [NoAddopTermList]
+                    ) [Expr]
+                    OptionalRelopExprX(
+                      RelopGT(
+                      ) [RelopGT]
+                      Expr(
+                        NoOptMinus(
+                        ) [NoOptMinus]
+                        Term(
+                          FactorNumConst(
+                           5
+                          ) [FactorNumConst]
+                          NoMulopFactorList(
+                          ) [NoMulopFactorList]
+                        ) [Term]
+                        NoAddopTermList(
+                        ) [NoAddopTermList]
+                      ) [Expr]
+                    ) [OptionalRelopExprX]
+                  ) [CondFact]
+                  NoCondFactAndList(
+                  ) [NoCondFactAndList]
+                ) [CondTerm]
+                NoCondTermOrList(
+                ) [NoCondTermOrList]
+              ) [ConditionIFX]
+              BlockStmt(
+                NoStatementList(
+                ) [NoStatementList]
+              ) [BlockStmt]
+              ElseElse(
+              ) [ElseElse]
+              BlockStmt(
+                NoStatementList(
+                ) [NoStatementList]
+              ) [BlockStmt]
+            ) [MatchedIfElseStmt]
+          ) [MatchedStmt]
+        ) [StatementListX]
+        MatchedStmt(
+          WhileStmt(
+            ConditionWHILE(
+              CondTerm(
+                CondFact(
+                  Expr(
+                    NoOptMinus(
+                    ) [NoOptMinus]
+                    Term(
+                      FactorActPars(
+                        Designator(
+                         a
+                          NoIdentExprList(
+                          ) [NoIdentExprList]
+                        ) [Designator]
+                        NoOptOptActPars(
+                        ) [NoOptOptActPars]
+                      ) [FactorActPars]
+                      NoMulopFactorList(
+                      ) [NoMulopFactorList]
+                    ) [Term]
+                    NoAddopTermList(
+                    ) [NoAddopTermList]
+                  ) [Expr]
+                  OptionalRelopExprX(
+                    RelopGT(
+                    ) [RelopGT]
+                    Expr(
+                      NoOptMinus(
+                      ) [NoOptMinus]
+                      Term(
+                        FactorNumConst(
+                         5
+                        ) [FactorNumConst]
+                        NoMulopFactorList(
+                        ) [NoMulopFactorList]
+                      ) [Term]
+                      NoAddopTermList(
+                      ) [NoAddopTermList]
+                    ) [Expr]
+                  ) [OptionalRelopExprX]
+                ) [CondFact]
+                NoCondFactAndList(
+                ) [NoCondFactAndList]
+              ) [CondTerm]
+              NoCondTermOrList(
+              ) [NoCondTermOrList]
+            ) [ConditionWHILE]
+            MatchedStmt(
+              BlockStmt(
+                NoStatementList(
+                ) [NoStatementList]
+              ) [BlockStmt]
+            ) [MatchedStmt]
+          ) [WhileStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [ProgramX]
+INFO  16:05:08,900 - ===================================
+INFO  16:05:08,906 -  Print count calls = 0
+INFO  16:05:08,906 -  Deklarisanih promenljivih ima = 5
+INFO  16:05:08,906 - Deklarisanih konstanti ima = 3

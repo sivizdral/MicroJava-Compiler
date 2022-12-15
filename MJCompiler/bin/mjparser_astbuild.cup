@@ -90,7 +90,8 @@ nonterminal OptionalDesignator OptionalDesignator;
 nonterminal OptionalDesignatorList OptionalDesignatorList;
 nonterminal ActPars ActPars;
 nonterminal ExprList ExprList;
-nonterminal Condition Condition;
+nonterminal ConditionIF ConditionIF;
+nonterminal ConditionWHILE ConditionWHILE;
 nonterminal CondTermOrList CondTermOrList;
 nonterminal CondTerm CondTerm;
 nonterminal CondFactAndList CondFactAndList;
@@ -117,6 +118,12 @@ nonterminal FirstConstructorDecl FirstConstructorDecl;
 nonterminal Lists Lists;
 nonterminal MethodDecl2 MethodDecl2;
 nonterminal MethodDeclList2 MethodDeclList2;
+nonterminal ConstTail ConstTail;
+nonterminal IdentSquares IdentSquares;
+nonterminal ClassVarDecl ClassVarDecl;
+nonterminal ClassVarDeclList ClassVarDeclList;
+nonterminal FirstClassVarDecl FirstClassVarDecl;
+nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 
 precedence left ELSE;
 
@@ -134,31 +141,50 @@ MethodDeclList ::= (MethodDeclListX) MethodDeclList:M1 MethodDecl:M2 {: RESULT=n
 				   
 /* CONST DECL */		   
 				   
-ConstDecl ::= CONST Type:T1 IDENT:I2 EQUALS FirstConst:F3 OtherConstList:O4 SEMICOLON {: RESULT=new ConstDeclDerived1(T1, I2, F3, O4); RESULT.setLine(T1left); :};
+ConstDecl ::= (ConstDeclX) CONST Type:T1 IDENT:I2 EQUALS FirstConst:F3 OtherConstList:O4 SEMICOLON {: RESULT=new ConstDeclX(T1, I2, F3, O4); RESULT.setLine(T1left); :} |
+			  (ConstDeclError) error SEMICOLON {: RESULT=new ConstDeclError(); :};
 
 FirstConst ::= (FirstConstNum) NUMCONST:N1 {: RESULT=new FirstConstNum(N1); RESULT.setLine(N1left); :} |
 			   (FirstConstChar) CHARCONST:C1 {: RESULT=new FirstConstChar(C1); RESULT.setLine(C1left); :} |
 			   (FirstConstBool) BOOLCONST:B1 {: RESULT=new FirstConstBool(B1); RESULT.setLine(B1left); :};
 			   
-OtherConstList ::= (OtherConstListX) OtherConstList:O1 COMMA IDENT:I2 EQUALS FirstConst:F3 {: RESULT=new OtherConstListX(O1, I2, F3); RESULT.setLine(O1left); :} |
+OtherConstList ::= (OtherConstListX) OtherConstList:O1 COMMA ConstTail:C2 {: RESULT=new OtherConstListX(O1, C2); RESULT.setLine(O1left); :} |
 				   (NoOtherConstList) {: RESULT=new NoOtherConstList(); :} /* epsilon */;
+				   
+ConstTail ::= (ConstTailX) IDENT:I1 EQUALS FirstConst:F2 {: RESULT=new ConstTailX(I1, F2); RESULT.setLine(I1left); :} |
+			  (ConstTailError) error {: RESULT=new ConstTailError(); :};
 
 /* VAR DECL */
 				   
-VarDecl ::= (VarDecl) Type:T1 FirstVarDecl:F2 OtherVarDeclList:O3 SEMICOLON {: RESULT=new VarDecl(T1, F2, O3); RESULT.setLine(T1left); :};
+VarDecl ::= (VarDeclX) Type:T1 FirstVarDecl:F2 OtherVarDeclList:O3 SEMICOLON {: RESULT=new VarDeclX(T1, F2, O3); RESULT.setLine(T1left); :};
+
+ClassVarDecl ::= (ClassVarDeclX) Type:T1 FirstClassVarDecl:F2 OtherClassVarDeclList:O3 SEMICOLON {: RESULT=new ClassVarDeclX(T1, F2, O3); RESULT.setLine(T1left); :} |
+				 (ClassVarDeclError) error {: RESULT=new ClassVarDeclError(); :};
 
 FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
-				 (FirstVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstVarDeclArrayIdent(I1); RESULT.setLine(I1left); :};
+				 (FirstVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstVarDeclArrayIdent(I1); RESULT.setLine(I1left); :} |
+				 (FirstVarDeclError) error {: RESULT=new FirstVarDeclError(); :};
+				 
+FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstClassVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
+				 	  (FirstClassVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstClassVarDeclArrayIdent(I1); RESULT.setLine(I1left); :};
 				 
 OtherVarDeclList ::= (OtherVarDeclListX) OtherVarDeclList:O1 COMMA FirstVarDecl:F2 {: RESULT=new OtherVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
+					 (OtherVarDeclListError) error {: RESULT=new OtherVarDeclListError(); :} |
 					 (NoOtherVarDeclList) {: RESULT=new NoOtherVarDeclList(); :} /* epsilon */;
+					 
+OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList:O1 COMMA FirstVarDecl:F2 {: RESULT=new OtherClassVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
+					 	  (NoOtherClassVarDeclList) {: RESULT=new NoOtherClassVarDeclList(); :} /* epsilon */;
 					 
 /* CLASS DECL */
 
-ClassDecl ::= (ClassDecl) CLASS IDENT:I1 Extension:E2 LEFT_WIGGLY_PARENTHESES VarDeclList:V3 ConstructorMethodLists:C4 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ClassDecl(I1, E2, V3, C4); RESULT.setLine(I1left); :};
+ClassDecl ::= (ClassDecl) CLASS IDENT:I1 Extension:E2 LEFT_WIGGLY_PARENTHESES ClassVarDeclList:C3 ConstructorMethodLists:C4 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ClassDecl(I1, E2, C3, C4); RESULT.setLine(I1left); :};
 
 Extension ::= (ExtensionX) EXTENDS Type:T1 {: RESULT=new ExtensionX(T1); RESULT.setLine(T1left); :} |
+			  (ExtensionError) error:l {: parser.report_error("Greska u ekstenziji klase u liniji " + lleft, null); :} {: RESULT=new ExtensionError(); :}|
 			  (NoExtension) {: RESULT=new NoExtension(); :} /* epsilon */;
+			  
+ClassVarDeclList ::= (ClassVarDeclListX) ClassVarDeclList:C1 ClassVarDecl:C2 {: RESULT=new ClassVarDeclListX(C1, C2); RESULT.setLine(C1left); :} |
+					 (NoClassVarDeclList) {: RESULT=new NoClassVarDeclList(); :} /* epsilon */;
 
 VarDeclList ::= (VarDeclListX) VarDeclList:V1 VarDecl:V2 {: RESULT=new VarDeclListX(V1, V2); RESULT.setLine(V1left); :} |
 				(NoVarDeclList) {: RESULT=new NoVarDeclList(); :} /* epsilon */;
@@ -203,13 +229,16 @@ ReturnType ::= (ReturnTypeX) Type:T1 {: RESULT=new ReturnTypeX(T1); RESULT.setLi
 			   
 /* FORM PARS */
 
-FormPars ::= (FormPars) Type:T1 IDENT:I2 OptionalSquares:O3 TypeIdentList:T4 {: RESULT=new FormPars(T1, I2, O3, T4); RESULT.setLine(T1left); :};
+FormPars ::= (FormPars) IdentSquares:I1 TypeIdentList:T2 {: RESULT=new FormPars(I1, T2); RESULT.setLine(I1left); :};
 
 OptionalSquares ::= (OptionalSquaresX) LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new OptionalSquaresX(); :} |
 					(NoOptionalSquares) {: RESULT=new NoOptionalSquares(); :} /* epsilon */;
 					
-TypeIdentList ::= (TypeIdentListX) TypeIdentList:T1 COMMA Type:T2 IDENT:I3 OptionalSquares:O4 {: RESULT=new TypeIdentListX(T1, T2, I3, O4); RESULT.setLine(T1left); :} |
+TypeIdentList ::= (TypeIdentListX) TypeIdentList:T1 COMMA IdentSquares:I2 {: RESULT=new TypeIdentListX(T1, I2); RESULT.setLine(T1left); :} |
 				  (NoTypeIdentList) {: RESULT=new NoTypeIdentList(); :} /* epsilon */;
+				  
+IdentSquares ::= (IdentSquaresX) Type:T1 IDENT:I2 OptionalSquares:O3 {: RESULT=new IdentSquaresX(T1, I2, O3); RESULT.setLine(T1left); :} |
+				 (IdentSquaresError) error {: RESULT=new IdentSquaresError(); :};
 				  
 /* TYPE */
 
@@ -220,12 +249,12 @@ Type ::= (Type) IDENT:I1 {: RESULT=new Type(I1); RESULT.setLine(I1left); :};
 Statement ::= (MatchedStmt) Matched:M1 {: RESULT=new MatchedStmt(M1); RESULT.setLine(M1left); :} |
 			  (UnmatchedStmt) Unmatched:U1 {: RESULT=new UnmatchedStmt(U1); RESULT.setLine(U1left); :};
 			  
-Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES Condition:C1 RIGHT_ROUND_PARENTHESES Statement:S2 {: RESULT=new UnmatchedIf(C1, S2); RESULT.setLine(C1left); :} |
-			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES Condition:C1 RIGHT_ROUND_PARENTHESES Matched:M2 ElseElse:E3 Unmatched:U4 {: RESULT=new UnmatchedIfElse(C1, M2, E3, U4); RESULT.setLine(C1left); :};
+Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES ConditionIF:C1 RIGHT_ROUND_PARENTHESES Statement:S2 {: RESULT=new UnmatchedIf(C1, S2); RESULT.setLine(C1left); :} |
+			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES ConditionIF:C1 RIGHT_ROUND_PARENTHESES Matched:M2 ElseElse:E3 Unmatched:U4 {: RESULT=new UnmatchedIfElse(C1, M2, E3, U4); RESULT.setLine(C1left); :};
 
 Matched ::= (DesigStmt) DesignatorStatement:D1 SEMICOLON {: RESULT=new DesigStmt(D1); RESULT.setLine(D1left); :} |
-			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES Condition:C1 RIGHT_ROUND_PARENTHESES Matched:M2 ElseElse:E3 Matched:M4 {: RESULT=new MatchedIfElseStmt(C1, M2, E3, M4); RESULT.setLine(C1left); :} |
-			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES Condition:C1 RIGHT_ROUND_PARENTHESES Statement:S2 {: RESULT=new WhileStmt(C1, S2); RESULT.setLine(C1left); :} |
+			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES ConditionIF:C1 RIGHT_ROUND_PARENTHESES Matched:M2 ElseElse:E3 Matched:M4 {: RESULT=new MatchedIfElseStmt(C1, M2, E3, M4); RESULT.setLine(C1left); :} |
+			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES ConditionWHILE:C1 RIGHT_ROUND_PARENTHESES Statement:S2 {: RESULT=new WhileStmt(C1, S2); RESULT.setLine(C1left); :} |
 			(BreakStmt) BREAK SEMICOLON {: RESULT=new BreakStmt(); :} |
 			(ContinueStmt) CONTINUE SEMICOLON {: RESULT=new ContinueStmt(); :} |
 			(ReturnStmt) RETURN OptionalExpr:O1 SEMICOLON {: RESULT=new ReturnStmt(O1); RESULT.setLine(O1left); :} |
@@ -245,7 +274,8 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:N1 {: RESULT=new Optiona
 /* DESIGNATOR STATEMENT */
 
 DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator:D1 DsgStmtEnd:D2 {: RESULT=new FirstTypeDesignatorStmt(D1, D2); RESULT.setLine(D1left); :} |
-						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :};
+						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :} |
+						(ErrorDesignatorStmt) error {: RESULT=new ErrorDesignatorStmt(); :};
 						
 DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop:A1 Expr:E2 {: RESULT=new AssignDsgStmtEnd(A1, E2); RESULT.setLine(A1left); :} |
 			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars:O1 RIGHT_ROUND_PARENTHESES {: RESULT=new ActParsDsgStmtEnd(O1); RESULT.setLine(O1left); :} |
@@ -270,7 +300,10 @@ ExprList ::= (ExprListX) ExprList:E1 COMMA Expr:E2 {: RESULT=new ExprListX(E1, E
 
 /* CONDITION */
 
-Condition ::= (Condition) CondTerm:C1 CondTermOrList:C2 {: RESULT=new Condition(C1, C2); RESULT.setLine(C1left); :};
+ConditionIF ::= (ConditionIFX) CondTerm:C1 CondTermOrList:C2 {: RESULT=new ConditionIFX(C1, C2); RESULT.setLine(C1left); :} |
+				(ConditionIFError) error {: RESULT=new ConditionIFError(); :};
+
+ConditionWHILE ::= (ConditionWHILE) CondTerm:C1 CondTermOrList:C2 {: RESULT=new ConditionWHILE(C1, C2); RESULT.setLine(C1left); :};
 
 CondTermOrList ::= (CondTermOrListX) CondTermOrList:C1 OR CondTerm:C2 {: RESULT=new CondTermOrListX(C1, C2); RESULT.setLine(C1left); :} |
 				   (NoCondTermOrList) {: RESULT=new NoCondTermOrList(); :} /* epsilon */;

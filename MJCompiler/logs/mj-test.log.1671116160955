@@ -1,0 +1,146 @@
+INFO  15:46:31,481 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  15:46:31,549 - #2 program
+INFO  15:46:31,550 - #48 p
+INFO  15:46:31,550 - #7 const
+INFO  15:46:31,551 - #48 int
+INFO  15:46:31,551 - #48 size
+INFO  15:46:31,552 - #33 =
+INFO  15:46:31,552 - #47 10
+INFO  15:46:31,552 - #38 ,
+INFO  15:46:31,553 - #48 p
+INFO  15:46:31,553 - #33 =
+INFO  15:46:31,553 - #47 2
+INFO  15:46:31,553 - #38 ,
+INFO  15:46:31,554 - #48 q
+INFO  15:46:31,554 - #33 =
+INFO  15:46:31,554 - #47 3
+INFO  15:46:31,554 - #36 ;
+INFO  15:46:31,554 - #48 int
+INFO  15:46:31,555 - #48 p
+INFO  15:46:31,555 - #38 ,
+INFO  15:46:31,557 - #48 q
+INFO  15:46:31,557 - #36 ;
+INFO  15:46:31,558 - #48 char
+INFO  15:46:31,558 - #48 c
+INFO  15:46:31,558 - #38 ,
+INFO  15:46:31,558 - #48 int
+INFO  15:46:31,559 - #42 [
+INFO  15:46:31,559 - #43 ]
+INFO  15:46:31,559 - #38 ,
+INFO  15:46:31,559 - #48 arr
+INFO  15:46:31,559 - #36 ;
+INFO  15:46:31,559 - #44 {
+INFO  15:46:31,559 - #15 void
+INFO  15:46:31,560 - #48 main
+INFO  15:46:31,561 - #40 (
+INFO  15:46:31,561 - #41 )
+INFO  15:46:31,562 - #44 {
+INFO  15:46:31,563 - #48 a
+INFO  15:46:31,564 - #39 .
+INFO  15:46:31,564 - #48 b
+INFO  15:46:31,565 - #47 5
+ERROR 15:46:31,565 - 
+Sintaksna greska na liniji 6
+INFO  15:46:31,565 - #36 ;
+INFO  15:46:31,565 - #45 }
+INFO  15:46:31,565 - #45 }
+INFO  15:46:31,568 - ProgramX(
+ p
+  ConstDeclListVar(
+    ConstDeclListVar(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         size
+          FirstConstNum(
+           10
+          ) [FirstConstNum]
+          OtherConstListX(
+            OtherConstListX(
+              NoOtherConstList(
+              ) [NoOtherConstList]
+              ConstTailX(
+               p
+                FirstConstNum(
+                 2
+                ) [FirstConstNum]
+              ) [ConstTailX]
+            ) [OtherConstListX]
+            ConstTailX(
+             q
+              FirstConstNum(
+               3
+              ) [FirstConstNum]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      VarDeclX(
+        Type(
+         int
+        ) [Type]
+        FirstVarDeclIdentOnly(
+         p
+        ) [FirstVarDeclIdentOnly]
+        OtherVarDeclListX(
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+          FirstVarDeclIdentOnly(
+           q
+          ) [FirstVarDeclIdentOnly]
+        ) [OtherVarDeclListX]
+      ) [VarDeclX]
+    ) [ConstDeclListVar]
+    VarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstVarDeclIdentOnly(
+       c
+      ) [FirstVarDeclIdentOnly]
+      OtherVarDeclListX(
+        OtherVarDeclListX(
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+          FirstVarDeclArrayIdent(
+           int
+          ) [FirstVarDeclArrayIdent]
+        ) [OtherVarDeclListX]
+        FirstVarDeclIdentOnly(
+         arr
+        ) [FirstVarDeclIdentOnly]
+      ) [OtherVarDeclListX]
+    ) [VarDeclX]
+  ) [ConstDeclListVar]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      NoFormParsOptional(
+      ) [NoFormParsOptional]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [ProgramX]
+INFO  15:46:31,569 - ===================================
+INFO  15:46:31,572 -  Print count calls = 0
+INFO  15:46:31,572 -  Deklarisanih promenljivih ima = 5
+INFO  15:46:31,573 - Deklarisanih konstanti ima = 3

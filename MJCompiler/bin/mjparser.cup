@@ -60,9 +60,10 @@ nonterminal VarDecl, FirstVarDecl, OtherVarDeclList, ClassDecl, Extension, VarDe
 nonterminal ConstructorDecl, FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList, Type;
 nonterminal Statement, Unmatched, Matched, OptionalExpr, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
-nonterminal Condition, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, Expr, OptMinus, AddopTermList;
+nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, Expr, OptMinus, AddopTermList;
 nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Designator, IdentExprList, Label, Assignop, Relop, Addop, Mulop, DesignatorFE, ElseElse;
-nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2;
+nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail, IdentSquares;
+nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList;
 
 precedence left ELSE;
 
@@ -80,31 +81,50 @@ MethodDeclList ::= (MethodDeclListX) MethodDeclList MethodDecl |
 				   
 /* CONST DECL */		   
 				   
-ConstDecl ::= CONST Type IDENT EQUALS FirstConst OtherConstList SEMICOLON;
+ConstDecl ::= (ConstDeclX) CONST Type IDENT EQUALS FirstConst OtherConstList SEMICOLON |
+			  (ConstDeclError) error SEMICOLON;
 
 FirstConst ::= (FirstConstNum) NUMCONST |
 			   (FirstConstChar) CHARCONST |
 			   (FirstConstBool) BOOLCONST;
 			   
-OtherConstList ::= (OtherConstListX) OtherConstList COMMA IDENT EQUALS FirstConst |
+OtherConstList ::= (OtherConstListX) OtherConstList COMMA ConstTail |
 				   (NoOtherConstList) /* epsilon */;
+				   
+ConstTail ::= (ConstTailX) IDENT EQUALS FirstConst |
+			  (ConstTailError) error;
 
 /* VAR DECL */
 				   
-VarDecl ::= (VarDecl) Type FirstVarDecl OtherVarDeclList SEMICOLON;
+VarDecl ::= (VarDeclX) Type FirstVarDecl OtherVarDeclList SEMICOLON;
+
+ClassVarDecl ::= (ClassVarDeclX) Type FirstClassVarDecl OtherClassVarDeclList SEMICOLON |
+				 (ClassVarDeclError) error;
 
 FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT |
-				 (FirstVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES;
+				 (FirstVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
+				 (FirstVarDeclError) error;
+				 
+FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT |
+				 	  (FirstClassVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES;
 				 
 OtherVarDeclList ::= (OtherVarDeclListX) OtherVarDeclList COMMA FirstVarDecl |
+					 (OtherVarDeclListError) error |
 					 (NoOtherVarDeclList) /* epsilon */;
+					 
+OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList COMMA FirstVarDecl |
+					 	  (NoOtherClassVarDeclList) /* epsilon */;
 					 
 /* CLASS DECL */
 
-ClassDecl ::= (ClassDecl) CLASS IDENT Extension LEFT_WIGGLY_PARENTHESES VarDeclList ConstructorMethodLists RIGHT_WIGGLY_PARENTHESES;
+ClassDecl ::= (ClassDecl) CLASS IDENT Extension LEFT_WIGGLY_PARENTHESES ClassVarDeclList ConstructorMethodLists RIGHT_WIGGLY_PARENTHESES;
 
 Extension ::= (ExtensionX) EXTENDS Type |
+			  (ExtensionError) error:l {: parser.report_error("Greska u ekstenziji klase u liniji " + lleft, null); :}|
 			  (NoExtension) /* epsilon */;
+			  
+ClassVarDeclList ::= (ClassVarDeclListX) ClassVarDeclList ClassVarDecl |
+					 (NoClassVarDeclList) /* epsilon */;
 
 VarDeclList ::= (VarDeclListX) VarDeclList VarDecl |
 				(NoVarDeclList) /* epsilon */;
@@ -149,13 +169,16 @@ ReturnType ::= (ReturnTypeX) Type |
 			   
 /* FORM PARS */
 
-FormPars ::= (FormPars) Type IDENT OptionalSquares TypeIdentList;
+FormPars ::= (FormPars) IdentSquares TypeIdentList;
 
 OptionalSquares ::= (OptionalSquaresX) LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
 					(NoOptionalSquares) /* epsilon */;
 					
-TypeIdentList ::= (TypeIdentListX) TypeIdentList COMMA Type IDENT OptionalSquares |
+TypeIdentList ::= (TypeIdentListX) TypeIdentList COMMA IdentSquares |
 				  (NoTypeIdentList) /* epsilon */;
+				  
+IdentSquares ::= (IdentSquaresX) Type IDENT OptionalSquares |
+				 (IdentSquaresError) error;
 				  
 /* TYPE */
 
@@ -166,12 +189,12 @@ Type ::= (Type) IDENT;
 Statement ::= (MatchedStmt) Matched |
 			  (UnmatchedStmt) Unmatched;
 			  
-Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Statement |
-			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Matched ElseElse Unmatched;
+Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Statement |
+			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Unmatched;
 
 Matched ::= (DesigStmt) DesignatorStatement SEMICOLON |
-			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Matched ElseElse Matched |
-			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES Condition RIGHT_ROUND_PARENTHESES Statement |
+			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Matched |
+			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES ConditionWHILE RIGHT_ROUND_PARENTHESES Statement |
 			(BreakStmt) BREAK SEMICOLON |
 			(ContinueStmt) CONTINUE SEMICOLON |
 			(ReturnStmt) RETURN OptionalExpr SEMICOLON |
@@ -191,7 +214,8 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST |
 /* DESIGNATOR STATEMENT */
 
 DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd |
-						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator;
+						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator |
+						(ErrorDesignatorStmt) error;
 						
 DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop Expr |
 			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
@@ -216,7 +240,10 @@ ExprList ::= (ExprListX) ExprList COMMA Expr |
 
 /* CONDITION */
 
-Condition ::= (Condition) CondTerm CondTermOrList;
+ConditionIF ::= (ConditionIFX) CondTerm CondTermOrList |
+				(ConditionIFError) error;
+
+ConditionWHILE ::= (ConditionWHILE) CondTerm CondTermOrList;
 
 CondTermOrList ::= (CondTermOrListX) CondTermOrList OR CondTerm |
 				   (NoCondTermOrList) /* epsilon */;

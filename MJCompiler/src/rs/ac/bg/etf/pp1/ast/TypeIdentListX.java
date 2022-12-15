@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/11/2022 22:30:50
+// 15/11/2022 17:4:46
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,18 +8,13 @@ package rs.ac.bg.etf.pp1.ast;
 public class TypeIdentListX extends TypeIdentList {
 
     private TypeIdentList TypeIdentList;
-    private Type Type;
-    private String I3;
-    private OptionalSquares OptionalSquares;
+    private IdentSquares IdentSquares;
 
-    public TypeIdentListX (TypeIdentList TypeIdentList, Type Type, String I3, OptionalSquares OptionalSquares) {
+    public TypeIdentListX (TypeIdentList TypeIdentList, IdentSquares IdentSquares) {
         this.TypeIdentList=TypeIdentList;
         if(TypeIdentList!=null) TypeIdentList.setParent(this);
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
-        this.I3=I3;
-        this.OptionalSquares=OptionalSquares;
-        if(OptionalSquares!=null) OptionalSquares.setParent(this);
+        this.IdentSquares=IdentSquares;
+        if(IdentSquares!=null) IdentSquares.setParent(this);
     }
 
     public TypeIdentList getTypeIdentList() {
@@ -30,28 +25,12 @@ public class TypeIdentListX extends TypeIdentList {
         this.TypeIdentList=TypeIdentList;
     }
 
-    public Type getType() {
-        return Type;
+    public IdentSquares getIdentSquares() {
+        return IdentSquares;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
-    }
-
-    public String getI3() {
-        return I3;
-    }
-
-    public void setI3(String I3) {
-        this.I3=I3;
-    }
-
-    public OptionalSquares getOptionalSquares() {
-        return OptionalSquares;
-    }
-
-    public void setOptionalSquares(OptionalSquares OptionalSquares) {
-        this.OptionalSquares=OptionalSquares;
+    public void setIdentSquares(IdentSquares IdentSquares) {
+        this.IdentSquares=IdentSquares;
     }
 
     public void accept(Visitor visitor) {
@@ -60,21 +39,18 @@ public class TypeIdentListX extends TypeIdentList {
 
     public void childrenAccept(Visitor visitor) {
         if(TypeIdentList!=null) TypeIdentList.accept(visitor);
-        if(Type!=null) Type.accept(visitor);
-        if(OptionalSquares!=null) OptionalSquares.accept(visitor);
+        if(IdentSquares!=null) IdentSquares.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(TypeIdentList!=null) TypeIdentList.traverseTopDown(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
-        if(OptionalSquares!=null) OptionalSquares.traverseTopDown(visitor);
+        if(IdentSquares!=null) IdentSquares.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(TypeIdentList!=null) TypeIdentList.traverseBottomUp(visitor);
-        if(Type!=null) Type.traverseBottomUp(visitor);
-        if(OptionalSquares!=null) OptionalSquares.traverseBottomUp(visitor);
+        if(IdentSquares!=null) IdentSquares.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -89,17 +65,8 @@ public class TypeIdentListX extends TypeIdentList {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I3);
-        buffer.append("\n");
-
-        if(OptionalSquares!=null)
-            buffer.append(OptionalSquares.toString("  "+tab));
+        if(IdentSquares!=null)
+            buffer.append(IdentSquares.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

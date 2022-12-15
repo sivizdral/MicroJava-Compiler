@@ -1,0 +1,112 @@
+INFO  15:38:22,694 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  15:38:22,761 - #2 program
+INFO  15:38:22,761 - #48 p
+INFO  15:38:22,761 - #7 const
+INFO  15:38:22,762 - #48 int
+INFO  15:38:22,762 - #48 size
+INFO  15:38:22,762 - #33 =
+INFO  15:38:22,763 - #47 10
+INFO  15:38:22,763 - #38 ,
+INFO  15:38:22,764 - #48 p
+INFO  15:38:22,764 - #33 =
+INFO  15:38:22,764 - #47 2
+INFO  15:38:22,764 - #38 ,
+INFO  15:38:22,764 - #48 q
+INFO  15:38:22,765 - #33 =
+INFO  15:38:22,765 - #47 3
+INFO  15:38:22,765 - #36 ;
+INFO  15:38:22,765 - #48 int
+INFO  15:38:22,765 - #48 p
+INFO  15:38:22,765 - #38 ,
+INFO  15:38:22,767 - #48 q
+INFO  15:38:22,767 - #36 ;
+INFO  15:38:22,769 - #48 char
+INFO  15:38:22,769 - #48 c
+INFO  15:38:22,769 - #38 ,
+INFO  15:38:22,769 - #48 int
+INFO  15:38:22,769 - #42 [
+INFO  15:38:22,770 - #43 ]
+INFO  15:38:22,770 - #38 ,
+INFO  15:38:22,770 - #48 arr
+INFO  15:38:22,770 - #36 ;
+INFO  15:38:22,770 - #44 {
+INFO  15:38:22,770 - #45 }
+INFO  15:38:22,771 - ProgramX(
+ p
+  ConstDeclListVar(
+    ConstDeclListVar(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         size
+          FirstConstNum(
+           10
+          ) [FirstConstNum]
+          OtherConstListX(
+            OtherConstListX(
+              NoOtherConstList(
+              ) [NoOtherConstList]
+              ConstTailX(
+               p
+                FirstConstNum(
+                 2
+                ) [FirstConstNum]
+              ) [ConstTailX]
+            ) [OtherConstListX]
+            ConstTailX(
+             q
+              FirstConstNum(
+               3
+              ) [FirstConstNum]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      VarDeclX(
+        Type(
+         int
+        ) [Type]
+        FirstVarDeclIdentOnly(
+         p
+        ) [FirstVarDeclIdentOnly]
+        OtherVarDeclListX(
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+          FirstVarDeclIdentOnly(
+           q
+          ) [FirstVarDeclIdentOnly]
+        ) [OtherVarDeclListX]
+      ) [VarDeclX]
+    ) [ConstDeclListVar]
+    VarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstVarDeclIdentOnly(
+       c
+      ) [FirstVarDeclIdentOnly]
+      OtherVarDeclListX(
+        OtherVarDeclListX(
+          NoOtherVarDeclList(
+          ) [NoOtherVarDeclList]
+          FirstVarDeclArrayIdent(
+           int
+          ) [FirstVarDeclArrayIdent]
+        ) [OtherVarDeclListX]
+        FirstVarDeclIdentOnly(
+         arr
+        ) [FirstVarDeclIdentOnly]
+      ) [OtherVarDeclListX]
+    ) [VarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [ProgramX]
+INFO  15:38:22,772 - ===================================
+INFO  15:38:22,775 -  Print count calls = 0
+INFO  15:38:22,775 -  Deklarisanih promenljivih ima = 5
+INFO  15:38:22,775 - Deklarisanih konstanti ima = 3

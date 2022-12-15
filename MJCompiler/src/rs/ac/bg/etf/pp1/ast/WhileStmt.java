@@ -1,28 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/11/2022 22:30:50
+// 15/11/2022 17:4:46
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class WhileStmt extends Matched {
 
-    private Condition Condition;
+    private ConditionWHILE ConditionWHILE;
     private Statement Statement;
 
-    public WhileStmt (Condition Condition, Statement Statement) {
-        this.Condition=Condition;
-        if(Condition!=null) Condition.setParent(this);
+    public WhileStmt (ConditionWHILE ConditionWHILE, Statement Statement) {
+        this.ConditionWHILE=ConditionWHILE;
+        if(ConditionWHILE!=null) ConditionWHILE.setParent(this);
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
     }
 
-    public Condition getCondition() {
-        return Condition;
+    public ConditionWHILE getConditionWHILE() {
+        return ConditionWHILE;
     }
 
-    public void setCondition(Condition Condition) {
-        this.Condition=Condition;
+    public void setConditionWHILE(ConditionWHILE ConditionWHILE) {
+        this.ConditionWHILE=ConditionWHILE;
     }
 
     public Statement getStatement() {
@@ -38,18 +38,18 @@ public class WhileStmt extends Matched {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Condition!=null) Condition.accept(visitor);
+        if(ConditionWHILE!=null) ConditionWHILE.accept(visitor);
         if(Statement!=null) Statement.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Condition!=null) Condition.traverseTopDown(visitor);
+        if(ConditionWHILE!=null) ConditionWHILE.traverseTopDown(visitor);
         if(Statement!=null) Statement.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Condition!=null) Condition.traverseBottomUp(visitor);
+        if(ConditionWHILE!=null) ConditionWHILE.traverseBottomUp(visitor);
         if(Statement!=null) Statement.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -59,8 +59,8 @@ public class WhileStmt extends Matched {
         buffer.append(tab);
         buffer.append("WhileStmt(\n");
 
-        if(Condition!=null)
-            buffer.append(Condition.toString("  "+tab));
+        if(ConditionWHILE!=null)
+            buffer.append(ConditionWHILE.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

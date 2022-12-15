@@ -50,6 +50,8 @@ public class MJParserTest {
 
 			log.info(" Deklarisanih promenljivih ima = " + v.varDeclCount);
 			
+			log.info("Deklarisanih konstanti ima = " + v.constDeclCount);
+			
 		} 
 		finally {
 			if (br != null) try { br.close(); } catch (IOException e1) { log.error(e1.getMessage(), e1); }

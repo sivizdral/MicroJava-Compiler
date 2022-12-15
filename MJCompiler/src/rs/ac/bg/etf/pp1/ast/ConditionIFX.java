@@ -1,18 +1,16 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/11/2022 22:30:50
+// 15/11/2022 17:4:46
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class Condition implements SyntaxNode {
+public class ConditionIFX extends ConditionIF {
 
-    private SyntaxNode parent;
-    private int line;
     private CondTerm CondTerm;
     private CondTermOrList CondTermOrList;
 
-    public Condition (CondTerm CondTerm, CondTermOrList CondTermOrList) {
+    public ConditionIFX (CondTerm CondTerm, CondTermOrList CondTermOrList) {
         this.CondTerm=CondTerm;
         if(CondTerm!=null) CondTerm.setParent(this);
         this.CondTermOrList=CondTermOrList;
@@ -33,22 +31,6 @@ public class Condition implements SyntaxNode {
 
     public void setCondTermOrList(CondTermOrList CondTermOrList) {
         this.CondTermOrList=CondTermOrList;
-    }
-
-    public SyntaxNode getParent() {
-        return parent;
-    }
-
-    public void setParent(SyntaxNode parent) {
-        this.parent=parent;
-    }
-
-    public int getLine() {
-        return line;
-    }
-
-    public void setLine(int line) {
-        this.line=line;
     }
 
     public void accept(Visitor visitor) {
@@ -75,7 +57,7 @@ public class Condition implements SyntaxNode {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("Condition(\n");
+        buffer.append("ConditionIFX(\n");
 
         if(CondTerm!=null)
             buffer.append(CondTerm.toString("  "+tab));
@@ -90,7 +72,7 @@ public class Condition implements SyntaxNode {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [Condition]");
+        buffer.append(") [ConditionIFX]");
         return buffer.toString();
     }
 }

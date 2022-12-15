@@ -1,18 +1,18 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/11/2022 22:30:50
+// 15/11/2022 17:4:46
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class ConstDeclDerived1 extends ConstDecl {
+public class ConstDeclX extends ConstDecl {
 
     private Type Type;
     private String I2;
     private FirstConst FirstConst;
     private OtherConstList OtherConstList;
 
-    public ConstDeclDerived1 (Type Type, String I2, FirstConst FirstConst, OtherConstList OtherConstList) {
+    public ConstDeclX (Type Type, String I2, FirstConst FirstConst, OtherConstList OtherConstList) {
         this.Type=Type;
         if(Type!=null) Type.setParent(this);
         this.I2=I2;
@@ -81,7 +81,7 @@ public class ConstDeclDerived1 extends ConstDecl {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("ConstDeclDerived1(\n");
+        buffer.append("ConstDeclX(\n");
 
         if(Type!=null)
             buffer.append(Type.toString("  "+tab));
@@ -105,7 +105,7 @@ public class ConstDeclDerived1 extends ConstDecl {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [ConstDeclDerived1]");
+        buffer.append(") [ConstDeclX]");
         return buffer.toString();
     }
 }
