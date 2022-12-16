@@ -43,14 +43,14 @@ public class MJParserTest {
 			log.info("===================================");
 
 			// ispis prepoznatih programskih konstrukcija
-			RuleVisitor v = new RuleVisitor();
+			/*RuleVisitor v = new RuleVisitor();
 			prog.traverseBottomUp(v); 
 	      
 			log.info(" Print count calls = " + v.printCallCount);
 
 			log.info(" Deklarisanih promenljivih ima = " + v.varDeclCount);
 			
-			log.info("Deklarisanih konstanti ima = " + v.constDeclCount);
+			log.info("Deklarisanih konstanti ima = " + v.constDeclCount);*/
 			
 		} 
 		finally {

@@ -6,7 +6,10 @@ import java_cup.runtime.*;
 import org.apache.log4j.*;
 import rs.ac.bg.etf.pp1.ast.*;
 
+
 parser code {:
+
+	boolean errorDetected;
 
 	Logger log = Logger.getLogger(getClass());
    
@@ -27,6 +30,7 @@ parser code {:
     }
 
     public void report_error(String message, Object info) {
+    	errorDetected = true;
     	StringBuilder msg = new StringBuilder(message); 
     	if (info instanceof Symbol)
             msg.append (" na liniji ").append(((Symbol)info).left);
@@ -34,6 +38,10 @@ parser code {:
     }
 
 
+:}
+
+init with {:
+	errorDetected = false;
 :}
 
 
@@ -55,9 +63,9 @@ terminal String IDENT;
 terminal Boolean BOOLCONST;
 terminal Character CHARCONST;
 
-nonterminal Program, ConstDeclList, MethodDeclList, ConstDecl, FirstConst, OtherConstList;
+nonterminal ConstDeclList, MethodDeclList, ConstDecl, OtherConstList;
 nonterminal VarDecl, FirstVarDecl, OtherVarDeclList, ClassDecl, Extension, VarDeclList, ConstructorMethodLists, ConstructorDeclList;
-nonterminal ConstructorDecl, FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList, Type;
+nonterminal ConstructorDecl, FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList;
 nonterminal Statement, Unmatched, Matched, OptionalExpr, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
 nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, Expr, OptMinus, AddopTermList;
@@ -65,11 +73,16 @@ nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Designa
 nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail, IdentSquares;
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList;
 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type;
+
 precedence left ELSE;
 
 /* PROGRAM */
 
-Program ::= (ProgramX) PROGRAM IDENT ConstDeclList LEFT_WIGGLY_PARENTHESES MethodDeclList RIGHT_WIGGLY_PARENTHESES;
+Program ::= (Program) PROGRAM ProgName:p ConstDeclList LEFT_WIGGLY_PARENTHESES MethodDeclList RIGHT_WIGGLY_PARENTHESES;
+
+ProgName ::= (ProgName) IDENT:progName;
 
 ConstDeclList ::= (ConstDeclListConst) ConstDeclList ConstDecl |
 				  (ConstDeclListVar) ConstDeclList VarDecl   |
@@ -81,17 +94,17 @@ MethodDeclList ::= (MethodDeclListX) MethodDeclList MethodDecl |
 				   
 /* CONST DECL */		   
 				   
-ConstDecl ::= (ConstDeclX) CONST Type IDENT EQUALS FirstConst OtherConstList SEMICOLON |
+ConstDecl ::= (ConstDeclX) CONST Type:type IDENT:name EQUALS FirstConst OtherConstList SEMICOLON |
 			  (ConstDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :} SEMICOLON;
 
-FirstConst ::= (FirstConstNum) NUMCONST |
-			   (FirstConstChar) CHARCONST |
-			   (FirstConstBool) BOOLCONST;
+FirstConst ::= (FirstConstNum) NUMCONST:value |
+			   (FirstConstChar) CHARCONST:value |
+			   (FirstConstBool) BOOLCONST:value;
 			   
 OtherConstList ::= (OtherConstListX) OtherConstList COMMA ConstTail |
 				   (NoOtherConstList) /* epsilon */;
 				   
-ConstTail ::= (ConstTailX) IDENT EQUALS FirstConst |
+ConstTail ::= (ConstTailX) IDENT:name EQUALS FirstConst |
 			  (ConstTailError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :};
 
 /* VAR DECL */
@@ -99,7 +112,9 @@ ConstTail ::= (ConstTailX) IDENT EQUALS FirstConst |
 VarDecl ::= (VarDeclX) Type FirstVarDecl OtherVarDeclList SEMICOLON;
 
 ClassVarDecl ::= (ClassVarDeclX) Type FirstClassVarDecl OtherClassVarDeclList SEMICOLON |
-				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :};
+				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} //|
+				 //(ClassVarDeclErrorWiggly) error LEFT_WIGGLY_PARENTHESES:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :}
+				 ;
 
 FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT |
 				 (FirstVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
@@ -182,7 +197,7 @@ IdentSquares ::= (IdentSquaresX) Type IDENT OptionalSquares |
 				  
 /* TYPE */
 
-Type ::= (Type) IDENT;
+Type ::= (Type) IDENT:name;
 
 /* STATEMENT */
 
@@ -192,7 +207,7 @@ Statement ::= (MatchedStmt) Matched |
 Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Statement |
 			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Unmatched;
 
-Matched ::= (DesigStmt) DesignatorStatement SEMICOLON |
+Matched ::= (DesigStmt) DesignatorStatement |
 			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Matched |
 			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES ConditionWHILE RIGHT_ROUND_PARENTHESES Statement |
 			(BreakStmt) BREAK SEMICOLON |
@@ -213,9 +228,9 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST |
 
 /* DESIGNATOR STATEMENT */
 
-DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd |
-						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator |
-						(ErrorDesignatorStmt) error:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :};
+DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd SEMICOLON |
+						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator SEMICOLON |
+						(ErrorDesignatorStmt) error SEMICOLON:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :};
 						
 DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop Expr |
 			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |

@@ -1,5 +1,5 @@
 program p
-const int size = 10, p = 2, q = 3;
+const int size = 10, pq = 2, q = true;
 int p, q; char c, int[], arr;
 class Table {}
 class A extends Table {
@@ -8,6 +8,6 @@ int p, r;char c ;int b
 }
 {
 void main(int a, int b, int c int d) {
-	
+	a = = 5;
 }
 }

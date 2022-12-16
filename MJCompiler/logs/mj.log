@@ -1,84 +1,660 @@
-INFO  17:13:20,094 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7.
-INFO  17:13:48,494 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7.%20semestar\PP1\Izvorni
-INFO  17:14:10,113 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7.%20semestar\PP1\Izvorni%20kod\MJCompiler\test\program.mj
-INFO  17:14:58,714 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7.
-INFO  17:15:52,085 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
-INFO  17:15:52,174 - #2 program
-INFO  17:15:52,174 - #48 p
-INFO  17:15:52,175 - #7 const
-INFO  17:15:52,176 - #48 int
-INFO  17:15:52,176 - #48 size
-INFO  17:15:52,176 - #33 =
-INFO  17:15:52,176 - #47 10
-INFO  17:15:52,177 - #38 ,
-INFO  17:15:52,178 - #48 p
-INFO  17:15:52,178 - #33 =
-INFO  17:15:52,178 - #47 2
-INFO  17:15:52,178 - #38 ,
-INFO  17:15:52,178 - #48 q
-INFO  17:15:52,178 - #33 =
-INFO  17:15:52,178 - #47 3
-INFO  17:15:52,179 - #36 ;
-INFO  17:15:52,179 - #48 int
-INFO  17:15:52,179 - #48 p
-INFO  17:15:52,179 - #38 ,
-INFO  17:15:52,180 - #48 q
-INFO  17:15:52,180 - #36 ;
-INFO  17:15:52,180 - #48 char
-INFO  17:15:52,180 - #48 c
-INFO  17:15:52,181 - #38 ,
-INFO  17:15:52,181 - #48 int
-INFO  17:15:52,181 - #42 [
-INFO  17:15:52,181 - #43 ]
-INFO  17:15:52,181 - #38 ,
-INFO  17:15:52,181 - #48 arr
-INFO  17:15:52,181 - #36 ;
-INFO  17:15:52,181 - #4 class
-INFO  17:15:52,181 - #48 Table
-INFO  17:15:52,181 - #44 {
-INFO  17:15:52,182 - #45 }
-INFO  17:15:52,184 - #4 class
-INFO  17:15:52,185 - #48 A
-INFO  17:15:52,185 - #16 extends
-INFO  17:15:52,185 - #48 Table
-INFO  17:15:52,185 - #44 {
-INFO  17:15:52,185 - #48 int
-INFO  17:15:52,186 - #48 p
-INFO  17:15:52,186 - #38 ,
-INFO  17:15:52,186 - #48 r
-INFO  17:15:52,186 - #36 ;
-INFO  17:15:52,186 - #48 char
-INFO  17:15:52,187 - #48 c
-INFO  17:15:52,187 - #36 ;
-INFO  17:15:52,188 - #48 int
-INFO  17:15:52,188 - #48 b
-INFO  17:15:52,188 - #44 {
-ERROR 17:15:52,189 - 
-Sintaksna greska na liniji 7
-INFO  17:15:52,189 - #45 }
-INFO  17:15:52,189 - #45 }
-INFO  17:15:52,189 - #44 {
-INFO  17:15:52,192 - #15 void
-INFO  17:15:52,194 - #48 main
-INFO  17:15:52,195 - #40 (
-INFO  17:15:52,195 - #48 int
-INFO  17:15:52,195 - #48 a
-INFO  17:15:52,195 - #38 ,
-INFO  17:15:52,197 - #48 int
-INFO  17:15:52,197 - #48 b
-INFO  17:15:52,197 - #38 ,
-INFO  17:15:52,197 - #48 int
-INFO  17:15:52,197 - #48 c
-INFO  17:15:52,198 - #48 int
-ERROR 17:15:52,198 - 
+INFO  20:24:51,309 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:24:51,389 - #2 program
+INFO  20:24:51,389 - #48 p
+INFO  20:24:51,389 - #7 const
+INFO  20:24:51,390 - #48 int
+INFO  20:24:51,390 - #48 size
+INFO  20:24:51,391 - #33 =
+INFO  20:24:51,391 - #47 10
+INFO  20:24:51,391 - #38 ,
+INFO  20:24:51,392 - #48 p
+INFO  20:24:51,393 - #33 =
+INFO  20:24:51,393 - #47 2
+INFO  20:24:51,393 - #38 ,
+INFO  20:24:51,394 - #48 q
+INFO  20:24:51,394 - #33 =
+INFO  20:24:51,394 - #47 3
+INFO  20:24:51,394 - #36 ;
+INFO  20:24:51,395 - #48 int
+INFO  20:24:51,395 - #48 p
+INFO  20:24:51,395 - #38 ,
+INFO  20:24:51,396 - #48 q
+INFO  20:24:51,396 - #36 ;
+INFO  20:24:51,397 - #48 char
+INFO  20:24:51,397 - #48 c
+INFO  20:24:51,397 - #38 ,
+INFO  20:24:51,397 - #48 int
+INFO  20:24:51,397 - #42 [
+INFO  20:24:51,397 - #43 ]
+INFO  20:24:51,398 - #38 ,
+INFO  20:24:51,398 - #48 arr
+INFO  20:24:51,398 - #36 ;
+INFO  20:24:51,398 - #4 class
+INFO  20:24:51,398 - #48 Table
+INFO  20:24:51,398 - #44 {
+INFO  20:24:51,399 - #45 }
+INFO  20:24:51,401 - #4 class
+INFO  20:24:51,402 - #48 A
+INFO  20:24:51,402 - #16 extends
+INFO  20:24:51,402 - #48 Table
+INFO  20:24:51,402 - #44 {
+INFO  20:24:51,402 - #48 int
+INFO  20:24:51,403 - #48 p
+INFO  20:24:51,403 - #38 ,
+INFO  20:24:51,403 - #48 r
+INFO  20:24:51,403 - #36 ;
+INFO  20:24:51,403 - #48 char
+INFO  20:24:51,403 - #48 c
+INFO  20:24:51,403 - #36 ;
+INFO  20:24:51,404 - #48 int
+INFO  20:24:51,404 - #48 b
+INFO  20:24:51,404 - #36 ;
+INFO  20:24:51,405 - #44 {
+INFO  20:24:51,405 - #45 }
+INFO  20:24:51,406 - #45 }
+INFO  20:24:51,406 - #44 {
+INFO  20:24:51,406 - #15 void
+INFO  20:24:51,407 - #48 main
+INFO  20:24:51,408 - #40 (
+INFO  20:24:51,408 - #48 int
+INFO  20:24:51,408 - #48 a
+INFO  20:24:51,408 - #38 ,
+INFO  20:24:51,410 - #48 int
+INFO  20:24:51,410 - #48 b
+INFO  20:24:51,410 - #38 ,
+INFO  20:24:51,411 - #48 int
+INFO  20:24:51,411 - #48 c
+INFO  20:24:51,411 - #48 int
+ERROR 20:24:51,411 - 
 Sintaksna greska na liniji 10
-INFO  17:15:52,198 - #48 d
-INFO  17:15:52,198 - #41 )
-INFO  17:15:52,198 - #44 {
-INFO  17:15:52,198 - #45 }
-INFO  17:15:52,198 - #45 }
-INFO  17:15:52,202 - ProgramX(
- p
+INFO  20:24:51,411 - #48 d
+INFO  20:24:51,411 - #41 )
+INFO  20:24:51,411 - #44 {
+INFO  20:24:51,412 - #48 a
+INFO  20:24:51,412 - #33 =
+ERROR 20:24:51,412 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:24:51,416 - #33 =
+ERROR 20:24:51,416 - 
+Sintaksna greska na liniji 11
+INFO  20:24:51,416 - #47 5
+INFO  20:24:51,416 - #36 ;
+INFO  20:24:51,416 - #45 }
+INFO  20:24:51,416 - #45 }
+ERROR 20:24:51,416 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:24:51,427 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListVar(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             size
+              FirstConstNum(
+               10
+              ) [FirstConstNum]
+              OtherConstListX(
+                OtherConstListX(
+                  NoOtherConstList(
+                  ) [NoOtherConstList]
+                  ConstTailX(
+                   p
+                    FirstConstNum(
+                     2
+                    ) [FirstConstNum]
+                  ) [ConstTailX]
+                ) [OtherConstListX]
+                ConstTailX(
+                 q
+                  FirstConstNum(
+                   3
+                  ) [FirstConstNum]
+                ) [ConstTailX]
+              ) [OtherConstListX]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          VarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             p
+            ) [FirstVarDeclIdentOnly]
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclIdentOnly(
+               q
+              ) [FirstVarDeclIdentOnly]
+            ) [OtherVarDeclListX]
+          ) [VarDeclX]
+        ) [ConstDeclListVar]
+        VarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           c
+          ) [FirstVarDeclIdentOnly]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               int
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             arr
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+       Table
+        NoExtension(
+        ) [NoExtension]
+        NoClassVarDeclList(
+        ) [NoClassVarDeclList]
+        NoConstructorMethodLists(
+        ) [NoConstructorMethodLists]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+     A
+      ExtensionX(
+        Type(
+         Table
+        ) [Type]
+      ) [ExtensionX]
+      ClassVarDeclListX(
+        ClassVarDeclListX(
+          ClassVarDeclListX(
+            NoClassVarDeclList(
+            ) [NoClassVarDeclList]
+            ClassVarDeclX(
+              Type(
+               int
+              ) [Type]
+              FirstClassVarDeclIdentOnly(
+               p
+              ) [FirstClassVarDeclIdentOnly]
+              OtherClassVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 r
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherClassVarDeclListX]
+            ) [ClassVarDeclX]
+          ) [ClassVarDeclListX]
+          ClassVarDeclX(
+            Type(
+             char
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             c
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ClassVarDeclX(
+          Type(
+           int
+          ) [Type]
+          FirstClassVarDeclIdentOnly(
+           b
+          ) [FirstClassVarDeclIdentOnly]
+          NoOtherClassVarDeclList(
+          ) [NoOtherClassVarDeclList]
+        ) [ClassVarDeclX]
+      ) [ClassVarDeclListX]
+      ConstructorMethodListsX(
+        Lists4(
+        ) [Lists4]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  20:24:51,427 - ===================================
+ERROR 20:24:51,431 - Vec postoji konstanta sa ovim imenom! na liniji 2
+INFO  20:24:51,431 - Konstanta definisana! na liniji 2
+ERROR 20:24:51,431 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:24:51,431 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:24:51,431 -  Print count calls = 0
+INFO  20:24:51,431 -  Deklarisanih promenljivih ima = 0
+INFO  20:24:51,432 - ===================================
+ERROR 20:24:51,432 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:26:42,178 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:26:42,508 - #2 program
+INFO  20:26:42,508 - #48 p
+INFO  20:26:42,508 - #7 const
+INFO  20:26:42,513 - #48 int
+INFO  20:26:42,514 - #48 size
+INFO  20:26:42,516 - #33 =
+INFO  20:26:42,516 - #47 10
+INFO  20:26:42,516 - #38 ,
+INFO  20:26:42,519 - #48 p
+INFO  20:26:42,519 - #33 =
+INFO  20:26:42,519 - #47 2
+INFO  20:26:42,519 - #38 ,
+INFO  20:26:42,520 - #48 q
+INFO  20:26:42,520 - #33 =
+INFO  20:26:42,520 - #47 3
+INFO  20:26:42,520 - #36 ;
+INFO  20:26:42,520 - #48 int
+INFO  20:26:42,520 - #48 p
+INFO  20:26:42,520 - #38 ,
+INFO  20:26:42,524 - #48 q
+INFO  20:26:42,524 - #36 ;
+INFO  20:26:42,524 - #48 char
+INFO  20:26:42,524 - #48 c
+INFO  20:26:42,524 - #38 ,
+INFO  20:26:42,525 - #48 int
+INFO  20:26:42,525 - #42 [
+INFO  20:26:42,525 - #43 ]
+INFO  20:26:42,525 - #38 ,
+INFO  20:26:42,525 - #48 arr
+INFO  20:26:42,525 - #36 ;
+INFO  20:26:42,525 - #4 class
+INFO  20:26:42,526 - #48 Table
+INFO  20:26:42,526 - #44 {
+INFO  20:26:42,528 - #45 }
+INFO  20:26:42,533 - #4 class
+INFO  20:26:42,536 - #48 A
+INFO  20:26:42,537 - #16 extends
+INFO  20:26:42,537 - #48 Table
+INFO  20:26:42,537 - #44 {
+INFO  20:26:42,537 - #48 int
+INFO  20:26:42,537 - #48 p
+INFO  20:26:42,537 - #38 ,
+INFO  20:26:42,537 - #48 r
+INFO  20:26:42,537 - #36 ;
+INFO  20:26:42,538 - #48 char
+INFO  20:26:42,538 - #48 c
+INFO  20:26:42,538 - #36 ;
+INFO  20:26:42,541 - #48 int
+INFO  20:26:42,541 - #48 b
+INFO  20:26:42,541 - #36 ;
+INFO  20:26:42,541 - #44 {
+INFO  20:26:42,542 - #45 }
+INFO  20:26:42,545 - #45 }
+INFO  20:26:42,545 - #44 {
+INFO  20:26:42,545 - #15 void
+INFO  20:26:42,548 - #48 main
+INFO  20:26:42,551 - #40 (
+INFO  20:26:42,552 - #48 int
+INFO  20:26:42,552 - #48 a
+INFO  20:26:42,552 - #38 ,
+INFO  20:26:42,560 - #48 int
+INFO  20:26:42,560 - #48 b
+INFO  20:26:42,560 - #38 ,
+INFO  20:26:42,561 - #48 int
+INFO  20:26:42,561 - #48 c
+INFO  20:26:42,561 - #48 int
+ERROR 20:26:42,561 - 
+Sintaksna greska na liniji 10
+INFO  20:26:42,561 - #48 d
+INFO  20:26:42,561 - #41 )
+INFO  20:26:42,561 - #44 {
+INFO  20:26:42,562 - #48 a
+INFO  20:26:42,562 - #33 =
+ERROR 20:26:42,562 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:26:42,579 - #33 =
+ERROR 20:26:42,579 - 
+Sintaksna greska na liniji 11
+INFO  20:26:42,579 - #47 5
+INFO  20:26:42,579 - #36 ;
+INFO  20:26:42,579 - #45 }
+INFO  20:26:42,579 - #45 }
+ERROR 20:26:42,580 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:26:42,594 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListVar(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             size
+              FirstConstNum(
+               10
+              ) [FirstConstNum]
+              OtherConstListX(
+                OtherConstListX(
+                  NoOtherConstList(
+                  ) [NoOtherConstList]
+                  ConstTailX(
+                   p
+                    FirstConstNum(
+                     2
+                    ) [FirstConstNum]
+                  ) [ConstTailX]
+                ) [OtherConstListX]
+                ConstTailX(
+                 q
+                  FirstConstNum(
+                   3
+                  ) [FirstConstNum]
+                ) [ConstTailX]
+              ) [OtherConstListX]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          VarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             p
+            ) [FirstVarDeclIdentOnly]
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclIdentOnly(
+               q
+              ) [FirstVarDeclIdentOnly]
+            ) [OtherVarDeclListX]
+          ) [VarDeclX]
+        ) [ConstDeclListVar]
+        VarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           c
+          ) [FirstVarDeclIdentOnly]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               int
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             arr
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+       Table
+        NoExtension(
+        ) [NoExtension]
+        NoClassVarDeclList(
+        ) [NoClassVarDeclList]
+        NoConstructorMethodLists(
+        ) [NoConstructorMethodLists]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+     A
+      ExtensionX(
+        Type(
+         Table
+        ) [Type]
+      ) [ExtensionX]
+      ClassVarDeclListX(
+        ClassVarDeclListX(
+          ClassVarDeclListX(
+            NoClassVarDeclList(
+            ) [NoClassVarDeclList]
+            ClassVarDeclX(
+              Type(
+               int
+              ) [Type]
+              FirstClassVarDeclIdentOnly(
+               p
+              ) [FirstClassVarDeclIdentOnly]
+              OtherClassVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 r
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherClassVarDeclListX]
+            ) [ClassVarDeclX]
+          ) [ClassVarDeclListX]
+          ClassVarDeclX(
+            Type(
+             char
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             c
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ClassVarDeclX(
+          Type(
+           int
+          ) [Type]
+          FirstClassVarDeclIdentOnly(
+           b
+          ) [FirstClassVarDeclIdentOnly]
+          NoOtherClassVarDeclList(
+          ) [NoOtherClassVarDeclList]
+        ) [ClassVarDeclX]
+      ) [ClassVarDeclListX]
+      ConstructorMethodListsX(
+        Lists4(
+        ) [Lists4]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  20:26:42,595 - ===================================
+ERROR 20:26:42,599 - Vec postoji konstanta sa ovim imenom! na liniji 2
+INFO  20:26:42,599 - Konstanta definisana! na liniji 2
+ERROR 20:26:42,599 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:26:42,599 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:26:42,599 -  Print count calls = 0
+INFO  20:26:42,599 -  Deklarisanih promenljivih ima = 0
+INFO  20:26:42,600 - ===================================
+ERROR 20:26:42,600 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:26:44,861 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:26:44,936 - #2 program
+INFO  20:26:44,936 - #48 p
+INFO  20:26:44,936 - #7 const
+INFO  20:26:44,937 - #48 int
+INFO  20:26:44,937 - #48 size
+INFO  20:26:44,938 - #33 =
+INFO  20:26:44,938 - #47 10
+INFO  20:26:44,938 - #38 ,
+INFO  20:26:44,939 - #48 p
+INFO  20:26:44,939 - #33 =
+INFO  20:26:44,939 - #47 2
+INFO  20:26:44,939 - #38 ,
+INFO  20:26:44,939 - #48 q
+INFO  20:26:44,940 - #33 =
+INFO  20:26:44,940 - #47 3
+INFO  20:26:44,940 - #36 ;
+INFO  20:26:44,940 - #48 int
+INFO  20:26:44,940 - #48 p
+INFO  20:26:44,940 - #38 ,
+INFO  20:26:44,941 - #48 q
+INFO  20:26:44,941 - #36 ;
+INFO  20:26:44,941 - #48 char
+INFO  20:26:44,942 - #48 c
+INFO  20:26:44,942 - #38 ,
+INFO  20:26:44,942 - #48 int
+INFO  20:26:44,942 - #42 [
+INFO  20:26:44,942 - #43 ]
+INFO  20:26:44,942 - #38 ,
+INFO  20:26:44,942 - #48 arr
+INFO  20:26:44,942 - #36 ;
+INFO  20:26:44,943 - #4 class
+INFO  20:26:44,943 - #48 Table
+INFO  20:26:44,943 - #44 {
+INFO  20:26:44,943 - #45 }
+INFO  20:26:44,945 - #4 class
+INFO  20:26:44,946 - #48 A
+INFO  20:26:44,946 - #16 extends
+INFO  20:26:44,946 - #48 Table
+INFO  20:26:44,946 - #44 {
+INFO  20:26:44,946 - #48 int
+INFO  20:26:44,947 - #48 p
+INFO  20:26:44,947 - #38 ,
+INFO  20:26:44,947 - #48 r
+INFO  20:26:44,947 - #36 ;
+INFO  20:26:44,947 - #48 char
+INFO  20:26:44,948 - #48 c
+INFO  20:26:44,948 - #36 ;
+INFO  20:26:44,949 - #48 int
+INFO  20:26:44,949 - #48 b
+INFO  20:26:44,949 - #44 {
+ERROR 20:26:44,949 - 
+Sintaksna greska na liniji 7
+INFO  20:26:44,949 - #45 }
+INFO  20:26:44,950 - #45 }
+INFO  20:26:44,950 - #44 {
+ERROR 20:26:44,951 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:26:44,954 - #15 void
+INFO  20:26:44,955 - #48 main
+INFO  20:26:44,955 - #40 (
+INFO  20:26:44,956 - #48 int
+INFO  20:26:44,956 - #48 a
+INFO  20:26:44,956 - #38 ,
+INFO  20:26:44,957 - #48 int
+INFO  20:26:44,958 - #48 b
+INFO  20:26:44,958 - #38 ,
+INFO  20:26:44,958 - #48 int
+INFO  20:26:44,958 - #48 c
+INFO  20:26:44,958 - #48 int
+ERROR 20:26:44,958 - 
+Sintaksna greska na liniji 10
+INFO  20:26:44,958 - #48 d
+INFO  20:26:44,958 - #41 )
+INFO  20:26:44,958 - #44 {
+INFO  20:26:44,958 - #48 a
+INFO  20:26:44,958 - #33 =
+ERROR 20:26:44,958 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:26:44,962 - #33 =
+ERROR 20:26:44,962 - 
+Sintaksna greska na liniji 11
+INFO  20:26:44,962 - #47 5
+INFO  20:26:44,962 - #36 ;
+INFO  20:26:44,962 - #45 }
+INFO  20:26:44,962 - #45 }
+ERROR 20:26:44,963 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:26:44,974 - Program(
+  ProgName(
+   p
+  ) [ProgName]
   ConstDeclListClass(
     ConstDeclListClass(
       ConstDeclListVar(
@@ -246,94 +822,117 @@ INFO  17:15:52,202 - ProgramX(
       ) [FormParsOptionalX]
       NoVarDeclList(
       ) [NoVarDeclList]
-      NoStatementList(
-      ) [NoStatementList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
     ) [MethodDecl]
   ) [MethodDeclListX]
-) [ProgramX]
-INFO  17:15:52,203 - ===================================
-INFO  17:15:52,208 -  Print count calls = 0
-INFO  17:15:52,208 -  Deklarisanih promenljivih ima = 6
-INFO  17:15:52,208 - Deklarisanih konstanti ima = 3
-INFO  17:49:30,704 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
-INFO  17:49:30,807 - #2 program
-INFO  17:49:30,807 - #48 p
-INFO  17:49:30,807 - #7 const
-INFO  17:49:30,808 - #48 int
-INFO  17:49:30,808 - #48 size
-INFO  17:49:30,809 - #33 =
-INFO  17:49:30,809 - #47 10
-INFO  17:49:30,810 - #38 ,
-INFO  17:49:30,811 - #48 p
-INFO  17:49:30,811 - #33 =
-INFO  17:49:30,811 - #47 2
-INFO  17:49:30,811 - #38 ,
-INFO  17:49:30,812 - #48 q
-INFO  17:49:30,812 - #33 =
-INFO  17:49:30,813 - #47 3
-INFO  17:49:30,813 - #36 ;
-INFO  17:49:30,813 - #48 int
-INFO  17:49:30,813 - #48 p
-INFO  17:49:30,813 - #38 ,
-INFO  17:49:30,815 - #48 q
-INFO  17:49:30,815 - #36 ;
-INFO  17:49:30,815 - #48 char
-INFO  17:49:30,816 - #48 c
-INFO  17:49:30,816 - #38 ,
-INFO  17:49:30,816 - #48 int
-INFO  17:49:30,816 - #42 [
-INFO  17:49:30,816 - #43 ]
-INFO  17:49:30,816 - #38 ,
-INFO  17:49:30,817 - #48 arr
-INFO  17:49:30,817 - #36 ;
-INFO  17:49:30,817 - #4 class
-INFO  17:49:30,817 - #48 Table
-INFO  17:49:30,817 - #44 {
-INFO  17:49:30,818 - #45 }
-INFO  17:49:30,820 - #4 class
-INFO  17:49:30,822 - #48 A
-INFO  17:49:30,822 - #16 extends
-INFO  17:49:30,822 - #48 Table
-INFO  17:49:30,822 - #44 {
-INFO  17:49:30,822 - #48 int
-INFO  17:49:30,822 - #48 p
-INFO  17:49:30,823 - #38 ,
-INFO  17:49:30,823 - #48 r
-INFO  17:49:30,823 - #36 ;
-INFO  17:49:30,823 - #48 char
-INFO  17:49:30,824 - #48 c
-INFO  17:49:30,824 - #36 ;
-INFO  17:49:30,825 - #48 int
-INFO  17:49:30,826 - #48 b
-INFO  17:49:30,826 - #44 {
-ERROR 17:49:30,826 - 
+) [Program]
+INFO  20:26:44,975 - ===================================
+ERROR 20:26:44,979 - Vec postoji konstanta sa ovim imenom! na liniji 2
+INFO  20:26:44,979 - Konstanta definisana! na liniji 2
+ERROR 20:26:44,979 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:26:44,980 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:26:44,980 -  Print count calls = 0
+INFO  20:26:44,980 -  Deklarisanih promenljivih ima = 0
+INFO  20:26:44,980 - ===================================
+ERROR 20:26:44,980 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:27:02,314 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:27:02,390 - #2 program
+INFO  20:27:02,390 - #48 p
+INFO  20:27:02,390 - #7 const
+INFO  20:27:02,392 - #48 int
+INFO  20:27:02,392 - #48 size
+INFO  20:27:02,393 - #33 =
+INFO  20:27:02,393 - #47 10
+INFO  20:27:02,393 - #38 ,
+INFO  20:27:02,394 - #48 pq
+INFO  20:27:02,394 - #33 =
+INFO  20:27:02,394 - #47 2
+INFO  20:27:02,394 - #38 ,
+INFO  20:27:02,395 - #48 q
+INFO  20:27:02,395 - #33 =
+INFO  20:27:02,395 - #47 3
+INFO  20:27:02,395 - #36 ;
+INFO  20:27:02,395 - #48 int
+INFO  20:27:02,395 - #48 p
+INFO  20:27:02,396 - #38 ,
+INFO  20:27:02,397 - #48 q
+INFO  20:27:02,397 - #36 ;
+INFO  20:27:02,397 - #48 char
+INFO  20:27:02,398 - #48 c
+INFO  20:27:02,398 - #38 ,
+INFO  20:27:02,398 - #48 int
+INFO  20:27:02,398 - #42 [
+INFO  20:27:02,398 - #43 ]
+INFO  20:27:02,398 - #38 ,
+INFO  20:27:02,398 - #48 arr
+INFO  20:27:02,399 - #36 ;
+INFO  20:27:02,399 - #4 class
+INFO  20:27:02,399 - #48 Table
+INFO  20:27:02,399 - #44 {
+INFO  20:27:02,400 - #45 }
+INFO  20:27:02,401 - #4 class
+INFO  20:27:02,403 - #48 A
+INFO  20:27:02,403 - #16 extends
+INFO  20:27:02,403 - #48 Table
+INFO  20:27:02,403 - #44 {
+INFO  20:27:02,403 - #48 int
+INFO  20:27:02,403 - #48 p
+INFO  20:27:02,403 - #38 ,
+INFO  20:27:02,403 - #48 r
+INFO  20:27:02,404 - #36 ;
+INFO  20:27:02,404 - #48 char
+INFO  20:27:02,404 - #48 c
+INFO  20:27:02,404 - #36 ;
+INFO  20:27:02,405 - #48 int
+INFO  20:27:02,405 - #48 b
+INFO  20:27:02,405 - #44 {
+ERROR 20:27:02,405 - 
 Sintaksna greska na liniji 7
-INFO  17:49:30,826 - #45 }
-INFO  17:49:30,826 - #45 }
-INFO  17:49:30,826 - #44 {
-ERROR 17:49:30,828 - Greska u deklaraciji polja klase u liniji 22
-INFO  17:49:30,830 - #15 void
-INFO  17:49:30,831 - #48 main
-INFO  17:49:30,832 - #40 (
-INFO  17:49:30,832 - #48 int
-INFO  17:49:30,832 - #48 a
-INFO  17:49:30,832 - #38 ,
-INFO  17:49:30,834 - #48 int
-INFO  17:49:30,835 - #48 b
-INFO  17:49:30,835 - #38 ,
-INFO  17:49:30,835 - #48 int
-INFO  17:49:30,835 - #48 c
-INFO  17:49:30,835 - #48 int
-ERROR 17:49:30,836 - 
+INFO  20:27:02,406 - #45 }
+INFO  20:27:02,406 - #45 }
+INFO  20:27:02,406 - #44 {
+ERROR 20:27:02,406 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:27:02,408 - #15 void
+INFO  20:27:02,408 - #48 main
+INFO  20:27:02,409 - #40 (
+INFO  20:27:02,409 - #48 int
+INFO  20:27:02,409 - #48 a
+INFO  20:27:02,409 - #38 ,
+INFO  20:27:02,411 - #48 int
+INFO  20:27:02,412 - #48 b
+INFO  20:27:02,412 - #38 ,
+INFO  20:27:02,412 - #48 int
+INFO  20:27:02,412 - #48 c
+INFO  20:27:02,412 - #48 int
+ERROR 20:27:02,413 - 
 Sintaksna greska na liniji 10
-INFO  17:49:30,836 - #48 d
-INFO  17:49:30,836 - #41 )
-INFO  17:49:30,836 - #44 {
-INFO  17:49:30,836 - #45 }
-INFO  17:49:30,836 - #45 }
-ERROR 17:49:30,836 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
-INFO  17:49:30,842 - ProgramX(
- p
+INFO  20:27:02,413 - #48 d
+INFO  20:27:02,413 - #41 )
+INFO  20:27:02,413 - #44 {
+INFO  20:27:02,413 - #48 a
+INFO  20:27:02,413 - #33 =
+ERROR 20:27:02,413 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:27:02,418 - #33 =
+ERROR 20:27:02,418 - 
+Sintaksna greska na liniji 11
+INFO  20:27:02,418 - #47 5
+INFO  20:27:02,418 - #36 ;
+INFO  20:27:02,419 - #45 }
+INFO  20:27:02,419 - #45 }
+ERROR 20:27:02,419 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:27:02,429 - Program(
+  ProgName(
+   p
+  ) [ProgName]
   ConstDeclListClass(
     ConstDeclListClass(
       ConstDeclListVar(
@@ -354,7 +953,7 @@ INFO  17:49:30,842 - ProgramX(
                   NoOtherConstList(
                   ) [NoOtherConstList]
                   ConstTailX(
-                   p
+                   pq
                     FirstConstNum(
                      2
                     ) [FirstConstNum]
@@ -501,94 +1100,117 @@ INFO  17:49:30,842 - ProgramX(
       ) [FormParsOptionalX]
       NoVarDeclList(
       ) [NoVarDeclList]
-      NoStatementList(
-      ) [NoStatementList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
     ) [MethodDecl]
   ) [MethodDeclListX]
-) [ProgramX]
-INFO  17:49:30,844 - ===================================
-INFO  17:49:30,850 -  Print count calls = 0
-INFO  17:49:30,850 -  Deklarisanih promenljivih ima = 6
-INFO  17:49:30,851 - Deklarisanih konstanti ima = 3
-INFO  17:51:42,095 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
-INFO  17:51:42,474 - #2 program
-INFO  17:51:42,475 - #48 p
-INFO  17:51:42,475 - #7 const
-INFO  17:51:42,478 - #48 int
-INFO  17:51:42,478 - #48 size
-INFO  17:51:42,481 - #33 =
-INFO  17:51:42,481 - #47 10
-INFO  17:51:42,481 - #38 ,
-INFO  17:51:42,484 - #48 p
-INFO  17:51:42,485 - #33 =
-INFO  17:51:42,485 - #47 2
-INFO  17:51:42,485 - #38 ,
-INFO  17:51:42,485 - #48 q
-INFO  17:51:42,485 - #33 =
-INFO  17:51:42,485 - #47 3
-INFO  17:51:42,486 - #36 ;
-INFO  17:51:42,486 - #48 int
-INFO  17:51:42,486 - #48 p
-INFO  17:51:42,486 - #38 ,
-INFO  17:51:42,490 - #48 q
-INFO  17:51:42,490 - #36 ;
-INFO  17:51:42,490 - #48 char
-INFO  17:51:42,491 - #48 c
-INFO  17:51:42,491 - #38 ,
-INFO  17:51:42,491 - #48 int
-INFO  17:51:42,491 - #42 [
-INFO  17:51:42,491 - #43 ]
-INFO  17:51:42,491 - #38 ,
-INFO  17:51:42,491 - #48 arr
-INFO  17:51:42,491 - #36 ;
-INFO  17:51:42,491 - #4 class
-INFO  17:51:42,491 - #48 Table
-INFO  17:51:42,492 - #44 {
-INFO  17:51:42,495 - #45 }
-INFO  17:51:42,501 - #4 class
-INFO  17:51:42,504 - #48 A
-INFO  17:51:42,504 - #16 extends
-INFO  17:51:42,504 - #48 Table
-INFO  17:51:42,504 - #44 {
-INFO  17:51:42,505 - #48 int
-INFO  17:51:42,505 - #48 p
-INFO  17:51:42,505 - #38 ,
-INFO  17:51:42,505 - #48 r
-INFO  17:51:42,505 - #36 ;
-INFO  17:51:42,506 - #48 char
-INFO  17:51:42,506 - #48 c
-INFO  17:51:42,506 - #36 ;
-INFO  17:51:42,510 - #48 int
-INFO  17:51:42,510 - #48 b
-INFO  17:51:42,510 - #44 {
-ERROR 17:51:42,510 - 
+) [Program]
+INFO  20:27:02,430 - ===================================
+INFO  20:27:02,435 - Konstanta definisana! na liniji 2
+INFO  20:27:02,435 - Konstanta definisana! na liniji 2
+ERROR 20:27:02,435 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:27:02,435 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:27:02,435 -  Print count calls = 0
+INFO  20:27:02,435 -  Deklarisanih promenljivih ima = 0
+INFO  20:27:02,435 - ===================================
+ERROR 20:27:02,436 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:29:50,649 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:29:50,731 - #2 program
+INFO  20:29:50,731 - #48 p
+INFO  20:29:50,731 - #7 const
+INFO  20:29:50,733 - #48 int
+INFO  20:29:50,733 - #48 size
+INFO  20:29:50,734 - #33 =
+INFO  20:29:50,734 - #47 10
+INFO  20:29:50,734 - #38 ,
+INFO  20:29:50,735 - #48 pq
+INFO  20:29:50,735 - #33 =
+INFO  20:29:50,736 - #47 2
+INFO  20:29:50,736 - #38 ,
+INFO  20:29:50,736 - #48 q
+INFO  20:29:50,736 - #33 =
+INFO  20:29:50,736 - #47 3
+INFO  20:29:50,736 - #36 ;
+INFO  20:29:50,736 - #48 int
+INFO  20:29:50,737 - #48 p
+INFO  20:29:50,737 - #38 ,
+INFO  20:29:50,738 - #48 q
+INFO  20:29:50,738 - #36 ;
+INFO  20:29:50,739 - #48 char
+INFO  20:29:50,739 - #48 c
+INFO  20:29:50,739 - #38 ,
+INFO  20:29:50,739 - #48 int
+INFO  20:29:50,740 - #42 [
+INFO  20:29:50,740 - #43 ]
+INFO  20:29:50,740 - #38 ,
+INFO  20:29:50,740 - #48 arr
+INFO  20:29:50,740 - #36 ;
+INFO  20:29:50,740 - #4 class
+INFO  20:29:50,740 - #48 Table
+INFO  20:29:50,740 - #44 {
+INFO  20:29:50,741 - #45 }
+INFO  20:29:50,743 - #4 class
+INFO  20:29:50,744 - #48 A
+INFO  20:29:50,744 - #16 extends
+INFO  20:29:50,744 - #48 Table
+INFO  20:29:50,744 - #44 {
+INFO  20:29:50,745 - #48 int
+INFO  20:29:50,745 - #48 p
+INFO  20:29:50,745 - #38 ,
+INFO  20:29:50,745 - #48 r
+INFO  20:29:50,745 - #36 ;
+INFO  20:29:50,745 - #48 char
+INFO  20:29:50,746 - #48 c
+INFO  20:29:50,746 - #36 ;
+INFO  20:29:50,747 - #48 int
+INFO  20:29:50,747 - #48 b
+INFO  20:29:50,747 - #44 {
+ERROR 20:29:50,747 - 
 Sintaksna greska na liniji 7
-INFO  17:51:42,510 - #45 }
-INFO  17:51:42,510 - #45 }
-INFO  17:51:42,510 - #44 {
-ERROR 17:51:42,511 - Greska u deklaraciji polja klase u liniji 22
-INFO  17:51:42,517 - #15 void
-INFO  17:51:42,521 - #48 main
-INFO  17:51:42,524 - #40 (
-INFO  17:51:42,524 - #48 int
-INFO  17:51:42,524 - #48 a
-INFO  17:51:42,524 - #38 ,
-INFO  17:51:42,534 - #48 int
-INFO  17:51:42,534 - #48 b
-INFO  17:51:42,534 - #38 ,
-INFO  17:51:42,534 - #48 int
-INFO  17:51:42,535 - #48 c
-INFO  17:51:42,535 - #48 int
-ERROR 17:51:42,535 - 
+INFO  20:29:50,747 - #45 }
+INFO  20:29:50,747 - #45 }
+INFO  20:29:50,747 - #44 {
+ERROR 20:29:50,748 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:29:50,750 - #15 void
+INFO  20:29:50,751 - #48 main
+INFO  20:29:50,752 - #40 (
+INFO  20:29:50,752 - #48 int
+INFO  20:29:50,753 - #48 a
+INFO  20:29:50,753 - #38 ,
+INFO  20:29:50,755 - #48 int
+INFO  20:29:50,755 - #48 b
+INFO  20:29:50,755 - #38 ,
+INFO  20:29:50,755 - #48 int
+INFO  20:29:50,755 - #48 c
+INFO  20:29:50,755 - #48 int
+ERROR 20:29:50,755 - 
 Sintaksna greska na liniji 10
-INFO  17:51:42,535 - #48 d
-INFO  17:51:42,535 - #41 )
-INFO  17:51:42,535 - #44 {
-INFO  17:51:42,535 - #45 }
-INFO  17:51:42,535 - #45 }
-ERROR 17:51:42,535 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
-INFO  17:51:42,553 - ProgramX(
- p
+INFO  20:29:50,756 - #48 d
+INFO  20:29:50,756 - #41 )
+INFO  20:29:50,756 - #44 {
+INFO  20:29:50,756 - #48 a
+INFO  20:29:50,756 - #33 =
+ERROR 20:29:50,756 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:29:50,760 - #33 =
+ERROR 20:29:50,760 - 
+Sintaksna greska na liniji 11
+INFO  20:29:50,760 - #47 5
+INFO  20:29:50,760 - #36 ;
+INFO  20:29:50,760 - #45 }
+INFO  20:29:50,760 - #45 }
+ERROR 20:29:50,760 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:29:50,771 - Program(
+  ProgName(
+   p
+  ) [ProgName]
   ConstDeclListClass(
     ConstDeclListClass(
       ConstDeclListVar(
@@ -609,7 +1231,7 @@ INFO  17:51:42,553 - ProgramX(
                   NoOtherConstList(
                   ) [NoOtherConstList]
                   ConstTailX(
-                   p
+                   pq
                     FirstConstNum(
                      2
                     ) [FirstConstNum]
@@ -756,12 +1378,1134 @@ INFO  17:51:42,553 - ProgramX(
       ) [FormParsOptionalX]
       NoVarDeclList(
       ) [NoVarDeclList]
-      NoStatementList(
-      ) [NoStatementList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
     ) [MethodDecl]
   ) [MethodDeclListX]
-) [ProgramX]
-INFO  17:51:42,554 - ===================================
-INFO  17:51:42,563 -  Print count calls = 0
-INFO  17:51:42,563 -  Deklarisanih promenljivih ima = 6
-INFO  17:51:42,564 - Deklarisanih konstanti ima = 3
+) [Program]
+INFO  20:29:50,771 - ===================================
+INFO  20:29:50,775 - Konstanta definisana! na liniji 2
+INFO  20:29:50,775 - Konstanta definisana! na liniji 2
+INFO  20:29:50,775 - Konstanta definisana! na liniji 2
+ERROR 20:29:50,776 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:29:50,776 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:29:50,776 -  Print count calls = 0
+INFO  20:29:50,776 -  Deklarisanih promenljivih ima = 0
+INFO  20:29:50,776 - ===================================
+ERROR 20:29:50,776 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:30:31,804 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:30:31,883 - #2 program
+INFO  20:30:31,883 - #48 p
+INFO  20:30:31,883 - #7 const
+INFO  20:30:31,884 - #48 int
+INFO  20:30:31,884 - #48 size
+INFO  20:30:31,885 - #33 =
+INFO  20:30:31,885 - #47 10
+INFO  20:30:31,885 - #38 ,
+INFO  20:30:31,886 - #48 pq
+INFO  20:30:31,886 - #33 =
+INFO  20:30:31,886 - #47 2
+INFO  20:30:31,887 - #38 ,
+INFO  20:30:31,887 - #48 q
+INFO  20:30:31,887 - #33 =
+INFO  20:30:31,887 - #47 3
+INFO  20:30:31,887 - #36 ;
+INFO  20:30:31,887 - #48 int
+INFO  20:30:31,888 - #48 p
+INFO  20:30:31,888 - #38 ,
+INFO  20:30:31,889 - #48 q
+INFO  20:30:31,889 - #36 ;
+INFO  20:30:31,889 - #48 char
+INFO  20:30:31,890 - #48 c
+INFO  20:30:31,890 - #38 ,
+INFO  20:30:31,890 - #48 int
+INFO  20:30:31,890 - #42 [
+INFO  20:30:31,890 - #43 ]
+INFO  20:30:31,890 - #38 ,
+INFO  20:30:31,890 - #48 arr
+INFO  20:30:31,890 - #36 ;
+INFO  20:30:31,890 - #4 class
+INFO  20:30:31,890 - #48 Table
+INFO  20:30:31,891 - #44 {
+INFO  20:30:31,891 - #45 }
+INFO  20:30:31,893 - #4 class
+INFO  20:30:31,894 - #48 A
+INFO  20:30:31,895 - #16 extends
+INFO  20:30:31,895 - #48 Table
+INFO  20:30:31,895 - #44 {
+INFO  20:30:31,895 - #48 int
+INFO  20:30:31,895 - #48 p
+INFO  20:30:31,895 - #38 ,
+INFO  20:30:31,895 - #48 r
+INFO  20:30:31,895 - #36 ;
+INFO  20:30:31,896 - #48 char
+INFO  20:30:31,896 - #48 c
+INFO  20:30:31,896 - #36 ;
+INFO  20:30:31,897 - #48 int
+INFO  20:30:31,898 - #48 b
+INFO  20:30:31,898 - #44 {
+ERROR 20:30:31,898 - 
+Sintaksna greska na liniji 7
+INFO  20:30:31,898 - #45 }
+INFO  20:30:31,898 - #45 }
+INFO  20:30:31,898 - #44 {
+ERROR 20:30:31,899 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:30:31,901 - #15 void
+INFO  20:30:31,902 - #48 main
+INFO  20:30:31,903 - #40 (
+INFO  20:30:31,903 - #48 int
+INFO  20:30:31,903 - #48 a
+INFO  20:30:31,903 - #38 ,
+INFO  20:30:31,905 - #48 int
+INFO  20:30:31,905 - #48 b
+INFO  20:30:31,905 - #38 ,
+INFO  20:30:31,906 - #48 int
+INFO  20:30:31,906 - #48 c
+INFO  20:30:31,906 - #48 int
+ERROR 20:30:31,906 - 
+Sintaksna greska na liniji 10
+INFO  20:30:31,906 - #48 d
+INFO  20:30:31,906 - #41 )
+INFO  20:30:31,906 - #44 {
+INFO  20:30:31,906 - #48 a
+INFO  20:30:31,906 - #33 =
+ERROR 20:30:31,906 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:30:31,910 - #33 =
+ERROR 20:30:31,910 - 
+Sintaksna greska na liniji 11
+INFO  20:30:31,910 - #47 5
+INFO  20:30:31,910 - #36 ;
+INFO  20:30:31,910 - #45 }
+INFO  20:30:31,910 - #45 }
+ERROR 20:30:31,911 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:30:31,923 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListVar(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             size
+              FirstConstNum(
+               10
+              ) [FirstConstNum]
+              OtherConstListX(
+                OtherConstListX(
+                  NoOtherConstList(
+                  ) [NoOtherConstList]
+                  ConstTailX(
+                   pq
+                    FirstConstNum(
+                     2
+                    ) [FirstConstNum]
+                  ) [ConstTailX]
+                ) [OtherConstListX]
+                ConstTailX(
+                 q
+                  FirstConstNum(
+                   3
+                  ) [FirstConstNum]
+                ) [ConstTailX]
+              ) [OtherConstListX]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          VarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             p
+            ) [FirstVarDeclIdentOnly]
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclIdentOnly(
+               q
+              ) [FirstVarDeclIdentOnly]
+            ) [OtherVarDeclListX]
+          ) [VarDeclX]
+        ) [ConstDeclListVar]
+        VarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           c
+          ) [FirstVarDeclIdentOnly]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               int
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             arr
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+       Table
+        NoExtension(
+        ) [NoExtension]
+        NoClassVarDeclList(
+        ) [NoClassVarDeclList]
+        NoConstructorMethodLists(
+        ) [NoConstructorMethodLists]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+     A
+      ExtensionX(
+        Type(
+         Table
+        ) [Type]
+      ) [ExtensionX]
+      ClassVarDeclListX(
+        ClassVarDeclListX(
+          ClassVarDeclListX(
+            NoClassVarDeclList(
+            ) [NoClassVarDeclList]
+            ClassVarDeclX(
+              Type(
+               int
+              ) [Type]
+              FirstClassVarDeclIdentOnly(
+               p
+              ) [FirstClassVarDeclIdentOnly]
+              OtherClassVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 r
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherClassVarDeclListX]
+            ) [ClassVarDeclX]
+          ) [ClassVarDeclListX]
+          ClassVarDeclX(
+            Type(
+             char
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             c
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ClassVarDeclError(
+        ) [ClassVarDeclError]
+      ) [ClassVarDeclListX]
+      ConstructorMethodListsX(
+        Lists4(
+        ) [Lists4]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  20:30:31,923 - ===================================
+INFO  20:30:31,927 - Konstanta definisana! na liniji 2
+INFO  20:30:31,927 - Konstanta definisana! na liniji 2
+INFO  20:30:31,927 - Konstanta definisana! na liniji 2
+ERROR 20:30:31,927 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:30:31,928 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:30:31,928 - ===================================
+ERROR 20:30:31,929 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:35:40,473 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:35:40,554 - #2 program
+INFO  20:35:40,554 - #48 p
+INFO  20:35:40,554 - #7 const
+INFO  20:35:40,556 - #48 int
+INFO  20:35:40,557 - #48 size
+INFO  20:35:40,557 - #33 =
+INFO  20:35:40,558 - #47 10
+INFO  20:35:40,558 - #38 ,
+INFO  20:35:40,559 - #48 q
+INFO  20:35:40,559 - #33 =
+INFO  20:35:40,559 - #47 2
+INFO  20:35:40,559 - #38 ,
+INFO  20:35:40,560 - #48 q
+INFO  20:35:40,560 - #33 =
+INFO  20:35:40,560 - #47 3
+INFO  20:35:40,560 - #36 ;
+INFO  20:35:40,561 - #48 int
+INFO  20:35:40,561 - #48 p
+INFO  20:35:40,561 - #38 ,
+INFO  20:35:40,562 - #48 q
+INFO  20:35:40,562 - #36 ;
+INFO  20:35:40,562 - #48 char
+INFO  20:35:40,563 - #48 c
+INFO  20:35:40,563 - #38 ,
+INFO  20:35:40,563 - #48 int
+INFO  20:35:40,563 - #42 [
+INFO  20:35:40,563 - #43 ]
+INFO  20:35:40,563 - #38 ,
+INFO  20:35:40,564 - #48 arr
+INFO  20:35:40,564 - #36 ;
+INFO  20:35:40,564 - #4 class
+INFO  20:35:40,564 - #48 Table
+INFO  20:35:40,564 - #44 {
+INFO  20:35:40,565 - #45 }
+INFO  20:35:40,567 - #4 class
+INFO  20:35:40,568 - #48 A
+INFO  20:35:40,568 - #16 extends
+INFO  20:35:40,568 - #48 Table
+INFO  20:35:40,568 - #44 {
+INFO  20:35:40,568 - #48 int
+INFO  20:35:40,568 - #48 p
+INFO  20:35:40,568 - #38 ,
+INFO  20:35:40,569 - #48 r
+INFO  20:35:40,569 - #36 ;
+INFO  20:35:40,569 - #48 char
+INFO  20:35:40,569 - #48 c
+INFO  20:35:40,570 - #36 ;
+INFO  20:35:40,571 - #48 int
+INFO  20:35:40,571 - #48 b
+INFO  20:35:40,571 - #44 {
+ERROR 20:35:40,571 - 
+Sintaksna greska na liniji 7
+INFO  20:35:40,571 - #45 }
+INFO  20:35:40,572 - #45 }
+INFO  20:35:40,572 - #44 {
+ERROR 20:35:40,574 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:35:40,576 - #15 void
+INFO  20:35:40,577 - #48 main
+INFO  20:35:40,578 - #40 (
+INFO  20:35:40,578 - #48 int
+INFO  20:35:40,578 - #48 a
+INFO  20:35:40,578 - #38 ,
+INFO  20:35:40,580 - #48 int
+INFO  20:35:40,580 - #48 b
+INFO  20:35:40,580 - #38 ,
+INFO  20:35:40,580 - #48 int
+INFO  20:35:40,580 - #48 c
+INFO  20:35:40,580 - #48 int
+ERROR 20:35:40,580 - 
+Sintaksna greska na liniji 10
+INFO  20:35:40,580 - #48 d
+INFO  20:35:40,580 - #41 )
+INFO  20:35:40,580 - #44 {
+INFO  20:35:40,581 - #48 a
+INFO  20:35:40,581 - #33 =
+ERROR 20:35:40,581 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:35:40,585 - #33 =
+ERROR 20:35:40,585 - 
+Sintaksna greska na liniji 11
+INFO  20:35:40,585 - #47 5
+INFO  20:35:40,586 - #36 ;
+INFO  20:35:40,586 - #45 }
+INFO  20:35:40,586 - #45 }
+ERROR 20:35:40,586 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:35:40,597 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListVar(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             size
+              FirstConstNum(
+               10
+              ) [FirstConstNum]
+              OtherConstListX(
+                OtherConstListX(
+                  NoOtherConstList(
+                  ) [NoOtherConstList]
+                  ConstTailX(
+                   q
+                    FirstConstNum(
+                     2
+                    ) [FirstConstNum]
+                  ) [ConstTailX]
+                ) [OtherConstListX]
+                ConstTailX(
+                 q
+                  FirstConstNum(
+                   3
+                  ) [FirstConstNum]
+                ) [ConstTailX]
+              ) [OtherConstListX]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          VarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             p
+            ) [FirstVarDeclIdentOnly]
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclIdentOnly(
+               q
+              ) [FirstVarDeclIdentOnly]
+            ) [OtherVarDeclListX]
+          ) [VarDeclX]
+        ) [ConstDeclListVar]
+        VarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           c
+          ) [FirstVarDeclIdentOnly]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               int
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             arr
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+       Table
+        NoExtension(
+        ) [NoExtension]
+        NoClassVarDeclList(
+        ) [NoClassVarDeclList]
+        NoConstructorMethodLists(
+        ) [NoConstructorMethodLists]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+     A
+      ExtensionX(
+        Type(
+         Table
+        ) [Type]
+      ) [ExtensionX]
+      ClassVarDeclListX(
+        ClassVarDeclListX(
+          ClassVarDeclListX(
+            NoClassVarDeclList(
+            ) [NoClassVarDeclList]
+            ClassVarDeclX(
+              Type(
+               int
+              ) [Type]
+              FirstClassVarDeclIdentOnly(
+               p
+              ) [FirstClassVarDeclIdentOnly]
+              OtherClassVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 r
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherClassVarDeclListX]
+            ) [ClassVarDeclX]
+          ) [ClassVarDeclListX]
+          ClassVarDeclX(
+            Type(
+             char
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             c
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ClassVarDeclError(
+        ) [ClassVarDeclError]
+      ) [ClassVarDeclListX]
+      ConstructorMethodListsX(
+        Lists4(
+        ) [Lists4]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  20:35:40,598 - ===================================
+INFO  20:35:40,602 - Konstanta definisana! na liniji 2
+ERROR 20:35:40,602 - Vec postoji konstanta sa ovim imenom! na liniji 2
+INFO  20:35:40,602 - Konstanta definisana! na liniji 2
+ERROR 20:35:40,602 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:35:40,602 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:35:40,602 - ===================================
+ERROR 20:35:40,603 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:36:49,484 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:36:49,566 - #2 program
+INFO  20:36:49,566 - #48 p
+INFO  20:36:49,566 - #7 const
+INFO  20:36:49,567 - #48 int
+INFO  20:36:49,567 - #48 size
+INFO  20:36:49,568 - #33 =
+INFO  20:36:49,568 - #47 10
+INFO  20:36:49,568 - #38 ,
+INFO  20:36:49,569 - #48 q
+INFO  20:36:49,569 - #33 =
+INFO  20:36:49,569 - #47 2
+INFO  20:36:49,569 - #38 ,
+INFO  20:36:49,570 - #48 q
+INFO  20:36:49,570 - #33 =
+INFO  20:36:49,570 - #49 true
+INFO  20:36:49,570 - #36 ;
+INFO  20:36:49,570 - #48 int
+INFO  20:36:49,571 - #48 p
+INFO  20:36:49,571 - #38 ,
+INFO  20:36:49,572 - #48 q
+INFO  20:36:49,573 - #36 ;
+INFO  20:36:49,573 - #48 char
+INFO  20:36:49,573 - #48 c
+INFO  20:36:49,573 - #38 ,
+INFO  20:36:49,573 - #48 int
+INFO  20:36:49,574 - #42 [
+INFO  20:36:49,574 - #43 ]
+INFO  20:36:49,574 - #38 ,
+INFO  20:36:49,574 - #48 arr
+INFO  20:36:49,574 - #36 ;
+INFO  20:36:49,574 - #4 class
+INFO  20:36:49,574 - #48 Table
+INFO  20:36:49,575 - #44 {
+INFO  20:36:49,576 - #45 }
+INFO  20:36:49,578 - #4 class
+INFO  20:36:49,579 - #48 A
+INFO  20:36:49,579 - #16 extends
+INFO  20:36:49,579 - #48 Table
+INFO  20:36:49,579 - #44 {
+INFO  20:36:49,579 - #48 int
+INFO  20:36:49,579 - #48 p
+INFO  20:36:49,579 - #38 ,
+INFO  20:36:49,580 - #48 r
+INFO  20:36:49,580 - #36 ;
+INFO  20:36:49,580 - #48 char
+INFO  20:36:49,580 - #48 c
+INFO  20:36:49,580 - #36 ;
+INFO  20:36:49,581 - #48 int
+INFO  20:36:49,582 - #48 b
+INFO  20:36:49,582 - #44 {
+ERROR 20:36:49,582 - 
+Sintaksna greska na liniji 7
+INFO  20:36:49,582 - #45 }
+INFO  20:36:49,582 - #45 }
+INFO  20:36:49,582 - #44 {
+ERROR 20:36:49,583 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:36:49,585 - #15 void
+INFO  20:36:49,585 - #48 main
+INFO  20:36:49,586 - #40 (
+INFO  20:36:49,586 - #48 int
+INFO  20:36:49,587 - #48 a
+INFO  20:36:49,587 - #38 ,
+INFO  20:36:49,590 - #48 int
+INFO  20:36:49,590 - #48 b
+INFO  20:36:49,590 - #38 ,
+INFO  20:36:49,590 - #48 int
+INFO  20:36:49,590 - #48 c
+INFO  20:36:49,590 - #48 int
+ERROR 20:36:49,590 - 
+Sintaksna greska na liniji 10
+INFO  20:36:49,591 - #48 d
+INFO  20:36:49,591 - #41 )
+INFO  20:36:49,591 - #44 {
+INFO  20:36:49,591 - #48 a
+INFO  20:36:49,591 - #33 =
+ERROR 20:36:49,591 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:36:49,596 - #33 =
+ERROR 20:36:49,596 - 
+Sintaksna greska na liniji 11
+INFO  20:36:49,596 - #47 5
+INFO  20:36:49,596 - #36 ;
+INFO  20:36:49,596 - #45 }
+INFO  20:36:49,596 - #45 }
+ERROR 20:36:49,597 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:36:49,607 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListVar(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             size
+              FirstConstNum(
+               10
+              ) [FirstConstNum]
+              OtherConstListX(
+                OtherConstListX(
+                  NoOtherConstList(
+                  ) [NoOtherConstList]
+                  ConstTailX(
+                   q
+                    FirstConstNum(
+                     2
+                    ) [FirstConstNum]
+                  ) [ConstTailX]
+                ) [OtherConstListX]
+                ConstTailX(
+                 q
+                  FirstConstBool(
+                   true
+                  ) [FirstConstBool]
+                ) [ConstTailX]
+              ) [OtherConstListX]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          VarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             p
+            ) [FirstVarDeclIdentOnly]
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclIdentOnly(
+               q
+              ) [FirstVarDeclIdentOnly]
+            ) [OtherVarDeclListX]
+          ) [VarDeclX]
+        ) [ConstDeclListVar]
+        VarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           c
+          ) [FirstVarDeclIdentOnly]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               int
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             arr
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+       Table
+        NoExtension(
+        ) [NoExtension]
+        NoClassVarDeclList(
+        ) [NoClassVarDeclList]
+        NoConstructorMethodLists(
+        ) [NoConstructorMethodLists]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+     A
+      ExtensionX(
+        Type(
+         Table
+        ) [Type]
+      ) [ExtensionX]
+      ClassVarDeclListX(
+        ClassVarDeclListX(
+          ClassVarDeclListX(
+            NoClassVarDeclList(
+            ) [NoClassVarDeclList]
+            ClassVarDeclX(
+              Type(
+               int
+              ) [Type]
+              FirstClassVarDeclIdentOnly(
+               p
+              ) [FirstClassVarDeclIdentOnly]
+              OtherClassVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 r
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherClassVarDeclListX]
+            ) [ClassVarDeclX]
+          ) [ClassVarDeclListX]
+          ClassVarDeclX(
+            Type(
+             char
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             c
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ClassVarDeclError(
+        ) [ClassVarDeclError]
+      ) [ClassVarDeclListX]
+      ConstructorMethodListsX(
+        Lists4(
+        ) [Lists4]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  20:36:49,608 - ===================================
+INFO  20:36:49,612 - Konstanta definisana! na liniji 2
+ERROR 20:36:49,612 - Vec postoji konstanta sa ovim imenom! na liniji 2
+INFO  20:36:49,612 - Konstanta definisana! na liniji 2
+ERROR 20:36:49,613 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:36:49,613 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:36:49,613 - ===================================
+ERROR 20:36:49,613 - Parsiranje NIJE uspesno zavrseno!
+INFO  20:37:03,831 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  20:37:03,911 - #2 program
+INFO  20:37:03,912 - #48 p
+INFO  20:37:03,912 - #7 const
+INFO  20:37:03,913 - #48 int
+INFO  20:37:03,913 - #48 size
+INFO  20:37:03,913 - #33 =
+INFO  20:37:03,914 - #47 10
+INFO  20:37:03,914 - #38 ,
+INFO  20:37:03,914 - #48 pq
+INFO  20:37:03,915 - #33 =
+INFO  20:37:03,915 - #47 2
+INFO  20:37:03,915 - #38 ,
+INFO  20:37:03,915 - #48 q
+INFO  20:37:03,915 - #33 =
+INFO  20:37:03,915 - #49 true
+INFO  20:37:03,915 - #36 ;
+INFO  20:37:03,915 - #48 int
+INFO  20:37:03,916 - #48 p
+INFO  20:37:03,916 - #38 ,
+INFO  20:37:03,917 - #48 q
+INFO  20:37:03,917 - #36 ;
+INFO  20:37:03,917 - #48 char
+INFO  20:37:03,918 - #48 c
+INFO  20:37:03,918 - #38 ,
+INFO  20:37:03,918 - #48 int
+INFO  20:37:03,918 - #42 [
+INFO  20:37:03,918 - #43 ]
+INFO  20:37:03,918 - #38 ,
+INFO  20:37:03,919 - #48 arr
+INFO  20:37:03,919 - #36 ;
+INFO  20:37:03,919 - #4 class
+INFO  20:37:03,919 - #48 Table
+INFO  20:37:03,919 - #44 {
+INFO  20:37:03,921 - #45 }
+INFO  20:37:03,923 - #4 class
+INFO  20:37:03,925 - #48 A
+INFO  20:37:03,925 - #16 extends
+INFO  20:37:03,925 - #48 Table
+INFO  20:37:03,925 - #44 {
+INFO  20:37:03,925 - #48 int
+INFO  20:37:03,925 - #48 p
+INFO  20:37:03,925 - #38 ,
+INFO  20:37:03,926 - #48 r
+INFO  20:37:03,926 - #36 ;
+INFO  20:37:03,926 - #48 char
+INFO  20:37:03,926 - #48 c
+INFO  20:37:03,926 - #36 ;
+INFO  20:37:03,927 - #48 int
+INFO  20:37:03,927 - #48 b
+INFO  20:37:03,927 - #44 {
+ERROR 20:37:03,928 - 
+Sintaksna greska na liniji 7
+INFO  20:37:03,928 - #45 }
+INFO  20:37:03,928 - #45 }
+INFO  20:37:03,928 - #44 {
+ERROR 20:37:03,929 - Greska u deklaraciji polja klase u liniji 22
+INFO  20:37:03,930 - #15 void
+INFO  20:37:03,931 - #48 main
+INFO  20:37:03,932 - #40 (
+INFO  20:37:03,932 - #48 int
+INFO  20:37:03,932 - #48 a
+INFO  20:37:03,932 - #38 ,
+INFO  20:37:03,935 - #48 int
+INFO  20:37:03,935 - #48 b
+INFO  20:37:03,935 - #38 ,
+INFO  20:37:03,935 - #48 int
+INFO  20:37:03,935 - #48 c
+INFO  20:37:03,935 - #48 int
+ERROR 20:37:03,935 - 
+Sintaksna greska na liniji 10
+INFO  20:37:03,936 - #48 d
+INFO  20:37:03,936 - #41 )
+INFO  20:37:03,936 - #44 {
+INFO  20:37:03,936 - #48 a
+INFO  20:37:03,937 - #33 =
+ERROR 20:37:03,937 - Greska u deklaraciji formalnog parametra funkcije u liniji 10
+INFO  20:37:03,942 - #33 =
+ERROR 20:37:03,942 - 
+Sintaksna greska na liniji 11
+INFO  20:37:03,942 - #47 5
+INFO  20:37:03,942 - #36 ;
+INFO  20:37:03,942 - #45 }
+INFO  20:37:03,942 - #45 }
+ERROR 20:37:03,942 - Greska u konstrukciji iskaza dodele u liniji 11
+INFO  20:37:03,953 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListVar(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             size
+              FirstConstNum(
+               10
+              ) [FirstConstNum]
+              OtherConstListX(
+                OtherConstListX(
+                  NoOtherConstList(
+                  ) [NoOtherConstList]
+                  ConstTailX(
+                   pq
+                    FirstConstNum(
+                     2
+                    ) [FirstConstNum]
+                  ) [ConstTailX]
+                ) [OtherConstListX]
+                ConstTailX(
+                 q
+                  FirstConstBool(
+                   true
+                  ) [FirstConstBool]
+                ) [ConstTailX]
+              ) [OtherConstListX]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          VarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstVarDeclIdentOnly(
+             p
+            ) [FirstVarDeclIdentOnly]
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclIdentOnly(
+               q
+              ) [FirstVarDeclIdentOnly]
+            ) [OtherVarDeclListX]
+          ) [VarDeclX]
+        ) [ConstDeclListVar]
+        VarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstVarDeclIdentOnly(
+           c
+          ) [FirstVarDeclIdentOnly]
+          OtherVarDeclListX(
+            OtherVarDeclListX(
+              NoOtherVarDeclList(
+              ) [NoOtherVarDeclList]
+              FirstVarDeclArrayIdent(
+               int
+              ) [FirstVarDeclArrayIdent]
+            ) [OtherVarDeclListX]
+            FirstVarDeclIdentOnly(
+             arr
+            ) [FirstVarDeclIdentOnly]
+          ) [OtherVarDeclListX]
+        ) [VarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+       Table
+        NoExtension(
+        ) [NoExtension]
+        NoClassVarDeclList(
+        ) [NoClassVarDeclList]
+        NoConstructorMethodLists(
+        ) [NoConstructorMethodLists]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+     A
+      ExtensionX(
+        Type(
+         Table
+        ) [Type]
+      ) [ExtensionX]
+      ClassVarDeclListX(
+        ClassVarDeclListX(
+          ClassVarDeclListX(
+            NoClassVarDeclList(
+            ) [NoClassVarDeclList]
+            ClassVarDeclX(
+              Type(
+               int
+              ) [Type]
+              FirstClassVarDeclIdentOnly(
+               p
+              ) [FirstClassVarDeclIdentOnly]
+              OtherClassVarDeclListX(
+                NoOtherVarDeclList(
+                ) [NoOtherVarDeclList]
+                FirstVarDeclIdentOnly(
+                 r
+                ) [FirstVarDeclIdentOnly]
+              ) [OtherClassVarDeclListX]
+            ) [ClassVarDeclX]
+          ) [ClassVarDeclListX]
+          ClassVarDeclX(
+            Type(
+             char
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             c
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ClassVarDeclError(
+        ) [ClassVarDeclError]
+      ) [ClassVarDeclListX]
+      ConstructorMethodListsX(
+        Lists4(
+        ) [Lists4]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      NoReturnType(
+      ) [NoReturnType]
+     main
+      FormParsOptionalX(
+        FormPars(
+          IdentSquaresX(
+            Type(
+             int
+            ) [Type]
+           a
+            NoOptionalSquares(
+            ) [NoOptionalSquares]
+          ) [IdentSquaresX]
+          TypeIdentListX(
+            TypeIdentListX(
+              NoTypeIdentList(
+              ) [NoTypeIdentList]
+              IdentSquaresX(
+                Type(
+                 int
+                ) [Type]
+               b
+                NoOptionalSquares(
+                ) [NoOptionalSquares]
+              ) [IdentSquaresX]
+            ) [TypeIdentListX]
+            IdentSquaresError(
+            ) [IdentSquaresError]
+          ) [TypeIdentListX]
+        ) [FormPars]
+      ) [FormParsOptionalX]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  20:37:03,954 - ===================================
+INFO  20:37:03,958 - Konstanta definisana! na liniji 2
+ERROR 20:37:03,958 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 2
+INFO  20:37:03,958 - Konstanta definisana! na liniji 2
+ERROR 20:37:03,958 - Tip Table ne postoji u tabeli simbola!
+ERROR 20:37:03,959 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  20:37:03,959 - ===================================
+ERROR 20:37:03,959 - Parsiranje NIJE uspesno zavrseno!

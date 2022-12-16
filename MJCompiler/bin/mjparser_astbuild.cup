@@ -6,7 +6,10 @@ import java_cup.runtime.*;
 import org.apache.log4j.*;
 import rs.ac.bg.etf.pp1.ast.*;
 
+
 parser code {:
+
+	boolean errorDetected;
 
 	Logger log = Logger.getLogger(getClass());
    
@@ -27,6 +30,7 @@ parser code {:
     }
 
     public void report_error(String message, Object info) {
+    	errorDetected = true;
     	StringBuilder msg = new StringBuilder(message); 
     	if (info instanceof Symbol)
             msg.append (" na liniji ").append(((Symbol)info).left);
@@ -34,6 +38,10 @@ parser code {:
     }
 
 
+:}
+
+init with {:
+	errorDetected = false;
 :}
 
 
@@ -55,11 +63,9 @@ terminal String IDENT;
 terminal Boolean BOOLCONST;
 terminal Character CHARCONST;
 
-nonterminal Program Program;
 nonterminal ConstDeclList ConstDeclList;
 nonterminal MethodDeclList MethodDeclList;
 nonterminal ConstDecl ConstDecl;
-nonterminal FirstConst FirstConst;
 nonterminal OtherConstList OtherConstList;
 nonterminal VarDecl VarDecl;
 nonterminal FirstVarDecl FirstVarDecl;
@@ -77,7 +83,6 @@ nonterminal ReturnType ReturnType;
 nonterminal FormPars FormPars;
 nonterminal OptionalSquares OptionalSquares;
 nonterminal TypeIdentList TypeIdentList;
-nonterminal Type Type;
 nonterminal Statement Statement;
 nonterminal Unmatched Unmatched;
 nonterminal Matched Matched;
@@ -125,11 +130,16 @@ nonterminal ClassVarDeclList ClassVarDeclList;
 nonterminal FirstClassVarDecl FirstClassVarDecl;
 nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type;
+
 precedence left ELSE;
 
 /* PROGRAM */
 
-Program ::= (ProgramX) PROGRAM IDENT:I1 ConstDeclList:C2 LEFT_WIGGLY_PARENTHESES MethodDeclList:M3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ProgramX(I1, C2, M3); RESULT.setLine(I1left); :};
+Program ::= (Program) PROGRAM ProgName:p ConstDeclList:C1 LEFT_WIGGLY_PARENTHESES MethodDeclList:M2 RIGHT_WIGGLY_PARENTHESES {: RESULT=new Program(p, C1, M2); RESULT.setLine(pleft); :};
+
+ProgName ::= (ProgName) IDENT:progName {: RESULT=new ProgName(progName); RESULT.setLine(progNameleft); :};
 
 ConstDeclList ::= (ConstDeclListConst) ConstDeclList:C1 ConstDecl:C2 {: RESULT=new ConstDeclListConst(C1, C2); RESULT.setLine(C1left); :} |
 				  (ConstDeclListVar) ConstDeclList:C1 VarDecl:V2 {: RESULT=new ConstDeclListVar(C1, V2); RESULT.setLine(C1left); :}   |
@@ -141,17 +151,17 @@ MethodDeclList ::= (MethodDeclListX) MethodDeclList:M1 MethodDecl:M2 {: RESULT=n
 				   
 /* CONST DECL */		   
 				   
-ConstDecl ::= (ConstDeclX) CONST Type:T1 IDENT:I2 EQUALS FirstConst:F3 OtherConstList:O4 SEMICOLON {: RESULT=new ConstDeclX(T1, I2, F3, O4); RESULT.setLine(T1left); :} |
+ConstDecl ::= (ConstDeclX) CONST Type:type IDENT:name EQUALS FirstConst:F1 OtherConstList:O2 SEMICOLON {: RESULT=new ConstDeclX(type, name, F1, O2); RESULT.setLine(typeleft); :} |
 			  (ConstDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :} SEMICOLON {: RESULT=new ConstDeclError(); :};
 
-FirstConst ::= (FirstConstNum) NUMCONST:N1 {: RESULT=new FirstConstNum(N1); RESULT.setLine(N1left); :} |
-			   (FirstConstChar) CHARCONST:C1 {: RESULT=new FirstConstChar(C1); RESULT.setLine(C1left); :} |
-			   (FirstConstBool) BOOLCONST:B1 {: RESULT=new FirstConstBool(B1); RESULT.setLine(B1left); :};
+FirstConst ::= (FirstConstNum) NUMCONST:value {: RESULT=new FirstConstNum(value); RESULT.setLine(valueleft); :} |
+			   (FirstConstChar) CHARCONST:value {: RESULT=new FirstConstChar(value); RESULT.setLine(valueleft); :} |
+			   (FirstConstBool) BOOLCONST:value {: RESULT=new FirstConstBool(value); RESULT.setLine(valueleft); :};
 			   
 OtherConstList ::= (OtherConstListX) OtherConstList:O1 COMMA ConstTail:C2 {: RESULT=new OtherConstListX(O1, C2); RESULT.setLine(O1left); :} |
 				   (NoOtherConstList) {: RESULT=new NoOtherConstList(); :} /* epsilon */;
 				   
-ConstTail ::= (ConstTailX) IDENT:I1 EQUALS FirstConst:F2 {: RESULT=new ConstTailX(I1, F2); RESULT.setLine(I1left); :} |
+ConstTail ::= (ConstTailX) IDENT:name EQUALS FirstConst:F1 {: RESULT=new ConstTailX(name, F1); RESULT.setLine(nameleft); :} |
 			  (ConstTailError) error:l {: parser.report_error("Greska u deklaraciji globalnih konstanti u liniji " + lleft, null); :} {: RESULT=new ConstTailError(); :};
 
 /* VAR DECL */
@@ -159,7 +169,9 @@ ConstTail ::= (ConstTailX) IDENT:I1 EQUALS FirstConst:F2 {: RESULT=new ConstTail
 VarDecl ::= (VarDeclX) Type:T1 FirstVarDecl:F2 OtherVarDeclList:O3 SEMICOLON {: RESULT=new VarDeclX(T1, F2, O3); RESULT.setLine(T1left); :};
 
 ClassVarDecl ::= (ClassVarDeclX) Type:T1 FirstClassVarDecl:F2 OtherClassVarDeclList:O3 SEMICOLON {: RESULT=new ClassVarDeclX(T1, F2, O3); RESULT.setLine(T1left); :} |
-				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} {: RESULT=new ClassVarDeclError(); :};
+				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} {: RESULT=new ClassVarDeclError(); :} //|
+				 //(ClassVarDeclErrorWiggly) error LEFT_WIGGLY_PARENTHESES:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :}
+				 ;
 
 FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
 				 (FirstVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstVarDeclArrayIdent(I1); RESULT.setLine(I1left); :} |
@@ -242,7 +254,7 @@ IdentSquares ::= (IdentSquaresX) Type:T1 IDENT:I2 OptionalSquares:O3 {: RESULT=n
 				  
 /* TYPE */
 
-Type ::= (Type) IDENT:I1 {: RESULT=new Type(I1); RESULT.setLine(I1left); :};
+Type ::= (Type) IDENT:name {: RESULT=new Type(name); RESULT.setLine(nameleft); :};
 
 /* STATEMENT */
 
@@ -252,7 +264,7 @@ Statement ::= (MatchedStmt) Matched:M1 {: RESULT=new MatchedStmt(M1); RESULT.set
 Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES ConditionIF:C1 RIGHT_ROUND_PARENTHESES Statement:S2 {: RESULT=new UnmatchedIf(C1, S2); RESULT.setLine(C1left); :} |
 			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES ConditionIF:C1 RIGHT_ROUND_PARENTHESES Matched:M2 ElseElse:E3 Unmatched:U4 {: RESULT=new UnmatchedIfElse(C1, M2, E3, U4); RESULT.setLine(C1left); :};
 
-Matched ::= (DesigStmt) DesignatorStatement:D1 SEMICOLON {: RESULT=new DesigStmt(D1); RESULT.setLine(D1left); :} |
+Matched ::= (DesigStmt) DesignatorStatement:D1 {: RESULT=new DesigStmt(D1); RESULT.setLine(D1left); :} |
 			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES ConditionIF:C1 RIGHT_ROUND_PARENTHESES Matched:M2 ElseElse:E3 Matched:M4 {: RESULT=new MatchedIfElseStmt(C1, M2, E3, M4); RESULT.setLine(C1left); :} |
 			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES ConditionWHILE:C1 RIGHT_ROUND_PARENTHESES Statement:S2 {: RESULT=new WhileStmt(C1, S2); RESULT.setLine(C1left); :} |
 			(BreakStmt) BREAK SEMICOLON {: RESULT=new BreakStmt(); :} |
@@ -273,9 +285,9 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:N1 {: RESULT=new Optiona
 
 /* DESIGNATOR STATEMENT */
 
-DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator:D1 DsgStmtEnd:D2 {: RESULT=new FirstTypeDesignatorStmt(D1, D2); RESULT.setLine(D1left); :} |
-						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :} |
-						(ErrorDesignatorStmt) error:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :} {: RESULT=new ErrorDesignatorStmt(); :};
+DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator:D1 DsgStmtEnd:D2 SEMICOLON {: RESULT=new FirstTypeDesignatorStmt(D1, D2); RESULT.setLine(D1left); :} |
+						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 SEMICOLON {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :} |
+						(ErrorDesignatorStmt) error SEMICOLON:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :} {: RESULT=new ErrorDesignatorStmt(); :};
 						
 DsgStmtEnd ::= (AssignDsgStmtEnd) Assignop:A1 Expr:E2 {: RESULT=new AssignDsgStmtEnd(A1, E2); RESULT.setLine(A1left); :} |
 			   (ActParsDsgStmtEnd) LEFT_ROUND_PARENTHESES OptionalActPars:O1 RIGHT_ROUND_PARENTHESES {: RESULT=new ActParsDsgStmtEnd(O1); RESULT.setLine(O1left); :} |

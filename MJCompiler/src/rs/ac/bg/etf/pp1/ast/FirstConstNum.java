@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/11/2022 17:51:21
+// 16/11/2022 20:26:24
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FirstConstNum extends FirstConst {
 
-    private Integer N1;
+    private Integer value;
 
-    public FirstConstNum (Integer N1) {
-        this.N1=N1;
+    public FirstConstNum (Integer value) {
+        this.value=value;
     }
 
-    public Integer getN1() {
-        return N1;
+    public Integer getValue() {
+        return value;
     }
 
-    public void setN1(Integer N1) {
-        this.N1=N1;
+    public void setValue(Integer value) {
+        this.value=value;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class FirstConstNum extends FirstConst {
         buffer.append(tab);
         buffer.append("FirstConstNum(\n");
 
-        buffer.append(" "+tab+N1);
+        buffer.append(" "+tab+value);
         buffer.append("\n");
 
         buffer.append(tab);

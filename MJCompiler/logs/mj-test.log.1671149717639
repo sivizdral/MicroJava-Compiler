@@ -1,0 +1,57 @@
+INFO  01:13:30,455 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  01:13:30,577 - #2 program
+INFO  01:13:30,577 - #48 MJProgram
+INFO  01:13:30,577 - #44 {
+INFO  01:13:30,579 - #48 int
+INFO  01:13:30,580 - #48 main
+INFO  01:13:30,582 - #40 (
+INFO  01:13:30,582 - #41 )
+INFO  01:13:30,583 - #44 {
+INFO  01:13:30,584 - #48 x
+INFO  01:13:30,586 - #39 .
+INFO  01:13:30,587 - #47 2
+ERROR 01:13:30,587 - 
+Sintaksna greska na liniji 4
+INFO  01:13:30,587 - #33 =
+INFO  01:13:30,587 - #48 y
+INFO  01:13:30,587 - #20 +
+INFO  01:13:30,588 - #47 5
+INFO  01:13:30,588 - #36 ;
+INFO  01:13:30,588 - #45 }
+INFO  01:13:30,588 - #45 }
+ERROR 01:13:30,589 - Greska u konstrukciji iskaza dodele u liniji 12
+INFO  01:13:30,592 - ProgramX(
+ MJProgram
+  NoConstDeclList(
+  ) [NoConstDeclList]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      ReturnTypeX(
+        Type(
+         int
+        ) [Type]
+      ) [ReturnTypeX]
+     main
+      NoFormParsOptional(
+      ) [NoFormParsOptional]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        NoStatementList(
+        ) [NoStatementList]
+        MatchedStmt(
+          DesigStmt(
+            ErrorDesignatorStmt(
+            ) [ErrorDesignatorStmt]
+          ) [DesigStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [ProgramX]
+INFO  01:13:30,593 - ===================================
+INFO  01:13:30,598 -  Print count calls = 0
+INFO  01:13:30,598 -  Deklarisanih promenljivih ima = 0
+INFO  01:13:30,598 - Deklarisanih konstanti ima = 0

@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/11/2022 17:51:21
+// 16/11/2022 20:26:24
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FirstConstBool extends FirstConst {
 
-    private Boolean B1;
+    private Boolean value;
 
-    public FirstConstBool (Boolean B1) {
-        this.B1=B1;
+    public FirstConstBool (Boolean value) {
+        this.value=value;
     }
 
-    public Boolean getB1() {
-        return B1;
+    public Boolean getValue() {
+        return value;
     }
 
-    public void setB1(Boolean B1) {
-        this.B1=B1;
+    public void setValue(Boolean value) {
+        this.value=value;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class FirstConstBool extends FirstConst {
         buffer.append(tab);
         buffer.append("FirstConstBool(\n");
 
-        buffer.append(" "+tab+B1);
+        buffer.append(" "+tab+value);
         buffer.append("\n");
 
         buffer.append(tab);

@@ -1,65 +1,64 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/11/2022 17:51:21
+// 16/11/2022 20:26:24
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public abstract class VisitorAdaptor implements Visitor { 
 
-    public void visit(Unmatched Unmatched) { }
-    public void visit(ReturnType ReturnType) { }
-    public void visit(ConstructorMethodLists ConstructorMethodLists) { }
-    public void visit(OptionalNumConst OptionalNumConst) { }
-    public void visit(Mulop Mulop) { }
-    public void visit(FirstConst FirstConst) { }
-    public void visit(DsgStmtEnd DsgStmtEnd) { }
-    public void visit(Matched Matched) { }
-    public void visit(Relop Relop) { }
-    public void visit(OtherClassVarDeclList OtherClassVarDeclList) { }
-    public void visit(CondTermOrList CondTermOrList) { }
-    public void visit(MulopFactorList MulopFactorList) { }
-    public void visit(OtherConstList OtherConstList) { }
-    public void visit(FirstVarDecl FirstVarDecl) { }
-    public void visit(OptMinus OptMinus) { }
-    public void visit(FirstClassVarDecl FirstClassVarDecl) { }
-    public void visit(StatementList StatementList) { }
-    public void visit(ClassVarDecl ClassVarDecl) { }
-    public void visit(OptOptActPars OptOptActPars) { }
-    public void visit(Addop Addop) { }
-    public void visit(Factor Factor) { }
-    public void visit(ClassVarDeclList ClassVarDeclList) { }
-    public void visit(OptionalExpr OptionalExpr) { }
-    public void visit(TypeIdentList TypeIdentList) { }
-    public void visit(FormParsOptional FormParsOptional) { }
-    public void visit(ConstDeclList ConstDeclList) { }
-    public void visit(OptionalDesignator OptionalDesignator) { }
-    public void visit(OtherVarDeclList OtherVarDeclList) { }
-    public void visit(ExprList ExprList) { }
-    public void visit(ConstructorDeclList ConstructorDeclList) { }
-    public void visit(MethodDecl2 MethodDecl2) { }
-    public void visit(ConditionIF ConditionIF) { }
-    public void visit(VarDeclList VarDeclList) { }
-    public void visit(OptionalActPars OptionalActPars) { }
-    public void visit(OptionalRelopExpr OptionalRelopExpr) { }
-    public void visit(DesignatorStatement DesignatorStatement) { }
-    public void visit(CondFactAndList CondFactAndList) { }
     public void visit(OptionalDesignatorList OptionalDesignatorList) { }
-    public void visit(Extension Extension) { }
-    public void visit(MethodDeclList2 MethodDeclList2) { }
+    public void visit(Factor Factor) { }
     public void visit(Statement Statement) { }
-    public void visit(VarDecl VarDecl) { }
-    public void visit(IdentSquares IdentSquares) { }
-    public void visit(ExprOrActPars ExprOrActPars) { }
-    public void visit(ConstDecl ConstDecl) { }
-    public void visit(MethodDeclList MethodDeclList) { }
-    public void visit(Lists Lists) { }
-    public void visit(FirstConstructorDecl FirstConstructorDecl) { }
-    public void visit(Program Program) { }
+    public void visit(OptionalRelopExpr OptionalRelopExpr) { }
+    public void visit(ConstDeclList ConstDeclList) { }
+    public void visit(OtherConstList OtherConstList) { }
+    public void visit(ExprList ExprList) { }
+    public void visit(DsgStmtEnd DsgStmtEnd) { }
+    public void visit(ConditionIF ConditionIF) { }
+    public void visit(Relop Relop) { }
     public void visit(OptionalSquares OptionalSquares) { }
     public void visit(ConstTail ConstTail) { }
-    public void visit(IdentExprList IdentExprList) { }
+    public void visit(FirstConstructorDecl FirstConstructorDecl) { }
+    public void visit(OptMinus OptMinus) { }
+    public void visit(FirstClassVarDecl FirstClassVarDecl) { }
+    public void visit(OtherClassVarDeclList OtherClassVarDeclList) { }
+    public void visit(MulopFactorList MulopFactorList) { }
     public void visit(AddopTermList AddopTermList) { }
+    public void visit(VarDecl VarDecl) { }
+    public void visit(Unmatched Unmatched) { }
+    public void visit(Lists Lists) { }
+    public void visit(ConstructorMethodLists ConstructorMethodLists) { }
+    public void visit(OptionalDesignator OptionalDesignator) { }
+    public void visit(MethodDecl2 MethodDecl2) { }
+    public void visit(OptionalActPars OptionalActPars) { }
+    public void visit(Mulop Mulop) { }
+    public void visit(DesignatorStatement DesignatorStatement) { }
+    public void visit(FirstConst FirstConst) { }
+    public void visit(CondFactAndList CondFactAndList) { }
+    public void visit(Addop Addop) { }
+    public void visit(StatementList StatementList) { }
+    public void visit(OptOptActPars OptOptActPars) { }
+    public void visit(ConstDecl ConstDecl) { }
+    public void visit(ConstructorDeclList ConstructorDeclList) { }
+    public void visit(OtherVarDeclList OtherVarDeclList) { }
+    public void visit(CondTermOrList CondTermOrList) { }
+    public void visit(ReturnType ReturnType) { }
+    public void visit(FirstVarDecl FirstVarDecl) { }
+    public void visit(IdentExprList IdentExprList) { }
+    public void visit(ClassVarDecl ClassVarDecl) { }
+    public void visit(MethodDeclList MethodDeclList) { }
+    public void visit(Extension Extension) { }
+    public void visit(IdentSquares IdentSquares) { }
+    public void visit(ClassVarDeclList ClassVarDeclList) { }
+    public void visit(OptionalNumConst OptionalNumConst) { }
+    public void visit(Matched Matched) { }
+    public void visit(VarDeclList VarDeclList) { }
+    public void visit(TypeIdentList TypeIdentList) { }
+    public void visit(OptionalExpr OptionalExpr) { }
+    public void visit(FormParsOptional FormParsOptional) { }
+    public void visit(ExprOrActPars ExprOrActPars) { }
+    public void visit(MethodDeclList2 MethodDeclList2) { }
     public void visit(MulopP MulopP) { visit(); }
     public void visit(MulopD MulopD) { visit(); }
     public void visit(MulopM MulopM) { visit(); }
@@ -209,7 +208,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ConstDeclListClass ConstDeclListClass) { visit(); }
     public void visit(ConstDeclListVar ConstDeclListVar) { visit(); }
     public void visit(ConstDeclListConst ConstDeclListConst) { visit(); }
-    public void visit(ProgramX ProgramX) { visit(); }
+    public void visit(ProgName ProgName) { visit(); }
+    public void visit(Program Program) { visit(); }
 
 
     public void visit() { }

@@ -1,27 +1,27 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/11/2022 17:51:21
+// 16/11/2022 20:26:24
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ConstTailX extends ConstTail {
 
-    private String I1;
+    private String name;
     private FirstConst FirstConst;
 
-    public ConstTailX (String I1, FirstConst FirstConst) {
-        this.I1=I1;
+    public ConstTailX (String name, FirstConst FirstConst) {
+        this.name=name;
         this.FirstConst=FirstConst;
         if(FirstConst!=null) FirstConst.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public String getName() {
+        return name;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setName(String name) {
+        this.name=name;
     }
 
     public FirstConst getFirstConst() {
@@ -55,7 +55,7 @@ public class ConstTailX extends ConstTail {
         buffer.append(tab);
         buffer.append("ConstTailX(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+name);
         buffer.append("\n");
 
         if(FirstConst!=null)

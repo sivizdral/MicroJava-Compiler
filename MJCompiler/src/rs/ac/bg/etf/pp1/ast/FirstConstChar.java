@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/11/2022 17:51:21
+// 16/11/2022 20:26:24
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FirstConstChar extends FirstConst {
 
-    private Character C1;
+    private Character value;
 
-    public FirstConstChar (Character C1) {
-        this.C1=C1;
+    public FirstConstChar (Character value) {
+        this.value=value;
     }
 
-    public Character getC1() {
-        return C1;
+    public Character getValue() {
+        return value;
     }
 
-    public void setC1(Character C1) {
-        this.C1=C1;
+    public void setValue(Character value) {
+        this.value=value;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class FirstConstChar extends FirstConst {
         buffer.append(tab);
         buffer.append("FirstConstChar(\n");
 
-        buffer.append(" "+tab+C1);
+        buffer.append(" "+tab+value);
         buffer.append("\n");
 
         buffer.append(tab);

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/11/2022 17:51:21
+// 16/11/2022 20:26:24
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,14 +8,14 @@ package rs.ac.bg.etf.pp1.ast;
 public class ConstDeclX extends ConstDecl {
 
     private Type Type;
-    private String I2;
+    private String name;
     private FirstConst FirstConst;
     private OtherConstList OtherConstList;
 
-    public ConstDeclX (Type Type, String I2, FirstConst FirstConst, OtherConstList OtherConstList) {
+    public ConstDeclX (Type Type, String name, FirstConst FirstConst, OtherConstList OtherConstList) {
         this.Type=Type;
         if(Type!=null) Type.setParent(this);
-        this.I2=I2;
+        this.name=name;
         this.FirstConst=FirstConst;
         if(FirstConst!=null) FirstConst.setParent(this);
         this.OtherConstList=OtherConstList;
@@ -30,12 +30,12 @@ public class ConstDeclX extends ConstDecl {
         this.Type=Type;
     }
 
-    public String getI2() {
-        return I2;
+    public String getName() {
+        return name;
     }
 
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setName(String name) {
+        this.name=name;
     }
 
     public FirstConst getFirstConst() {
@@ -89,7 +89,7 @@ public class ConstDeclX extends ConstDecl {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+I2);
+        buffer.append(" "+tab+name);
         buffer.append("\n");
 
         if(FirstConst!=null)
