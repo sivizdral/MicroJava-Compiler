@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/11/2022 20:26:24
+// 16/11/2022 21:14:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,13 +8,13 @@ package rs.ac.bg.etf.pp1.ast;
 public class ConstDeclListVar extends ConstDeclList {
 
     private ConstDeclList ConstDeclList;
-    private VarDecl VarDecl;
+    private GlobalVarDecl GlobalVarDecl;
 
-    public ConstDeclListVar (ConstDeclList ConstDeclList, VarDecl VarDecl) {
+    public ConstDeclListVar (ConstDeclList ConstDeclList, GlobalVarDecl GlobalVarDecl) {
         this.ConstDeclList=ConstDeclList;
         if(ConstDeclList!=null) ConstDeclList.setParent(this);
-        this.VarDecl=VarDecl;
-        if(VarDecl!=null) VarDecl.setParent(this);
+        this.GlobalVarDecl=GlobalVarDecl;
+        if(GlobalVarDecl!=null) GlobalVarDecl.setParent(this);
     }
 
     public ConstDeclList getConstDeclList() {
@@ -25,12 +25,12 @@ public class ConstDeclListVar extends ConstDeclList {
         this.ConstDeclList=ConstDeclList;
     }
 
-    public VarDecl getVarDecl() {
-        return VarDecl;
+    public GlobalVarDecl getGlobalVarDecl() {
+        return GlobalVarDecl;
     }
 
-    public void setVarDecl(VarDecl VarDecl) {
-        this.VarDecl=VarDecl;
+    public void setGlobalVarDecl(GlobalVarDecl GlobalVarDecl) {
+        this.GlobalVarDecl=GlobalVarDecl;
     }
 
     public void accept(Visitor visitor) {
@@ -39,18 +39,18 @@ public class ConstDeclListVar extends ConstDeclList {
 
     public void childrenAccept(Visitor visitor) {
         if(ConstDeclList!=null) ConstDeclList.accept(visitor);
-        if(VarDecl!=null) VarDecl.accept(visitor);
+        if(GlobalVarDecl!=null) GlobalVarDecl.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(ConstDeclList!=null) ConstDeclList.traverseTopDown(visitor);
-        if(VarDecl!=null) VarDecl.traverseTopDown(visitor);
+        if(GlobalVarDecl!=null) GlobalVarDecl.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(ConstDeclList!=null) ConstDeclList.traverseBottomUp(visitor);
-        if(VarDecl!=null) VarDecl.traverseBottomUp(visitor);
+        if(GlobalVarDecl!=null) GlobalVarDecl.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -65,8 +65,8 @@ public class ConstDeclListVar extends ConstDeclList {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(VarDecl!=null)
-            buffer.append(VarDecl.toString("  "+tab));
+        if(GlobalVarDecl!=null)
+            buffer.append(GlobalVarDecl.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

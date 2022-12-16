@@ -1,6 +1,6 @@
 program p
 const int size = 10, pq = 2, q = true;
-int p, q; char c, int[], arr;
+int pa, q; char c, inta[], arr;
 class Table {}
 class A extends Table {
 int p, r;char c ;int b 

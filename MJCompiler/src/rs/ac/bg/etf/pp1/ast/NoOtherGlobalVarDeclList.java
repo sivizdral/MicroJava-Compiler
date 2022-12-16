@@ -1,13 +1,13 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/11/2022 20:26:24
+// 16/11/2022 21:14:34
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class FirstVarDeclError extends FirstVarDecl {
+public class NoOtherGlobalVarDeclList extends OtherGlobalVarDeclList {
 
-    public FirstVarDeclError () {
+    public NoOtherGlobalVarDeclList () {
     }
 
     public void accept(Visitor visitor) {
@@ -28,10 +28,10 @@ public class FirstVarDeclError extends FirstVarDecl {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("FirstVarDeclError(\n");
+        buffer.append("NoOtherGlobalVarDeclList(\n");
 
         buffer.append(tab);
-        buffer.append(") [FirstVarDeclError]");
+        buffer.append(") [NoOtherGlobalVarDeclList]");
         return buffer.toString();
     }
 }

@@ -78,7 +78,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
     } 
     
-    /* CONST DECLARATION */
+    /* GLOBAL CONST DECLARATION */
     
     public void visit(FirstConstNum numConst) {
     	numConst.struct = Tab.intType;
@@ -147,5 +147,63 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		obj.setAdr(((FirstConstBool) fc).getValue() == true ? 1 : 0);
     	}
     }
+    
+    /* GLOBAL VAR DECLARATION */
+    
+    public void visit(FirstGlobalVarDeclArrayIdent globalArrayVar) {
+    	String varName = globalArrayVar.getName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj) {
+    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", globalArrayVar);
+    		return;
+    	}
+    	
+    	Tab.insert(Obj.Var, varName, new Struct(Struct.Array, currentType));
+		report_info("Deklarisana globalna promenljiva (niz)!", globalArrayVar);
+    }
+    
+    public void visit(FirstGlobalVarDeclIdentOnly globalVar) {
+    	String varName = globalVar.getName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj) {
+    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", globalVar);
+    		return;
+    	}
+    	
+    	Tab.insert(Obj.Var, varName, currentType);
+		report_info("Deklarisana globalna promenljiva!", globalVar);
+		nVars++;
+    }
+    
+    /* LOCAL VAR DECLARATION */
+    
+    public void visit(FirstVarDeclArrayIdent arrayVar) {
+    	String varName = arrayVar.getName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj && obj.getLevel() != 0) {  // OBRATI PAZNJU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", arrayVar);
+    		return;
+    	}
+    	
+    	Tab.insert(Obj.Var, varName, new Struct(Struct.Array, currentType));
+		report_info("Deklarisana lokalna promenljiva (niz)!", arrayVar);
+    }
+    
+    public void visit(FirstVarDeclIdentOnly var) {
+    	String varName = var.getName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj && obj.getLevel() != 0) {
+    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", var);
+    		return;
+    	}
+    	
+    	Tab.insert(Obj.Var, varName, currentType);
+		report_info("Deklarisana lokalna promenljiva!", var);
+    }
+    
     
 }

@@ -1,36 +1,36 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/11/2022 20:26:24
+// 16/11/2022 21:14:34
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class OtherClassVarDeclListX extends OtherClassVarDeclList {
 
-    private OtherVarDeclList OtherVarDeclList;
-    private FirstVarDecl FirstVarDecl;
+    private OtherClassVarDeclList OtherClassVarDeclList;
+    private FirstClassVarDecl FirstClassVarDecl;
 
-    public OtherClassVarDeclListX (OtherVarDeclList OtherVarDeclList, FirstVarDecl FirstVarDecl) {
-        this.OtherVarDeclList=OtherVarDeclList;
-        if(OtherVarDeclList!=null) OtherVarDeclList.setParent(this);
-        this.FirstVarDecl=FirstVarDecl;
-        if(FirstVarDecl!=null) FirstVarDecl.setParent(this);
+    public OtherClassVarDeclListX (OtherClassVarDeclList OtherClassVarDeclList, FirstClassVarDecl FirstClassVarDecl) {
+        this.OtherClassVarDeclList=OtherClassVarDeclList;
+        if(OtherClassVarDeclList!=null) OtherClassVarDeclList.setParent(this);
+        this.FirstClassVarDecl=FirstClassVarDecl;
+        if(FirstClassVarDecl!=null) FirstClassVarDecl.setParent(this);
     }
 
-    public OtherVarDeclList getOtherVarDeclList() {
-        return OtherVarDeclList;
+    public OtherClassVarDeclList getOtherClassVarDeclList() {
+        return OtherClassVarDeclList;
     }
 
-    public void setOtherVarDeclList(OtherVarDeclList OtherVarDeclList) {
-        this.OtherVarDeclList=OtherVarDeclList;
+    public void setOtherClassVarDeclList(OtherClassVarDeclList OtherClassVarDeclList) {
+        this.OtherClassVarDeclList=OtherClassVarDeclList;
     }
 
-    public FirstVarDecl getFirstVarDecl() {
-        return FirstVarDecl;
+    public FirstClassVarDecl getFirstClassVarDecl() {
+        return FirstClassVarDecl;
     }
 
-    public void setFirstVarDecl(FirstVarDecl FirstVarDecl) {
-        this.FirstVarDecl=FirstVarDecl;
+    public void setFirstClassVarDecl(FirstClassVarDecl FirstClassVarDecl) {
+        this.FirstClassVarDecl=FirstClassVarDecl;
     }
 
     public void accept(Visitor visitor) {
@@ -38,19 +38,19 @@ public class OtherClassVarDeclListX extends OtherClassVarDeclList {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(OtherVarDeclList!=null) OtherVarDeclList.accept(visitor);
-        if(FirstVarDecl!=null) FirstVarDecl.accept(visitor);
+        if(OtherClassVarDeclList!=null) OtherClassVarDeclList.accept(visitor);
+        if(FirstClassVarDecl!=null) FirstClassVarDecl.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(OtherVarDeclList!=null) OtherVarDeclList.traverseTopDown(visitor);
-        if(FirstVarDecl!=null) FirstVarDecl.traverseTopDown(visitor);
+        if(OtherClassVarDeclList!=null) OtherClassVarDeclList.traverseTopDown(visitor);
+        if(FirstClassVarDecl!=null) FirstClassVarDecl.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(OtherVarDeclList!=null) OtherVarDeclList.traverseBottomUp(visitor);
-        if(FirstVarDecl!=null) FirstVarDecl.traverseBottomUp(visitor);
+        if(OtherClassVarDeclList!=null) OtherClassVarDeclList.traverseBottomUp(visitor);
+        if(FirstClassVarDecl!=null) FirstClassVarDecl.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -59,14 +59,14 @@ public class OtherClassVarDeclListX extends OtherClassVarDeclList {
         buffer.append(tab);
         buffer.append("OtherClassVarDeclListX(\n");
 
-        if(OtherVarDeclList!=null)
-            buffer.append(OtherVarDeclList.toString("  "+tab));
+        if(OtherClassVarDeclList!=null)
+            buffer.append(OtherClassVarDeclList.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(FirstVarDecl!=null)
-            buffer.append(FirstVarDecl.toString("  "+tab));
+        if(FirstClassVarDecl!=null)
+            buffer.append(FirstClassVarDecl.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

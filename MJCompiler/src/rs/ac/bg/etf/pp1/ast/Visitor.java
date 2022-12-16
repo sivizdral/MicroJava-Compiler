@@ -1,12 +1,13 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/11/2022 20:26:24
+// 16/11/2022 21:14:35
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public interface Visitor { 
 
+    public void visit(GlobalVarDecl GlobalVarDecl);
     public void visit(OptionalDesignatorList OptionalDesignatorList);
     public void visit(Factor Factor);
     public void visit(Statement Statement);
@@ -23,6 +24,7 @@ public interface Visitor {
     public void visit(OptMinus OptMinus);
     public void visit(FirstClassVarDecl FirstClassVarDecl);
     public void visit(OtherClassVarDeclList OtherClassVarDeclList);
+    public void visit(OtherGlobalVarDeclList OtherGlobalVarDeclList);
     public void visit(MulopFactorList MulopFactorList);
     public void visit(AddopTermList AddopTermList);
     public void visit(VarDecl VarDecl);
@@ -32,6 +34,7 @@ public interface Visitor {
     public void visit(OptionalDesignator OptionalDesignator);
     public void visit(MethodDecl2 MethodDecl2);
     public void visit(OptionalActPars OptionalActPars);
+    public void visit(FirstGlobalVarDecl FirstGlobalVarDecl);
     public void visit(Mulop Mulop);
     public void visit(DesignatorStatement DesignatorStatement);
     public void visit(FirstConst FirstConst);
@@ -180,16 +183,21 @@ public interface Visitor {
     public void visit(ExtensionError ExtensionError);
     public void visit(ExtensionX ExtensionX);
     public void visit(ClassDecl ClassDecl);
+    public void visit(NoOtherGlobalVarDeclList NoOtherGlobalVarDeclList);
+    public void visit(OtherGlobalVarDeclListError OtherGlobalVarDeclListError);
+    public void visit(OtherGlobalVarDeclListX OtherGlobalVarDeclListX);
     public void visit(NoOtherClassVarDeclList NoOtherClassVarDeclList);
     public void visit(OtherClassVarDeclListX OtherClassVarDeclListX);
     public void visit(NoOtherVarDeclList NoOtherVarDeclList);
-    public void visit(OtherVarDeclListError OtherVarDeclListError);
     public void visit(OtherVarDeclListX OtherVarDeclListX);
+    public void visit(FirstGlobalVarDeclError FirstGlobalVarDeclError);
+    public void visit(FirstGlobalVarDeclArrayIdent FirstGlobalVarDeclArrayIdent);
+    public void visit(FirstGlobalVarDeclIdentOnly FirstGlobalVarDeclIdentOnly);
     public void visit(FirstClassVarDeclArrayIdent FirstClassVarDeclArrayIdent);
     public void visit(FirstClassVarDeclIdentOnly FirstClassVarDeclIdentOnly);
-    public void visit(FirstVarDeclError FirstVarDeclError);
     public void visit(FirstVarDeclArrayIdent FirstVarDeclArrayIdent);
     public void visit(FirstVarDeclIdentOnly FirstVarDeclIdentOnly);
+    public void visit(GlobalVarDeclX GlobalVarDeclX);
     public void visit(ClassVarDeclError ClassVarDeclError);
     public void visit(ClassVarDeclX ClassVarDeclX);
     public void visit(VarDeclX VarDeclX);

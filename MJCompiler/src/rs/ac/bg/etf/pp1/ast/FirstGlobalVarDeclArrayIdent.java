@@ -1,13 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/11/2022 20:26:24
+// 16/11/2022 21:14:34
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class OtherVarDeclListError extends OtherVarDeclList {
+public class FirstGlobalVarDeclArrayIdent extends FirstGlobalVarDecl {
 
-    public OtherVarDeclListError () {
+    private String name;
+
+    public FirstGlobalVarDeclArrayIdent (String name) {
+        this.name=name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name=name;
     }
 
     public void accept(Visitor visitor) {
@@ -28,10 +39,13 @@ public class OtherVarDeclListError extends OtherVarDeclList {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("OtherVarDeclListError(\n");
+        buffer.append("FirstGlobalVarDeclArrayIdent(\n");
+
+        buffer.append(" "+tab+name);
+        buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [OtherVarDeclListError]");
+        buffer.append(") [FirstGlobalVarDeclArrayIdent]");
         return buffer.toString();
     }
 }

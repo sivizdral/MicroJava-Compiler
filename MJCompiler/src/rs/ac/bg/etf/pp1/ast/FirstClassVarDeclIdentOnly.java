@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/11/2022 20:26:24
+// 16/11/2022 21:14:34
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FirstClassVarDeclIdentOnly extends FirstClassVarDecl {
 
-    private String I1;
+    private String name;
 
-    public FirstClassVarDeclIdentOnly (String I1) {
-        this.I1=I1;
+    public FirstClassVarDeclIdentOnly (String name) {
+        this.name=name;
     }
 
-    public String getI1() {
-        return I1;
+    public String getName() {
+        return name;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setName(String name) {
+        this.name=name;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class FirstClassVarDeclIdentOnly extends FirstClassVarDecl {
         buffer.append(tab);
         buffer.append("FirstClassVarDeclIdentOnly(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+name);
         buffer.append("\n");
 
         buffer.append(tab);

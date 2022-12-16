@@ -132,6 +132,9 @@ nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type;
+nonterminal GlobalVarDecl GlobalVarDecl;
+nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
+nonterminal OtherGlobalVarDeclList OtherGlobalVarDeclList;
 
 precedence left ELSE;
 
@@ -142,7 +145,7 @@ Program ::= (Program) PROGRAM ProgName:p ConstDeclList:C1 LEFT_WIGGLY_PARENTHESE
 ProgName ::= (ProgName) IDENT:progName {: RESULT=new ProgName(progName); RESULT.setLine(progNameleft); :};
 
 ConstDeclList ::= (ConstDeclListConst) ConstDeclList:C1 ConstDecl:C2 {: RESULT=new ConstDeclListConst(C1, C2); RESULT.setLine(C1left); :} |
-				  (ConstDeclListVar) ConstDeclList:C1 VarDecl:V2 {: RESULT=new ConstDeclListVar(C1, V2); RESULT.setLine(C1left); :}   |
+				  (ConstDeclListVar) ConstDeclList:C1 GlobalVarDecl:G2 {: RESULT=new ConstDeclListVar(C1, G2); RESULT.setLine(C1left); :}   |
 				  (ConstDeclListClass) ConstDeclList:C1 ClassDecl:C2 {: RESULT=new ConstDeclListClass(C1, C2); RESULT.setLine(C1left); :} |
 				  (NoConstDeclList) {: RESULT=new NoConstDeclList(); :} /* epsilon */;
 				  
@@ -166,26 +169,32 @@ ConstTail ::= (ConstTailX) IDENT:name EQUALS FirstConst:F1 {: RESULT=new ConstTa
 
 /* VAR DECL */
 				   
-VarDecl ::= (VarDeclX) Type:T1 FirstVarDecl:F2 OtherVarDeclList:O3 SEMICOLON {: RESULT=new VarDeclX(T1, F2, O3); RESULT.setLine(T1left); :};
+VarDecl ::= (VarDeclX) Type:type FirstVarDecl:F1 OtherVarDeclList:O2 SEMICOLON {: RESULT=new VarDeclX(type, F1, O2); RESULT.setLine(typeleft); :};
 
-ClassVarDecl ::= (ClassVarDeclX) Type:T1 FirstClassVarDecl:F2 OtherClassVarDeclList:O3 SEMICOLON {: RESULT=new ClassVarDeclX(T1, F2, O3); RESULT.setLine(T1left); :} |
-				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} {: RESULT=new ClassVarDeclError(); :} //|
-				 //(ClassVarDeclErrorWiggly) error LEFT_WIGGLY_PARENTHESES:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :}
-				 ;
-
-FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
-				 (FirstVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstVarDeclArrayIdent(I1); RESULT.setLine(I1left); :} |
-				 (FirstVarDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} {: RESULT=new FirstVarDeclError(); :};
+ClassVarDecl ::= (ClassVarDeclX) Type:type FirstClassVarDecl:F1 OtherClassVarDeclList:O2 SEMICOLON {: RESULT=new ClassVarDeclX(type, F1, O2); RESULT.setLine(typeleft); :} |
+				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} {: RESULT=new ClassVarDeclError(); :};
 				 
-FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT:I1 {: RESULT=new FirstClassVarDeclIdentOnly(I1); RESULT.setLine(I1left); :} |
-				 	  (FirstClassVarDeclArrayIdent) IDENT:I1 LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstClassVarDeclArrayIdent(I1); RESULT.setLine(I1left); :};
+GlobalVarDecl ::= (GlobalVarDeclX) Type:type FirstGlobalVarDecl:F1 OtherGlobalVarDeclList:O2 SEMICOLON {: RESULT=new GlobalVarDeclX(type, F1, O2); RESULT.setLine(typeleft); :};
+
+FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT:name {: RESULT=new FirstVarDeclIdentOnly(name); RESULT.setLine(nameleft); :} |
+				 (FirstVarDeclArrayIdent) IDENT:name LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstVarDeclArrayIdent(name); RESULT.setLine(nameleft); :} ;
+				 
+FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT:name {: RESULT=new FirstClassVarDeclIdentOnly(name); RESULT.setLine(nameleft); :} |
+				 	  (FirstClassVarDeclArrayIdent) IDENT:name LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstClassVarDeclArrayIdent(name); RESULT.setLine(nameleft); :};
+				 	  
+FirstGlobalVarDecl ::= (FirstGlobalVarDeclIdentOnly) IDENT:name {: RESULT=new FirstGlobalVarDeclIdentOnly(name); RESULT.setLine(nameleft); :} |
+				 	   (FirstGlobalVarDeclArrayIdent) IDENT:name LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES {: RESULT=new FirstGlobalVarDeclArrayIdent(name); RESULT.setLine(nameleft); :} |
+				       (FirstGlobalVarDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} {: RESULT=new FirstGlobalVarDeclError(); :};				 	  
 				 
 OtherVarDeclList ::= (OtherVarDeclListX) OtherVarDeclList:O1 COMMA FirstVarDecl:F2 {: RESULT=new OtherVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
-					 (OtherVarDeclListError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} {: RESULT=new OtherVarDeclListError(); :} |
 					 (NoOtherVarDeclList) {: RESULT=new NoOtherVarDeclList(); :} /* epsilon */;
 					 
-OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList:O1 COMMA FirstVarDecl:F2 {: RESULT=new OtherClassVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
+OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherClassVarDeclList:O1 COMMA FirstClassVarDecl:F2 {: RESULT=new OtherClassVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
 					 	  (NoOtherClassVarDeclList) {: RESULT=new NoOtherClassVarDeclList(); :} /* epsilon */;
+					 	  
+OtherGlobalVarDeclList ::= (OtherGlobalVarDeclListX) OtherGlobalVarDeclList:O1 COMMA FirstGlobalVarDecl:F2 {: RESULT=new OtherGlobalVarDeclListX(O1, F2); RESULT.setLine(O1left); :} |
+						  (OtherGlobalVarDeclListError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} {: RESULT=new OtherGlobalVarDeclListError(); :} |
+					 	  (NoOtherGlobalVarDeclList) {: RESULT=new NoOtherGlobalVarDeclList(); :} /* epsilon */;
 					 
 /* CLASS DECL */
 

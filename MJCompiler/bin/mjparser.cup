@@ -75,6 +75,7 @@ nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDecl
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type;
+nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
 precedence left ELSE;
 
@@ -85,7 +86,7 @@ Program ::= (Program) PROGRAM ProgName:p ConstDeclList LEFT_WIGGLY_PARENTHESES M
 ProgName ::= (ProgName) IDENT:progName;
 
 ConstDeclList ::= (ConstDeclListConst) ConstDeclList ConstDecl |
-				  (ConstDeclListVar) ConstDeclList VarDecl   |
+				  (ConstDeclListVar) ConstDeclList GlobalVarDecl   |
 				  (ConstDeclListClass) ConstDeclList ClassDecl |
 				  (NoConstDeclList) /* epsilon */;
 				  
@@ -109,26 +110,32 @@ ConstTail ::= (ConstTailX) IDENT:name EQUALS FirstConst |
 
 /* VAR DECL */
 				   
-VarDecl ::= (VarDeclX) Type FirstVarDecl OtherVarDeclList SEMICOLON;
+VarDecl ::= (VarDeclX) Type:type FirstVarDecl OtherVarDeclList SEMICOLON;
 
-ClassVarDecl ::= (ClassVarDeclX) Type FirstClassVarDecl OtherClassVarDeclList SEMICOLON |
-				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :} //|
-				 //(ClassVarDeclErrorWiggly) error LEFT_WIGGLY_PARENTHESES:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :}
-				 ;
-
-FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT |
-				 (FirstVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
-				 (FirstVarDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :};
+ClassVarDecl ::= (ClassVarDeclX) Type:type FirstClassVarDecl OtherClassVarDeclList SEMICOLON |
+				 (ClassVarDeclError) error:l {: parser.report_error("Greska u deklaraciji polja klase u liniji " + lleft, null); :};
 				 
-FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT |
-				 	  (FirstClassVarDeclArrayIdent) IDENT LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES;
+GlobalVarDecl ::= (GlobalVarDeclX) Type:type FirstGlobalVarDecl OtherGlobalVarDeclList SEMICOLON;
+
+FirstVarDecl ::= (FirstVarDeclIdentOnly) IDENT:name |
+				 (FirstVarDeclArrayIdent) IDENT:name LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES ;
+				 
+FirstClassVarDecl ::= (FirstClassVarDeclIdentOnly) IDENT:name |
+				 	  (FirstClassVarDeclArrayIdent) IDENT:name LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES;
+				 	  
+FirstGlobalVarDecl ::= (FirstGlobalVarDeclIdentOnly) IDENT:name |
+				 	   (FirstGlobalVarDeclArrayIdent) IDENT:name LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARENTHESES |
+				       (FirstGlobalVarDeclError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :};				 	  
 				 
 OtherVarDeclList ::= (OtherVarDeclListX) OtherVarDeclList COMMA FirstVarDecl |
-					 (OtherVarDeclListError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} |
 					 (NoOtherVarDeclList) /* epsilon */;
 					 
-OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherVarDeclList COMMA FirstVarDecl |
+OtherClassVarDeclList ::= (OtherClassVarDeclListX) OtherClassVarDeclList COMMA FirstClassVarDecl |
 					 	  (NoOtherClassVarDeclList) /* epsilon */;
+					 	  
+OtherGlobalVarDeclList ::= (OtherGlobalVarDeclListX) OtherGlobalVarDeclList COMMA FirstGlobalVarDecl |
+						  (OtherGlobalVarDeclListError) error:l {: parser.report_error("Greska u deklaraciji globalnih varijabli u liniji " + lleft, null); :} |
+					 	  (NoOtherGlobalVarDeclList) /* epsilon */;
 					 
 /* CLASS DECL */
 
