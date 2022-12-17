@@ -1,19 +1,17 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 15:39:48
+// 17/11/2022 17:54:35
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class Lists2 extends Lists {
+public class ListsMetVoid extends Lists {
 
     private String I1;
-    private String I2;
     private MethodDeclList2 MethodDeclList2;
 
-    public Lists2 (String I1, String I2, MethodDeclList2 MethodDeclList2) {
+    public ListsMetVoid (String I1, MethodDeclList2 MethodDeclList2) {
         this.I1=I1;
-        this.I2=I2;
         this.MethodDeclList2=MethodDeclList2;
         if(MethodDeclList2!=null) MethodDeclList2.setParent(this);
     }
@@ -24,14 +22,6 @@ public class Lists2 extends Lists {
 
     public void setI1(String I1) {
         this.I1=I1;
-    }
-
-    public String getI2() {
-        return I2;
-    }
-
-    public void setI2(String I2) {
-        this.I2=I2;
     }
 
     public MethodDeclList2 getMethodDeclList2() {
@@ -63,12 +53,9 @@ public class Lists2 extends Lists {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("Lists2(\n");
+        buffer.append("ListsMetVoid(\n");
 
         buffer.append(" "+tab+I1);
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I2);
         buffer.append("\n");
 
         if(MethodDeclList2!=null)
@@ -78,7 +65,7 @@ public class Lists2 extends Lists {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [Lists2]");
+        buffer.append(") [ListsMetVoid]");
         return buffer.toString();
     }
 }

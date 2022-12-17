@@ -53,7 +53,7 @@ scan with {:
 :}
 
 terminal PROGRAM, BREAK, CLASS, ENUM, ELSE, CONST, IF, DO, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
-terminal THIS, FOREACH, PLUS, MINUS, MUL, DIV, PERCENT, EQUALS_EQUALS, NOT_EQUALS;
+terminal FOREACH, PLUS, MINUS, MUL, DIV, PERCENT, EQUALS_EQUALS, NOT_EQUALS;
 terminal GT, GTE, LT, LTE, AND, OR, EQUALS, INCREMENT, DECREMENT, SEMICOLON, COLON, COMMA, DOT;
 terminal LEFT_ROUND_PARENTHESES, RIGHT_ROUND_PARENTHESES, LEFT_SQUARE_PARENTHESES, RIGHT_SQUARE_PARENTHESES;
 terminal LEFT_WIGGLY_PARENTHESES, RIGHT_WIGGLY_PARENTHESES, ARROW;
@@ -74,7 +74,6 @@ nonterminal ClassDecl ClassDecl;
 nonterminal VarDeclList VarDeclList;
 nonterminal ConstructorMethodLists ConstructorMethodLists;
 nonterminal ConstructorDeclList ConstructorDeclList;
-nonterminal ConstructorDecl ConstructorDecl;
 nonterminal FormParsOptional FormParsOptional;
 nonterminal StatementList StatementList;
 nonterminal MethodDecl MethodDecl;
@@ -129,7 +128,7 @@ nonterminal ClassVarDeclList ClassVarDeclList;
 nonterminal FirstClassVarDecl FirstClassVarDecl;
 nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
@@ -214,27 +213,29 @@ VarDeclList ::= (VarDeclListX) VarDeclList:V1 VarDecl:V2 {: RESULT=new VarDeclLi
 ConstructorMethodLists ::= (ConstructorMethodListsX) LEFT_WIGGLY_PARENTHESES Lists:L1 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ConstructorMethodListsX(L1); RESULT.setLine(L1left); :} |
 						   (NoConstructorMethodLists) {: RESULT=new NoConstructorMethodLists(); :} /* epsilon */;
 
-Lists ::= (Lists1) IDENT:I1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 IDENT:I3 IDENT:I4 MethodDeclList2:M5 {: RESULT=new Lists1(I1, C2, I3, I4, M5); RESULT.setLine(I1left); :} |
-		  (Lists5) IDENT:I1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 VOID IDENT:I3 MethodDeclList2:M4 {: RESULT=new Lists5(I1, C2, I3, M4); RESULT.setLine(I1left); :} |
-		  (Lists6) IDENT:I1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 {: RESULT=new Lists6(I1, C2); RESULT.setLine(I1left); :} |
-		  (Lists2) IDENT:I1 IDENT:I2 MethodDeclList2:M3 {: RESULT=new Lists2(I1, I2, M3); RESULT.setLine(I1left); :} |
-		  (Lists3) VOID IDENT:I1 MethodDeclList2:M2 {: RESULT=new Lists3(I1, M2); RESULT.setLine(I1left); :} |
-		  (Lists4) {: RESULT=new Lists4(); :} /* epsilon */;
+Lists ::= (ListsConMet) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 IDENT:I3 IDENT:I4 MethodDeclList2:M5 {: RESULT=new ListsConMet(C1, C2, I3, I4, M5); RESULT.setLine(C1left); :} |
+		  (ListsConMetVoid) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 VOID IDENT:I3 MethodDeclList2:M4 {: RESULT=new ListsConMetVoid(C1, C2, I3, M4); RESULT.setLine(C1left); :} |
+		  (ListsCon) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 {: RESULT=new ListsCon(C1, C2); RESULT.setLine(C1left); :} |
+		  (ListsMet) IDENT:I1 IDENT:I2 MethodDeclList2:M3 {: RESULT=new ListsMet(I1, I2, M3); RESULT.setLine(I1left); :} |
+		  (ListsMetVoid) VOID IDENT:I1 MethodDeclList2:M2 {: RESULT=new ListsMetVoid(I1, M2); RESULT.setLine(I1left); :} |
+		  (ListsNoConNoMet) {: RESULT=new ListsNoConNoMet(); :} /* epsilon */;
 		  
 MethodDeclList2 ::= (MDL21) MethodDeclList2:M1 IDENT:I2 IDENT:I3 MethodDecl2:M4 {: RESULT=new MDL21(M1, I2, I3, M4); RESULT.setLine(M1left); :} |
 				   (MDL22) MethodDeclList2:M1 VOID IDENT:I2 MethodDecl2:M3 {: RESULT=new MDL22(M1, I2, M3); RESULT.setLine(M1left); :} |
 				   (MDL23) MethodDecl2:M1 {: RESULT=new MDL23(M1); RESULT.setLine(M1left); :};
 				   
-MethodDecl2 ::= LEFT_ROUND_PARENTHESES FormParsOptional:F1 RIGHT_ROUND_PARENTHESES VarDeclList:V2 LEFT_WIGGLY_PARENTHESES StatementList:S3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new MethodDecl2Derived1(F1, V2, S3); RESULT.setLine(F1left); :};
+MethodDecl2 ::= (MethodDecl2) LEFT_ROUND_PARENTHESES FormParsOptional:F1 RIGHT_ROUND_PARENTHESES VarDeclList:V2 LEFT_WIGGLY_PARENTHESES StatementList:S3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new MethodDecl2(F1, V2, S3); RESULT.setLine(F1left); :};
 
-ConstructorDeclList ::= (ConstructorDeclListX) ConstructorDeclList:C1 IDENT:I2 LEFT_ROUND_PARENTHESES FirstConstructorDecl:F3 {: RESULT=new ConstructorDeclListX(C1, I2, F3); RESULT.setLine(C1left); :} |
+ConstructorDeclList ::= (ConstructorDeclListX) ConstructorDeclList:C1 ConstructorDeclStart:C2 LEFT_ROUND_PARENTHESES FirstConstructorDecl:F3 {: RESULT=new ConstructorDeclListX(C1, C2, F3); RESULT.setLine(C1left); :} |
 						(NoConstructorDeclList) FirstConstructorDecl:F1 {: RESULT=new NoConstructorDeclList(F1); RESULT.setLine(F1left); :};
 						
-FirstConstructorDecl ::= FormParsOptional:F1 RIGHT_ROUND_PARENTHESES VarDeclList:V2 LEFT_WIGGLY_PARENTHESES StatementList:S3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new FirstConstructorDeclDerived1(F1, V2, S3); RESULT.setLine(F1left); :};
+FirstConstructorDecl ::= (FirstConstructorDecl) FormParsOptional:F1 RIGHT_ROUND_PARENTHESES VarDeclList:V2 LEFT_WIGGLY_PARENTHESES StatementList:S3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new FirstConstructorDecl(F1, V2, S3); RESULT.setLine(F1left); :};
 
 /* CONSTRUCTOR DECL */
 
-ConstructorDecl ::= (ConstructorDecl) IDENT:I1 LEFT_ROUND_PARENTHESES FormParsOptional:F2 RIGHT_ROUND_PARENTHESES VarDeclList:V3 LEFT_WIGGLY_PARENTHESES StatementList:S4 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ConstructorDecl(I1, F2, V3, S4); RESULT.setLine(I1left); :};
+//ConstructorDecl ::= (ConstructorDecl) ConstructorDeclStart LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
+
+ConstructorDeclStart ::= (ConstructorDeclStart) IDENT:constructorName {: RESULT=new ConstructorDeclStart(constructorName); RESULT.setLine(constructorNameleft); :};
 
 FormParsOptional ::= (FormParsOptionalX) FormPars:F1 {: RESULT=new FormParsOptionalX(F1); RESULT.setLine(F1left); :} |
 					(NoFormParsOptional) {: RESULT=new NoFormParsOptional(); :} /* epsilon */;

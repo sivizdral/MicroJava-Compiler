@@ -10,8 +10,7 @@ import rs.etf.pp1.symboltable.concepts.*;
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 
-	int printCallCount = 0;
-	int varDeclCount = 0;
+	int paramCount = 0;
 	Obj currentMethod = null;
 	boolean returnFound = false;
 	boolean errorDetected = false;
@@ -23,6 +22,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	String superclass = "";
 	Struct superclassType = null;
 	public HashMap<Struct, String> allClasses = new HashMap<>();
+	
+	boolean inConstructor = false;
 	
 	Logger log = Logger.getLogger(getClass());
 	
@@ -276,13 +277,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	// COPY FIELDS FROM SUPERCLASS
     	
-    	for (Obj field: superclassType.getMembers()) {
-    		if (field.getName().equals("VFT")) continue;
-    		if (field.getKind() != Obj.Fld) continue;
-    		Tab.insert(Obj.Fld, field.getName(), field.getType());
+    	if (superclassType != Tab.noType) {
+    		for (Obj field: superclassType.getMembers()) {
+        		if (field.getName().equals("VFT") || field.getName().equals(superclass)) continue;
+        		if (field.getKind() == Obj.Fld) 
+        			Tab.insert(Obj.Fld, field.getName(), field.getType());
+        		if (field.getKind() == Obj.Meth) 
+        			Tab.currentScope().addToLocals(field);
+        	}
     	}
-    	
-    	
+
     }
     
     /* CLASS DECLARATION SUCCESSFUL END */
@@ -319,6 +323,66 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	extension.struct = obj.getType();
     }
+    
+    /* CONSTRUCTOR DECLARATION */
+    
+    public void visit(ConstructorDeclStart constructorStart) {
+    	String constructorName = constructorStart.getConstructorName();
+    	inConstructor = true;
+    	
+    	if (!constructorName.equals(subclass)) {
+    		report_error("Ime konstruktora se ne poklapa sa imenom okruzujuce klase!", null);
+    		constructorStart.obj = Tab.noObj;
+    		currentMethod = Tab.noObj;
+    		Tab.openScope();
+    		return;
+    	}
+    	
+    	constructorStart.obj = currentMethod = Tab.insert(Obj.Meth, constructorName, Tab.noType);
+    	Tab.openScope();
+    	Tab.insert(Obj.Var, "this", subclassType);
+    	paramCount++;  	
+    }
+    
+    public void visit(FirstConstructorDecl constructorDecl) {
+    	currentMethod.setLevel(paramCount);
+    	Tab.chainLocalSymbols(currentMethod);
+    	Tab.closeScope();
+    	
+    	inConstructor = false;
+    	paramCount = 0;
+    	currentMethod = null;
+    	
+    	report_info("Definisan konstruktor klase!", null);
+    }
+    
+    public void addDefaultConstructor() {
+      	currentMethod = Tab.insert(Obj.Meth, subclass, Tab.noType);
+    	Tab.openScope();
+    	Tab.insert(Obj.Var, "this", subclassType);
+    	paramCount++;
+    	inConstructor = true;
+    	currentMethod.setLevel(paramCount);
+    	Tab.chainLocalSymbols(currentMethod);
+    	Tab.closeScope();
+    	paramCount = 0;
+    	inConstructor = false;
+    	currentMethod = null;
+    	report_info("Definisan podrazumevani konstruktor klase!", null);
+    }
+    
+    public void visit(ListsMet lists) {
+    	addDefaultConstructor();
+    }
+    
+    public void visit(ListsMetVoid lists) {
+    	addDefaultConstructor();
+    }
+    
+    public void visit(ListsNoConNoMet lists) {
+    	addDefaultConstructor();
+    }
+    
     
     
 }

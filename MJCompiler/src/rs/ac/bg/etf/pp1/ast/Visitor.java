@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 15:39:48
+// 17/11/2022 17:54:35
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -20,7 +20,6 @@ public interface Visitor {
     public void visit(Relop Relop);
     public void visit(OptionalSquares OptionalSquares);
     public void visit(ConstTail ConstTail);
-    public void visit(FirstConstructorDecl FirstConstructorDecl);
     public void visit(OptMinus OptMinus);
     public void visit(FirstClassVarDecl FirstClassVarDecl);
     public void visit(OtherClassVarDeclList OtherClassVarDeclList);
@@ -32,7 +31,6 @@ public interface Visitor {
     public void visit(Lists Lists);
     public void visit(ConstructorMethodLists ConstructorMethodLists);
     public void visit(OptionalDesignator OptionalDesignator);
-    public void visit(MethodDecl2 MethodDecl2);
     public void visit(OptionalActPars OptionalActPars);
     public void visit(FirstGlobalVarDecl FirstGlobalVarDecl);
     public void visit(Mulop Mulop);
@@ -159,20 +157,20 @@ public interface Visitor {
     public void visit(StatementListX StatementListX);
     public void visit(NoFormParsOptional NoFormParsOptional);
     public void visit(FormParsOptionalX FormParsOptionalX);
-    public void visit(ConstructorDecl ConstructorDecl);
-    public void visit(FirstConstructorDeclDerived1 FirstConstructorDeclDerived1);
+    public void visit(ConstructorDeclStart ConstructorDeclStart);
+    public void visit(FirstConstructorDecl FirstConstructorDecl);
     public void visit(NoConstructorDeclList NoConstructorDeclList);
     public void visit(ConstructorDeclListX ConstructorDeclListX);
-    public void visit(MethodDecl2Derived1 MethodDecl2Derived1);
+    public void visit(MethodDecl2 MethodDecl2);
     public void visit(MDL23 MDL23);
     public void visit(MDL22 MDL22);
     public void visit(MDL21 MDL21);
-    public void visit(Lists4 Lists4);
-    public void visit(Lists3 Lists3);
-    public void visit(Lists2 Lists2);
-    public void visit(Lists6 Lists6);
-    public void visit(Lists5 Lists5);
-    public void visit(Lists1 Lists1);
+    public void visit(ListsNoConNoMet ListsNoConNoMet);
+    public void visit(ListsMetVoid ListsMetVoid);
+    public void visit(ListsMet ListsMet);
+    public void visit(ListsCon ListsCon);
+    public void visit(ListsConMetVoid ListsConMetVoid);
+    public void visit(ListsConMet ListsConMet);
     public void visit(NoConstructorMethodLists NoConstructorMethodLists);
     public void visit(ConstructorMethodListsX ConstructorMethodListsX);
     public void visit(NoVarDeclList NoVarDeclList);

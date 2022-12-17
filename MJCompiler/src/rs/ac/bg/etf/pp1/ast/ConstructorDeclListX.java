@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 15:39:48
+// 17/11/2022 17:54:35
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,13 +8,14 @@ package rs.ac.bg.etf.pp1.ast;
 public class ConstructorDeclListX extends ConstructorDeclList {
 
     private ConstructorDeclList ConstructorDeclList;
-    private String I2;
+    private ConstructorDeclStart ConstructorDeclStart;
     private FirstConstructorDecl FirstConstructorDecl;
 
-    public ConstructorDeclListX (ConstructorDeclList ConstructorDeclList, String I2, FirstConstructorDecl FirstConstructorDecl) {
+    public ConstructorDeclListX (ConstructorDeclList ConstructorDeclList, ConstructorDeclStart ConstructorDeclStart, FirstConstructorDecl FirstConstructorDecl) {
         this.ConstructorDeclList=ConstructorDeclList;
         if(ConstructorDeclList!=null) ConstructorDeclList.setParent(this);
-        this.I2=I2;
+        this.ConstructorDeclStart=ConstructorDeclStart;
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.setParent(this);
         this.FirstConstructorDecl=FirstConstructorDecl;
         if(FirstConstructorDecl!=null) FirstConstructorDecl.setParent(this);
     }
@@ -27,12 +28,12 @@ public class ConstructorDeclListX extends ConstructorDeclList {
         this.ConstructorDeclList=ConstructorDeclList;
     }
 
-    public String getI2() {
-        return I2;
+    public ConstructorDeclStart getConstructorDeclStart() {
+        return ConstructorDeclStart;
     }
 
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setConstructorDeclStart(ConstructorDeclStart ConstructorDeclStart) {
+        this.ConstructorDeclStart=ConstructorDeclStart;
     }
 
     public FirstConstructorDecl getFirstConstructorDecl() {
@@ -49,17 +50,20 @@ public class ConstructorDeclListX extends ConstructorDeclList {
 
     public void childrenAccept(Visitor visitor) {
         if(ConstructorDeclList!=null) ConstructorDeclList.accept(visitor);
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.accept(visitor);
         if(FirstConstructorDecl!=null) FirstConstructorDecl.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.traverseTopDown(visitor);
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.traverseTopDown(visitor);
         if(FirstConstructorDecl!=null) FirstConstructorDecl.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(ConstructorDeclList!=null) ConstructorDeclList.traverseBottomUp(visitor);
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.traverseBottomUp(visitor);
         if(FirstConstructorDecl!=null) FirstConstructorDecl.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -75,7 +79,10 @@ public class ConstructorDeclListX extends ConstructorDeclList {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+I2);
+        if(ConstructorDeclStart!=null)
+            buffer.append(ConstructorDeclStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(FirstConstructorDecl!=null)

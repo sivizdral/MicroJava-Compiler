@@ -1,13 +1,13 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 15:39:48
+// 17/11/2022 17:54:35
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class Lists4 extends Lists {
+public class ListsNoConNoMet extends Lists {
 
-    public Lists4 () {
+    public ListsNoConNoMet () {
     }
 
     public void accept(Visitor visitor) {
@@ -28,10 +28,10 @@ public class Lists4 extends Lists {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("Lists4(\n");
+        buffer.append("ListsNoConNoMet(\n");
 
         buffer.append(tab);
-        buffer.append(") [Lists4]");
+        buffer.append(") [ListsNoConNoMet]");
         return buffer.toString();
     }
 }

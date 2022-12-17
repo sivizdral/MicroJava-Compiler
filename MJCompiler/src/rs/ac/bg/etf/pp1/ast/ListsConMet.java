@@ -1,32 +1,35 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 15:39:48
+// 17/11/2022 17:54:35
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class Lists5 extends Lists {
+public class ListsConMet extends Lists {
 
-    private String I1;
+    private ConstructorDeclStart ConstructorDeclStart;
     private ConstructorDeclList ConstructorDeclList;
     private String I3;
+    private String I4;
     private MethodDeclList2 MethodDeclList2;
 
-    public Lists5 (String I1, ConstructorDeclList ConstructorDeclList, String I3, MethodDeclList2 MethodDeclList2) {
-        this.I1=I1;
+    public ListsConMet (ConstructorDeclStart ConstructorDeclStart, ConstructorDeclList ConstructorDeclList, String I3, String I4, MethodDeclList2 MethodDeclList2) {
+        this.ConstructorDeclStart=ConstructorDeclStart;
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.setParent(this);
         this.ConstructorDeclList=ConstructorDeclList;
         if(ConstructorDeclList!=null) ConstructorDeclList.setParent(this);
         this.I3=I3;
+        this.I4=I4;
         this.MethodDeclList2=MethodDeclList2;
         if(MethodDeclList2!=null) MethodDeclList2.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public ConstructorDeclStart getConstructorDeclStart() {
+        return ConstructorDeclStart;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setConstructorDeclStart(ConstructorDeclStart ConstructorDeclStart) {
+        this.ConstructorDeclStart=ConstructorDeclStart;
     }
 
     public ConstructorDeclList getConstructorDeclList() {
@@ -45,6 +48,14 @@ public class Lists5 extends Lists {
         this.I3=I3;
     }
 
+    public String getI4() {
+        return I4;
+    }
+
+    public void setI4(String I4) {
+        this.I4=I4;
+    }
+
     public MethodDeclList2 getMethodDeclList2() {
         return MethodDeclList2;
     }
@@ -58,17 +69,20 @@ public class Lists5 extends Lists {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.accept(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.accept(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.traverseTopDown(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.traverseTopDown(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ConstructorDeclStart!=null) ConstructorDeclStart.traverseBottomUp(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.traverseBottomUp(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseBottomUp(visitor);
         accept(visitor);
@@ -77,9 +91,12 @@ public class Lists5 extends Lists {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("Lists5(\n");
+        buffer.append("ListsConMet(\n");
 
-        buffer.append(" "+tab+I1);
+        if(ConstructorDeclStart!=null)
+            buffer.append(ConstructorDeclStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(ConstructorDeclList!=null)
@@ -91,6 +108,9 @@ public class Lists5 extends Lists {
         buffer.append(" "+tab+I3);
         buffer.append("\n");
 
+        buffer.append(" "+tab+I4);
+        buffer.append("\n");
+
         if(MethodDeclList2!=null)
             buffer.append(MethodDeclList2.toString("  "+tab));
         else
@@ -98,7 +118,7 @@ public class Lists5 extends Lists {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [Lists5]");
+        buffer.append(") [ListsConMet]");
         return buffer.toString();
     }
 }
