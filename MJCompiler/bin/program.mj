@@ -1,5 +1,5 @@
 program p
-const int size = 10, pq = 2, q = true;
+const bool size = 10, pq = 2, q = true;
 int pa, q; char c, inta[], arr;
 class Table {}
 class A extends Table {

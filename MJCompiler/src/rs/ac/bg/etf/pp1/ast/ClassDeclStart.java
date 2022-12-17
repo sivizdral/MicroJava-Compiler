@@ -5,33 +5,35 @@
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class Designator implements SyntaxNode {
+public class ClassDeclStart implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private String I1;
-    private IdentExprList IdentExprList;
+    public rs.etf.pp1.symboltable.concepts.Obj obj = null;
 
-    public Designator (String I1, IdentExprList IdentExprList) {
-        this.I1=I1;
-        this.IdentExprList=IdentExprList;
-        if(IdentExprList!=null) IdentExprList.setParent(this);
+    private String className;
+    private Extension Extension;
+
+    public ClassDeclStart (String className, Extension Extension) {
+        this.className=className;
+        this.Extension=Extension;
+        if(Extension!=null) Extension.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public String getClassName() {
+        return className;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setClassName(String className) {
+        this.className=className;
     }
 
-    public IdentExprList getIdentExprList() {
-        return IdentExprList;
+    public Extension getExtension() {
+        return Extension;
     }
 
-    public void setIdentExprList(IdentExprList IdentExprList) {
-        this.IdentExprList=IdentExprList;
+    public void setExtension(Extension Extension) {
+        this.Extension=Extension;
     }
 
     public SyntaxNode getParent() {
@@ -55,35 +57,35 @@ public class Designator implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(IdentExprList!=null) IdentExprList.accept(visitor);
+        if(Extension!=null) Extension.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(IdentExprList!=null) IdentExprList.traverseTopDown(visitor);
+        if(Extension!=null) Extension.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(IdentExprList!=null) IdentExprList.traverseBottomUp(visitor);
+        if(Extension!=null) Extension.traverseBottomUp(visitor);
         accept(visitor);
     }
 
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("Designator(\n");
+        buffer.append("ClassDeclStart(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+className);
         buffer.append("\n");
 
-        if(IdentExprList!=null)
-            buffer.append(IdentExprList.toString("  "+tab));
+        if(Extension!=null)
+            buffer.append(Extension.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [Designator]");
+        buffer.append(") [ClassDeclStart]");
         return buffer.toString();
     }
 }

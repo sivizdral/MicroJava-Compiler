@@ -1,5 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 
 import rs.ac.bg.etf.pp1.ast.*;
@@ -16,8 +18,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int nVars;
 	
 	Struct currentType = null;
+	String subclass = "";
+	Struct subclassType = null;
+	String superclass = "";
+	Struct superclassType = null;
+	public HashMap<Struct, String> allClasses = new HashMap<>();
 	
 	Logger log = Logger.getLogger(getClass());
+	
+	public SemanticAnalyzer() {
+		Tab.currentScope.addToLocals(new Obj(Obj.Type, "bool", Tab.noType));
+	}
 
 	public void report_error(String message, SyntaxNode info) {
 		errorDetected = true;
@@ -177,6 +188,34 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		nVars++;
     }
     
+    /* CLASS VAR DECLARATION */
+    
+    public void visit(FirstClassVarDeclArrayIdent classArrayVar) {
+    	String varName = classArrayVar.getName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {  
+    		report_error("Vec postoji promenljiva klase sa ovim imenom!", classArrayVar);
+    		return;
+    	}
+    	
+    	Tab.insert(Obj.Var, varName, new Struct(Struct.Array, currentType));
+		report_info("Deklarisana promenljiva klase (niz)!", classArrayVar);
+    }
+    
+    public void visit(FirstClassVarDeclIdentOnly classVar) {
+    	String varName = classVar.getName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {
+    		report_error("Vec postoji promenljiva klase sa ovim imenom!", classVar);
+    		return;
+    	}
+    	
+    	Tab.insert(Obj.Var, varName, currentType);
+		report_info("Deklarisana promenljiva klase!", classVar);
+    }
+    
     /* LOCAL VAR DECLARATION */
     
     public void visit(FirstVarDeclArrayIdent arrayVar) {
@@ -184,7 +223,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && obj.getLevel() != 0) {  // OBRATI PAZNJU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", arrayVar);
+    		report_error("Vec postoji lokalna promenljiva sa ovim imenom!", arrayVar);
     		return;
     	}
     	
@@ -197,12 +236,88 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && obj.getLevel() != 0) {
-    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", var);
+    		report_error("Vec postoji lokalna promenljiva sa ovim imenom!", var);
     		return;
     	}
     	
     	Tab.insert(Obj.Var, varName, currentType);
 		report_info("Deklarisana lokalna promenljiva!", var);
+    }
+    
+    /* CLASS DECLARATION START */
+    
+    public void visit(ClassDeclStart classDeclStart) {
+    	String varName = classDeclStart.getClassName();
+    	
+    	Obj obj = Tab.find(varName);
+    	if (obj != Tab.noObj) {
+    		report_error("Vec postoji klasa ili promenljiva sa ovim imenom!", classDeclStart);
+    		subclass = superclass = "";
+    		subclassType = superclassType = Tab.noType;
+    		classDeclStart.obj = Tab.noObj;
+    		Tab.openScope();
+    		return;
+    	}
+    	
+    	superclassType = classDeclStart.getExtension().struct;
+    	superclass = allClasses.get(superclassType);
+    	subclassType = new Struct(Struct.Class);
+    	subclass = varName;
+    	subclassType.setElementType(superclassType);
+    	
+    	classDeclStart.obj = Tab.insert(Obj.Type, varName, subclassType);
+    	Tab.openScope();
+    	
+    	report_info("Kreirana je klasa " + varName + "!", classDeclStart);
+    	
+    	// VIRTUAL FUNCTION TABLE
+    	
+    	Tab.insert(Obj.Fld, "VFT", Tab.intType);
+    	
+    	// COPY FIELDS FROM SUPERCLASS
+    	
+    	for (Obj field: superclassType.getMembers()) {
+    		if (field.getName().equals("VFT")) continue;
+    		if (field.getKind() != Obj.Fld) continue;
+    		Tab.insert(Obj.Fld, field.getName(), field.getType());
+    	}
+    	
+    	
+    }
+    
+    /* CLASS DECLARATION SUCCESSFUL END */
+    
+    public void visit(ClassDecl classDecl) {
+    	allClasses.put(subclassType, subclass);
+    	Tab.chainLocalSymbols(subclassType);
+    	Tab.closeScope();
+    	subclass = superclass = "";
+    	subclassType = superclassType = null;
+    }
+    
+    /* EXTENSION */
+    
+    public void visit(NoExtension extension) {
+    	extension.struct = Tab.noType;
+    }
+    
+    public void visit(ExtensionX extension) {
+    	String typeName = extension.getType().getName();
+    	Obj obj = Tab.find(typeName);
+    	
+    	if (obj == Tab.noObj) {
+    		extension.struct = Tab.noType;
+    		report_error("Ne postoji zadata natklasa!", extension);
+    		return;
+    	}
+    	
+    	if (allClasses.getOrDefault(obj.getType(), null) == null) {
+    		report_error("Zadata natklasa nije zapravo klasa!", extension);
+    		extension.struct = Tab.noType;
+    		return;
+    	}
+    	
+    	extension.struct = obj.getType();
     }
     
     

@@ -71,7 +71,6 @@ nonterminal VarDecl VarDecl;
 nonterminal FirstVarDecl FirstVarDecl;
 nonterminal OtherVarDeclList OtherVarDeclList;
 nonterminal ClassDecl ClassDecl;
-nonterminal Extension Extension;
 nonterminal VarDeclList VarDeclList;
 nonterminal ConstructorMethodLists ConstructorMethodLists;
 nonterminal ConstructorDeclList ConstructorDeclList;
@@ -130,8 +129,8 @@ nonterminal ClassVarDeclList ClassVarDeclList;
 nonterminal FirstClassVarDecl FirstClassVarDecl;
 nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
-nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
 nonterminal OtherGlobalVarDeclList OtherGlobalVarDeclList;
@@ -198,9 +197,11 @@ OtherGlobalVarDeclList ::= (OtherGlobalVarDeclListX) OtherGlobalVarDeclList:O1 C
 					 
 /* CLASS DECL */
 
-ClassDecl ::= (ClassDecl) CLASS IDENT:I1 Extension:E2 LEFT_WIGGLY_PARENTHESES ClassVarDeclList:C3 ConstructorMethodLists:C4 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ClassDecl(I1, E2, C3, C4); RESULT.setLine(I1left); :};
+ClassDecl ::= (ClassDecl) ClassDeclStart:C1 LEFT_WIGGLY_PARENTHESES ClassVarDeclList:C2 ConstructorMethodLists:C3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ClassDecl(C1, C2, C3); RESULT.setLine(C1left); :};
 
-Extension ::= (ExtensionX) EXTENDS Type:T1 {: RESULT=new ExtensionX(T1); RESULT.setLine(T1left); :} |
+ClassDeclStart ::= (ClassDeclStart) CLASS IDENT:className Extension:E1 {: RESULT=new ClassDeclStart(className, E1); RESULT.setLine(classNameleft); :};
+
+Extension ::= (ExtensionX) EXTENDS Type:baseClassName {: RESULT=new ExtensionX(baseClassName); RESULT.setLine(baseClassNameleft); :} |
 			  (ExtensionError) error:l {: parser.report_error("Greska u proširenju natklase u liniji " + lleft, null); :} {: RESULT=new ExtensionError(); :}|
 			  (NoExtension) {: RESULT=new NoExtension(); :} /* epsilon */;
 			  
