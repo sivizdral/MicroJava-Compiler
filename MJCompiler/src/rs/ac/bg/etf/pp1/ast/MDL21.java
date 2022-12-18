@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 17:54:35
+// 18/11/2022 23:50:57
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,15 +8,14 @@ package rs.ac.bg.etf.pp1.ast;
 public class MDL21 extends MethodDeclList2 {
 
     private MethodDeclList2 MethodDeclList2;
-    private String I2;
-    private String I3;
+    private MethodStart MethodStart;
     private MethodDecl2 MethodDecl2;
 
-    public MDL21 (MethodDeclList2 MethodDeclList2, String I2, String I3, MethodDecl2 MethodDecl2) {
+    public MDL21 (MethodDeclList2 MethodDeclList2, MethodStart MethodStart, MethodDecl2 MethodDecl2) {
         this.MethodDeclList2=MethodDeclList2;
         if(MethodDeclList2!=null) MethodDeclList2.setParent(this);
-        this.I2=I2;
-        this.I3=I3;
+        this.MethodStart=MethodStart;
+        if(MethodStart!=null) MethodStart.setParent(this);
         this.MethodDecl2=MethodDecl2;
         if(MethodDecl2!=null) MethodDecl2.setParent(this);
     }
@@ -29,20 +28,12 @@ public class MDL21 extends MethodDeclList2 {
         this.MethodDeclList2=MethodDeclList2;
     }
 
-    public String getI2() {
-        return I2;
+    public MethodStart getMethodStart() {
+        return MethodStart;
     }
 
-    public void setI2(String I2) {
-        this.I2=I2;
-    }
-
-    public String getI3() {
-        return I3;
-    }
-
-    public void setI3(String I3) {
-        this.I3=I3;
+    public void setMethodStart(MethodStart MethodStart) {
+        this.MethodStart=MethodStart;
     }
 
     public MethodDecl2 getMethodDecl2() {
@@ -59,17 +50,20 @@ public class MDL21 extends MethodDeclList2 {
 
     public void childrenAccept(Visitor visitor) {
         if(MethodDeclList2!=null) MethodDeclList2.accept(visitor);
+        if(MethodStart!=null) MethodStart.accept(visitor);
         if(MethodDecl2!=null) MethodDecl2.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseTopDown(visitor);
+        if(MethodStart!=null) MethodStart.traverseTopDown(visitor);
         if(MethodDecl2!=null) MethodDecl2.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(MethodDeclList2!=null) MethodDeclList2.traverseBottomUp(visitor);
+        if(MethodStart!=null) MethodStart.traverseBottomUp(visitor);
         if(MethodDecl2!=null) MethodDecl2.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -85,10 +79,10 @@ public class MDL21 extends MethodDeclList2 {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+I2);
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I3);
+        if(MethodStart!=null)
+            buffer.append(MethodStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(MethodDecl2!=null)

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 17:54:35
+// 18/11/2022 23:50:57
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -45,6 +45,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(OtherVarDeclList OtherVarDeclList) { }
     public void visit(CondTermOrList CondTermOrList) { }
     public void visit(ReturnType ReturnType) { }
+    public void visit(MethodStart MethodStart) { }
     public void visit(FirstVarDecl FirstVarDecl) { }
     public void visit(IdentExprList IdentExprList) { }
     public void visit(ClassVarDecl ClassVarDecl) { }
@@ -162,14 +163,13 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NoConstructorDeclList NoConstructorDeclList) { visit(); }
     public void visit(ConstructorDeclListX ConstructorDeclListX) { visit(); }
     public void visit(MethodDecl2 MethodDecl2) { visit(); }
+    public void visit(MethodStartVoid MethodStartVoid) { visit(); }
+    public void visit(MethodStartType MethodStartType) { visit(); }
     public void visit(MDL23 MDL23) { visit(); }
-    public void visit(MDL22 MDL22) { visit(); }
     public void visit(MDL21 MDL21) { visit(); }
     public void visit(ListsNoConNoMet ListsNoConNoMet) { visit(); }
-    public void visit(ListsMetVoid ListsMetVoid) { visit(); }
     public void visit(ListsMet ListsMet) { visit(); }
     public void visit(ListsCon ListsCon) { visit(); }
-    public void visit(ListsConMetVoid ListsConMetVoid) { visit(); }
     public void visit(ListsConMet ListsConMet) { visit(); }
     public void visit(NoConstructorMethodLists NoConstructorMethodLists) { visit(); }
     public void visit(ConstructorMethodListsX ConstructorMethodListsX) { visit(); }

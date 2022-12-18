@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 17:54:35
+// 18/11/2022 23:50:57
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,17 +9,16 @@ public class ListsConMet extends Lists {
 
     private ConstructorDeclStart ConstructorDeclStart;
     private ConstructorDeclList ConstructorDeclList;
-    private String I3;
-    private String I4;
+    private MethodStart MethodStart;
     private MethodDeclList2 MethodDeclList2;
 
-    public ListsConMet (ConstructorDeclStart ConstructorDeclStart, ConstructorDeclList ConstructorDeclList, String I3, String I4, MethodDeclList2 MethodDeclList2) {
+    public ListsConMet (ConstructorDeclStart ConstructorDeclStart, ConstructorDeclList ConstructorDeclList, MethodStart MethodStart, MethodDeclList2 MethodDeclList2) {
         this.ConstructorDeclStart=ConstructorDeclStart;
         if(ConstructorDeclStart!=null) ConstructorDeclStart.setParent(this);
         this.ConstructorDeclList=ConstructorDeclList;
         if(ConstructorDeclList!=null) ConstructorDeclList.setParent(this);
-        this.I3=I3;
-        this.I4=I4;
+        this.MethodStart=MethodStart;
+        if(MethodStart!=null) MethodStart.setParent(this);
         this.MethodDeclList2=MethodDeclList2;
         if(MethodDeclList2!=null) MethodDeclList2.setParent(this);
     }
@@ -40,20 +39,12 @@ public class ListsConMet extends Lists {
         this.ConstructorDeclList=ConstructorDeclList;
     }
 
-    public String getI3() {
-        return I3;
+    public MethodStart getMethodStart() {
+        return MethodStart;
     }
 
-    public void setI3(String I3) {
-        this.I3=I3;
-    }
-
-    public String getI4() {
-        return I4;
-    }
-
-    public void setI4(String I4) {
-        this.I4=I4;
+    public void setMethodStart(MethodStart MethodStart) {
+        this.MethodStart=MethodStart;
     }
 
     public MethodDeclList2 getMethodDeclList2() {
@@ -71,6 +62,7 @@ public class ListsConMet extends Lists {
     public void childrenAccept(Visitor visitor) {
         if(ConstructorDeclStart!=null) ConstructorDeclStart.accept(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.accept(visitor);
+        if(MethodStart!=null) MethodStart.accept(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.accept(visitor);
     }
 
@@ -78,12 +70,14 @@ public class ListsConMet extends Lists {
         accept(visitor);
         if(ConstructorDeclStart!=null) ConstructorDeclStart.traverseTopDown(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.traverseTopDown(visitor);
+        if(MethodStart!=null) MethodStart.traverseTopDown(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(ConstructorDeclStart!=null) ConstructorDeclStart.traverseBottomUp(visitor);
         if(ConstructorDeclList!=null) ConstructorDeclList.traverseBottomUp(visitor);
+        if(MethodStart!=null) MethodStart.traverseBottomUp(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -105,10 +99,10 @@ public class ListsConMet extends Lists {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+I3);
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I4);
+        if(MethodStart!=null)
+            buffer.append(MethodStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(MethodDeclList2!=null)

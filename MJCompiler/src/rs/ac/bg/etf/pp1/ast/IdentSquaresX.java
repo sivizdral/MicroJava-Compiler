@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 17:54:35
+// 18/11/2022 23:50:57
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,13 +8,13 @@ package rs.ac.bg.etf.pp1.ast;
 public class IdentSquaresX extends IdentSquares {
 
     private Type Type;
-    private String I2;
+    private String name;
     private OptionalSquares OptionalSquares;
 
-    public IdentSquaresX (Type Type, String I2, OptionalSquares OptionalSquares) {
+    public IdentSquaresX (Type Type, String name, OptionalSquares OptionalSquares) {
         this.Type=Type;
         if(Type!=null) Type.setParent(this);
-        this.I2=I2;
+        this.name=name;
         this.OptionalSquares=OptionalSquares;
         if(OptionalSquares!=null) OptionalSquares.setParent(this);
     }
@@ -27,12 +27,12 @@ public class IdentSquaresX extends IdentSquares {
         this.Type=Type;
     }
 
-    public String getI2() {
-        return I2;
+    public String getName() {
+        return name;
     }
 
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setName(String name) {
+        this.name=name;
     }
 
     public OptionalSquares getOptionalSquares() {
@@ -75,7 +75,7 @@ public class IdentSquaresX extends IdentSquares {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+I2);
+        buffer.append(" "+tab+name);
         buffer.append("\n");
 
         if(OptionalSquares!=null)

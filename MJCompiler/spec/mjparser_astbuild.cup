@@ -122,13 +122,12 @@ nonterminal Lists Lists;
 nonterminal MethodDecl2 MethodDecl2;
 nonterminal MethodDeclList2 MethodDeclList2;
 nonterminal ConstTail ConstTail;
-nonterminal IdentSquares IdentSquares;
 nonterminal ClassVarDecl ClassVarDecl;
 nonterminal ClassVarDeclList ClassVarDeclList;
 nonterminal FirstClassVarDecl FirstClassVarDecl;
 nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
@@ -213,16 +212,19 @@ VarDeclList ::= (VarDeclListX) VarDeclList:V1 VarDecl:V2 {: RESULT=new VarDeclLi
 ConstructorMethodLists ::= (ConstructorMethodListsX) LEFT_WIGGLY_PARENTHESES Lists:L1 RIGHT_WIGGLY_PARENTHESES {: RESULT=new ConstructorMethodListsX(L1); RESULT.setLine(L1left); :} |
 						   (NoConstructorMethodLists) {: RESULT=new NoConstructorMethodLists(); :} /* epsilon */;
 
-Lists ::= (ListsConMet) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 IDENT:I3 IDENT:I4 MethodDeclList2:M5 {: RESULT=new ListsConMet(C1, C2, I3, I4, M5); RESULT.setLine(C1left); :} |
-		  (ListsConMetVoid) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 VOID IDENT:I3 MethodDeclList2:M4 {: RESULT=new ListsConMetVoid(C1, C2, I3, M4); RESULT.setLine(C1left); :} |
+Lists ::= (ListsConMet) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 MethodStart:M3 MethodDeclList2:M4 {: RESULT=new ListsConMet(C1, C2, M3, M4); RESULT.setLine(C1left); :} |
+		  //(ListsConMetVoid) ConstructorDeclStart LEFT_ROUND_PARENTHESES ConstructorDeclList MethodStart MethodDeclList2 |
 		  (ListsCon) ConstructorDeclStart:C1 LEFT_ROUND_PARENTHESES ConstructorDeclList:C2 {: RESULT=new ListsCon(C1, C2); RESULT.setLine(C1left); :} |
-		  (ListsMet) IDENT:I1 IDENT:I2 MethodDeclList2:M3 {: RESULT=new ListsMet(I1, I2, M3); RESULT.setLine(I1left); :} |
-		  (ListsMetVoid) VOID IDENT:I1 MethodDeclList2:M2 {: RESULT=new ListsMetVoid(I1, M2); RESULT.setLine(I1left); :} |
+		  (ListsMet) MethodStart:M1 MethodDeclList2:M2 {: RESULT=new ListsMet(M1, M2); RESULT.setLine(M1left); :} |
+		  //(ListsMetVoid) MethodStart MethodDeclList2 |
 		  (ListsNoConNoMet) {: RESULT=new ListsNoConNoMet(); :} /* epsilon */;
 		  
-MethodDeclList2 ::= (MDL21) MethodDeclList2:M1 IDENT:I2 IDENT:I3 MethodDecl2:M4 {: RESULT=new MDL21(M1, I2, I3, M4); RESULT.setLine(M1left); :} |
-				   (MDL22) MethodDeclList2:M1 VOID IDENT:I2 MethodDecl2:M3 {: RESULT=new MDL22(M1, I2, M3); RESULT.setLine(M1left); :} |
+MethodDeclList2 ::= (MDL21) MethodDeclList2:M1 MethodStart:M2 MethodDecl2:M3 {: RESULT=new MDL21(M1, M2, M3); RESULT.setLine(M1left); :} |
+				   //(MDL22) MethodDeclList2 MethodStart MethodDecl2 |
 				   (MDL23) MethodDecl2:M1 {: RESULT=new MDL23(M1); RESULT.setLine(M1left); :};
+				   
+MethodStart ::= (MethodStartType) Type:T1 IDENT:name {: RESULT=new MethodStartType(T1, name); RESULT.setLine(T1left); :} |
+ 				(MethodStartVoid) VOID IDENT:name {: RESULT=new MethodStartVoid(name); RESULT.setLine(nameleft); :};
 				   
 MethodDecl2 ::= (MethodDecl2) LEFT_ROUND_PARENTHESES FormParsOptional:F1 RIGHT_ROUND_PARENTHESES VarDeclList:V2 LEFT_WIGGLY_PARENTHESES StatementList:S3 RIGHT_WIGGLY_PARENTHESES {: RESULT=new MethodDecl2(F1, V2, S3); RESULT.setLine(F1left); :};
 
@@ -260,7 +262,7 @@ OptionalSquares ::= (OptionalSquaresX) LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARE
 TypeIdentList ::= (TypeIdentListX) TypeIdentList:T1 COMMA IdentSquares:I2 {: RESULT=new TypeIdentListX(T1, I2); RESULT.setLine(T1left); :} |
 				  (NoTypeIdentList) {: RESULT=new NoTypeIdentList(); :} /* epsilon */;
 				  
-IdentSquares ::= (IdentSquaresX) Type:T1 IDENT:I2 OptionalSquares:O3 {: RESULT=new IdentSquaresX(T1, I2, O3); RESULT.setLine(T1left); :} |
+IdentSquares ::= (IdentSquaresX) Type:T1 IDENT:name OptionalSquares:O2 {: RESULT=new IdentSquaresX(T1, name, O2); RESULT.setLine(T1left); :} |
 				 (IdentSquaresError) error:l {: parser.report_error("Greska u deklaraciji formalnog parametra funkcije u liniji " + lleft, null); :} {: RESULT=new IdentSquaresError(); :};
 				  
 /* TYPE */

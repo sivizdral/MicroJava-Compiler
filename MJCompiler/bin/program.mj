@@ -1,22 +1,30 @@
-program p
-const bool size = 10, pq = 2, q = true;
-int pa, q; char c, inta[], arr;
-class Table {
-{
-Table(int factor) {this.factor = factor;}
-void putp (int a, int idx) { this.pos[idx] = a; }
-void putn (int a, int idx) { this.neg[idx] = a; }
-int getp (int idx) { return pos[idx]; }
-int getn (int idx) { return neg[idx]; }
+program MJProgram
+
+const int a = 5;
+char b[], v;
+
+class B {
+	int a;
+	
+	{
+	B() {}
+	
+	B(int arg1) int x; {}
+	
+	void abc(int p, int q) {}
+	
+	int abcd(bool a, int p, char k) { }
+	
+	}
 }
 
+class Tabela extends B {
+{void abc(int c, char d) {}
 }
-class A extends Table {
-int p, r;char c ;int b 
-{}
+	
 }
+
 {
-void main(int a, int b, int c int d) {
-	a = = 5;
-}
+	
+
 }

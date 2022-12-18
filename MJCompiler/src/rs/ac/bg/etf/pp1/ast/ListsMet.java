@@ -1,37 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 17:54:35
+// 18/11/2022 23:50:57
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ListsMet extends Lists {
 
-    private String I1;
-    private String I2;
+    private MethodStart MethodStart;
     private MethodDeclList2 MethodDeclList2;
 
-    public ListsMet (String I1, String I2, MethodDeclList2 MethodDeclList2) {
-        this.I1=I1;
-        this.I2=I2;
+    public ListsMet (MethodStart MethodStart, MethodDeclList2 MethodDeclList2) {
+        this.MethodStart=MethodStart;
+        if(MethodStart!=null) MethodStart.setParent(this);
         this.MethodDeclList2=MethodDeclList2;
         if(MethodDeclList2!=null) MethodDeclList2.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public MethodStart getMethodStart() {
+        return MethodStart;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
-    }
-
-    public String getI2() {
-        return I2;
-    }
-
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setMethodStart(MethodStart MethodStart) {
+        this.MethodStart=MethodStart;
     }
 
     public MethodDeclList2 getMethodDeclList2() {
@@ -47,15 +38,18 @@ public class ListsMet extends Lists {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(MethodStart!=null) MethodStart.accept(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(MethodStart!=null) MethodStart.traverseTopDown(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(MethodStart!=null) MethodStart.traverseBottomUp(visitor);
         if(MethodDeclList2!=null) MethodDeclList2.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -65,10 +59,10 @@ public class ListsMet extends Lists {
         buffer.append(tab);
         buffer.append("ListsMet(\n");
 
-        buffer.append(" "+tab+I1);
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I2);
+        if(MethodStart!=null)
+            buffer.append(MethodStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(MethodDeclList2!=null)

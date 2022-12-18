@@ -1,5 +1,6 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
@@ -12,8 +13,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 
 	int paramCount = 0;
 	Obj currentMethod = null;
+	Obj overrided = null;
+	String currentMethodName = "";
 	boolean returnFound = false;
 	boolean errorDetected = false;
+	boolean arrayType = false;
 	int nVars;
 	
 	Struct currentType = null;
@@ -375,14 +379,135 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	addDefaultConstructor();
     }
     
-    public void visit(ListsMetVoid lists) {
+    /*public void visit(ListsMetVoid lists) {
     	addDefaultConstructor();
-    }
+    }*/
     
     public void visit(ListsNoConNoMet lists) {
     	addDefaultConstructor();
     }
     
+    /* METHOD DECLARATION */
     
+    public void visit(MethodDecl2 methodDeclaration) {
+    	if (currentMethod.getType() != Tab.noType && !returnFound) {
+    		report_error("Metoda " + currentMethodName + " nema return naredbu!", null);
+    	}
+    	
+    	if (currentMethodName.equals("main") && paramCount > 0) {
+    		report_error("Metoda main ne sme da ima parametre!", null);
+    	}
+    	
+    	currentMethod.setLevel(paramCount);
+    	Tab.chainLocalSymbols(currentMethod);
+    	
+    	if (overrided != null) {
+    		if (overrided.getLevel() != currentMethod.getLevel()) {
+    			report_error("Metod " + currentMethodName + " ne preklapa dobro, jer nije isti po broju parametara!", methodDeclaration);
+    		} else {
+    			ArrayList<Obj> overridedParams = new ArrayList<>(overrided.getLocalSymbols());
+    			ArrayList<Obj> currentParams = new ArrayList<>(currentMethod.getLocalSymbols());
+    			
+    			for (int i = 0; i < overridedParams.size(); i++) {
+    				if (i != 0 && overridedParams.get(i).getType() != currentParams.get(i).getType()) {
+    					report_error("Metod " + currentMethodName + " ima pogresan tip parametra sa rednim brojem " + i + "!", methodDeclaration);
+    				}
+    			}
+    		}
+    	}
+    	
+    	Tab.closeScope();
+    	paramCount = 0;
+    	returnFound = false;
+    	currentMethod = overrided = null;
+    	currentMethodName = "";
+    }
+    
+    public void visit(OptionalSquaresX optSquares) {
+    	arrayType = true;
+    }
+    
+    public void visit(IdentSquaresX param) {
+    	String paramName = param.getName();
+    	Obj obj = Tab.find(paramName);
+    	paramCount++;
+    	
+    	if (obj != Tab.noObj && Tab.currentScope.findSymbol(paramName) != null) {
+    		report_error("Parametar " + paramName + " se vec nalazi u listi formalnih parametara!", param);
+    		return;
+    	}
+    	
+    	if (arrayType) {
+    		Tab.insert(Obj.Var, paramName, new Struct(Struct.Array, currentType));
+    	} else {
+    		Tab.insert(Obj.Var, paramName, currentType);
+    	}  	
+    	arrayType = false;
+    }
+    
+    public void visit(MethodStartType methodStart) {
+    	String name = methodStart.getName();
+    	Obj obj = Tab.currentScope().findSymbol(name);
+    	
+    	if (obj != null && subclassType == null) {
+    		report_error("Metoda sa imenom " + name + " je vec deklarisana!", null);
+    		currentMethod = Tab.noObj;
+    		methodStart.obj = Tab.noObj;
+    		Tab.openScope();
+    		return;
+    	} else if (obj != null) overrided = obj;
+    	
+    	if (overrided != null) {
+    		Tab.currentScope().getLocals().deleteKey(name);
+    	}
+    	
+    	currentMethod = Tab.insert(Obj.Meth, name, methodStart.getType().struct);
+    	methodStart.obj = currentMethod;
+    	Tab.openScope();
+    	
+    	if(subclassType != null) {
+    		paramCount++;
+    		Tab.insert(Obj.Var, "this", subclassType);
+			report_info("Metoda sa nazivom " + name + " definisana u klasi " + subclass + "!", methodStart);
+		} else {
+			report_info("Definisana funkcija sa nazivom " + name, methodStart);
+		}
+    }
+    
+    public void visit(MethodStartVoid methodStart) {
+    	String name = methodStart.getName();
+    	Obj obj = Tab.currentScope().findSymbol(name);
+    	
+    	if (obj != null && subclassType == null) {
+    		report_error("Metoda sa imenom " + name + " je vec deklarisana!", null);
+    		currentMethod = Tab.noObj;
+    		methodStart.obj = Tab.noObj;
+    		Tab.openScope();
+    		return;
+    	} else if (obj != null) overrided = obj;
+    	
+    	if (overrided != null) {
+    		Tab.currentScope().getLocals().deleteKey(name);
+    	}
+    	
+    	currentMethod = Tab.insert(Obj.Meth, name, Tab.noType);
+    	methodStart.obj = currentMethod;
+    	Tab.openScope();
+    	
+    	if(subclassType != null) {
+    		paramCount++;
+    		Tab.insert(Obj.Var, "this", subclassType);
+			report_info("Metoda sa nazivom " + name + " definisana u klasi " + subclass + "!", methodStart);
+		} else {
+			report_info("Definisana funkcija sa nazivom " + name, methodStart);
+		}
+    }
+    
+    /*public void visit(OptionalExprX returnExpr) {
+    	hasReturnType = true;
+    	returnType = returnExpr.struct;
+    }*/
+    
+    // TODO: return naredba, globalne metode (jer sam ih razdvojio od klasnih)
     
 }

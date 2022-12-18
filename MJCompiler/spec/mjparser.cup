@@ -70,10 +70,10 @@ nonterminal Statement, Unmatched, Matched, OptionalExpr, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
 nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, Expr, OptMinus, AddopTermList;
 nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Designator, IdentExprList, Label, Assignop, Relop, Addop, Mulop, DesignatorFE, ElseElse;
-nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail, IdentSquares;
+nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail;
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
@@ -156,16 +156,19 @@ VarDeclList ::= (VarDeclListX) VarDeclList VarDecl |
 ConstructorMethodLists ::= (ConstructorMethodListsX) LEFT_WIGGLY_PARENTHESES Lists RIGHT_WIGGLY_PARENTHESES |
 						   (NoConstructorMethodLists) /* epsilon */;
 
-Lists ::= (ListsConMet) ConstructorDeclStart LEFT_ROUND_PARENTHESES ConstructorDeclList IDENT IDENT MethodDeclList2 |
-		  (ListsConMetVoid) ConstructorDeclStart LEFT_ROUND_PARENTHESES ConstructorDeclList VOID IDENT MethodDeclList2 |
+Lists ::= (ListsConMet) ConstructorDeclStart LEFT_ROUND_PARENTHESES ConstructorDeclList MethodStart MethodDeclList2 |
+		  //(ListsConMetVoid) ConstructorDeclStart LEFT_ROUND_PARENTHESES ConstructorDeclList MethodStart MethodDeclList2 |
 		  (ListsCon) ConstructorDeclStart LEFT_ROUND_PARENTHESES ConstructorDeclList |
-		  (ListsMet) IDENT IDENT MethodDeclList2 |
-		  (ListsMetVoid) VOID IDENT MethodDeclList2 |
+		  (ListsMet) MethodStart MethodDeclList2 |
+		  //(ListsMetVoid) MethodStart MethodDeclList2 |
 		  (ListsNoConNoMet) /* epsilon */;
 		  
-MethodDeclList2 ::= (MDL21) MethodDeclList2 IDENT IDENT MethodDecl2 |
-				   (MDL22) MethodDeclList2 VOID IDENT MethodDecl2 |
+MethodDeclList2 ::= (MDL21) MethodDeclList2 MethodStart MethodDecl2 |
+				   //(MDL22) MethodDeclList2 MethodStart MethodDecl2 |
 				   (MDL23) MethodDecl2;
+				   
+MethodStart ::= (MethodStartType) Type IDENT:name |
+ 				(MethodStartVoid) VOID IDENT:name;
 				   
 MethodDecl2 ::= (MethodDecl2) LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
 
@@ -203,7 +206,7 @@ OptionalSquares ::= (OptionalSquaresX) LEFT_SQUARE_PARENTHESES RIGHT_SQUARE_PARE
 TypeIdentList ::= (TypeIdentListX) TypeIdentList COMMA IdentSquares |
 				  (NoTypeIdentList) /* epsilon */;
 				  
-IdentSquares ::= (IdentSquaresX) Type IDENT OptionalSquares |
+IdentSquares ::= (IdentSquaresX) Type IDENT:name OptionalSquares |
 				 (IdentSquaresError) error:l {: parser.report_error("Greska u deklaraciji formalnog parametra funkcije u liniji " + lleft, null); :};
 				  
 /* TYPE */

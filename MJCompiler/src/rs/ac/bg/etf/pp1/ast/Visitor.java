@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/11/2022 17:54:35
+// 18/11/2022 23:50:57
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -45,6 +45,7 @@ public interface Visitor {
     public void visit(OtherVarDeclList OtherVarDeclList);
     public void visit(CondTermOrList CondTermOrList);
     public void visit(ReturnType ReturnType);
+    public void visit(MethodStart MethodStart);
     public void visit(FirstVarDecl FirstVarDecl);
     public void visit(IdentExprList IdentExprList);
     public void visit(ClassVarDecl ClassVarDecl);
@@ -162,14 +163,13 @@ public interface Visitor {
     public void visit(NoConstructorDeclList NoConstructorDeclList);
     public void visit(ConstructorDeclListX ConstructorDeclListX);
     public void visit(MethodDecl2 MethodDecl2);
+    public void visit(MethodStartVoid MethodStartVoid);
+    public void visit(MethodStartType MethodStartType);
     public void visit(MDL23 MDL23);
-    public void visit(MDL22 MDL22);
     public void visit(MDL21 MDL21);
     public void visit(ListsNoConNoMet ListsNoConNoMet);
-    public void visit(ListsMetVoid ListsMetVoid);
     public void visit(ListsMet ListsMet);
     public void visit(ListsCon ListsCon);
-    public void visit(ListsConMetVoid ListsConMetVoid);
     public void visit(ListsConMet ListsConMet);
     public void visit(NoConstructorMethodLists NoConstructorMethodLists);
     public void visit(ConstructorMethodListsX ConstructorMethodListsX);
