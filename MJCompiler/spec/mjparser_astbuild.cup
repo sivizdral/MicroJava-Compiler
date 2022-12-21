@@ -104,9 +104,6 @@ nonterminal OptMinus OptMinus;
 nonterminal AddopTermList AddopTermList;
 nonterminal Term Term;
 nonterminal MulopFactorList MulopFactorList;
-nonterminal Factor Factor;
-nonterminal OptOptActPars OptOptActPars;
-nonterminal ExprOrActPars ExprOrActPars;
 nonterminal Label Label;
 nonterminal Assignop Assignop;
 nonterminal Relop Relop;
@@ -126,7 +123,7 @@ nonterminal WhileStmtStart WhileStmtStart;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
-nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
 nonterminal OtherGlobalVarDeclList OtherGlobalVarDeclList;
@@ -368,18 +365,20 @@ MulopFactorList ::= (MulopFactorListX) MulopFactorList:M1 Mulop:M2 Factor:F3 {: 
 					
 /* FACTOR */
 
-Factor ::= (FactorActPars) Designator:D1 OptOptActPars:O2 {: RESULT=new FactorActPars(D1, O2); RESULT.setLine(D1left); :} |
+Factor ::= (FactorActPars) Designator:D1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorActPars(D1, O2); RESULT.setLine(D1left); :} |
+		   (FactorDesignatorOnly) Designator:D1 {: RESULT=new FactorDesignatorOnly(D1); RESULT.setLine(D1left); :} |
 		   (FactorNumConst) NUMCONST:N1 {: RESULT=new FactorNumConst(N1); RESULT.setLine(N1left); :} |
 		   (FactorCharConst) CHARCONST:C1 {: RESULT=new FactorCharConst(C1); RESULT.setLine(C1left); :} |
 		   (FactorBoolConst) BOOLCONST:B1 {: RESULT=new FactorBoolConst(B1); RESULT.setLine(B1left); :} |
-		   (FactorExprActPars) NEW Type:T1 ExprOrActPars:E2 {: RESULT=new FactorExprActPars(T1, E2); RESULT.setLine(T1left); :} |
+		   (FactorNewArray) NEW Type:T1 LEFT_SQUARE_PARENTHESES Expr:E2 RIGHT_SQUARE_PARENTHESES {: RESULT=new FactorNewArray(T1, E2); RESULT.setLine(T1left); :} |
+		   (FactorNew) NEW Type:T1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorNew(T1, O2); RESULT.setLine(T1left); :} |
 		   (FactorExpr) LEFT_ROUND_PARENTHESES Expr:E1 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorExpr(E1); RESULT.setLine(E1left); :};
 
-OptOptActPars ::= (OptOptActParsX) LEFT_ROUND_PARENTHESES OptionalActPars:O1 RIGHT_ROUND_PARENTHESES {: RESULT=new OptOptActParsX(O1); RESULT.setLine(O1left); :} |
-				  (NoOptOptActPars) {: RESULT=new NoOptOptActPars(); :} /* epsilon */;
+//OptOptActPars ::= (OptOptActParsX) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+//				  (NoOptOptActPars) /* epsilon */;
 
-ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr:E1 RIGHT_SQUARE_PARENTHESES {: RESULT=new ExprOrActParsExpr(E1); RESULT.setLine(E1left); :} |
-				  (ExprOrActParsActPars) LEFT_ROUND_PARENTHESES OptionalActPars:O1 RIGHT_ROUND_PARENTHESES {: RESULT=new ExprOrActParsActPars(O1); RESULT.setLine(O1left); :};
+//ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
+//				  (ExprOrActParsActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES;
 			  
 /* DESIGNATOR */
 

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/11/2022 20:19:22
+// 21/11/2022 21:13:21
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,8 +8,8 @@ package rs.ac.bg.etf.pp1.ast;
 public abstract class VisitorAdaptor implements Visitor { 
 
     public void visit(GlobalVarDecl GlobalVarDecl) { }
-    public void visit(OptionalDesignatorList OptionalDesignatorList) { }
     public void visit(Factor Factor) { }
+    public void visit(OptionalDesignatorList OptionalDesignatorList) { }
     public void visit(Statement Statement) { }
     public void visit(OptionalRelopExpr OptionalRelopExpr) { }
     public void visit(ConstDeclList ConstDeclList) { }
@@ -39,7 +39,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(CondFactAndList CondFactAndList) { }
     public void visit(Addop Addop) { }
     public void visit(StatementList StatementList) { }
-    public void visit(OptOptActPars OptOptActPars) { }
     public void visit(ConstDecl ConstDecl) { }
     public void visit(ConstructorDeclList ConstructorDeclList) { }
     public void visit(OtherVarDeclList OtherVarDeclList) { }
@@ -59,7 +58,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(TypeIdentList TypeIdentList) { }
     public void visit(OptionalExpr OptionalExpr) { }
     public void visit(FormParsOptional FormParsOptional) { }
-    public void visit(ExprOrActPars ExprOrActPars) { }
     public void visit(MethodDeclList2 MethodDeclList2) { }
     public void visit(MulopP MulopP) { visit(); }
     public void visit(MulopD MulopD) { visit(); }
@@ -80,15 +78,13 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorFE DesignatorFE) { visit(); }
     public void visit(Designator Designator) { visit(); }
     public void visit(DesignatorStart DesignatorStart) { visit(); }
-    public void visit(ExprOrActParsActPars ExprOrActParsActPars) { visit(); }
-    public void visit(ExprOrActParsExpr ExprOrActParsExpr) { visit(); }
-    public void visit(NoOptOptActPars NoOptOptActPars) { visit(); }
-    public void visit(OptOptActParsX OptOptActParsX) { visit(); }
     public void visit(FactorExpr FactorExpr) { visit(); }
-    public void visit(FactorExprActPars FactorExprActPars) { visit(); }
+    public void visit(FactorNew FactorNew) { visit(); }
+    public void visit(FactorNewArray FactorNewArray) { visit(); }
     public void visit(FactorBoolConst FactorBoolConst) { visit(); }
     public void visit(FactorCharConst FactorCharConst) { visit(); }
     public void visit(FactorNumConst FactorNumConst) { visit(); }
+    public void visit(FactorDesignatorOnly FactorDesignatorOnly) { visit(); }
     public void visit(FactorActPars FactorActPars) { visit(); }
     public void visit(NoMulopFactorList NoMulopFactorList) { visit(); }
     public void visit(MulopFactorListX MulopFactorListX) { visit(); }

@@ -1,17 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/11/2022 20:19:22
+// 21/11/2022 21:13:21
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class ExprOrActParsActPars extends ExprOrActPars {
+public class FactorNew extends Factor {
 
+    private Type Type;
     private OptionalActPars OptionalActPars;
 
-    public ExprOrActParsActPars (OptionalActPars OptionalActPars) {
+    public FactorNew (Type Type, OptionalActPars OptionalActPars) {
+        this.Type=Type;
+        if(Type!=null) Type.setParent(this);
         this.OptionalActPars=OptionalActPars;
         if(OptionalActPars!=null) OptionalActPars.setParent(this);
+    }
+
+    public Type getType() {
+        return Type;
+    }
+
+    public void setType(Type Type) {
+        this.Type=Type;
     }
 
     public OptionalActPars getOptionalActPars() {
@@ -27,15 +38,18 @@ public class ExprOrActParsActPars extends ExprOrActPars {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(Type!=null) Type.accept(visitor);
         if(OptionalActPars!=null) OptionalActPars.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(Type!=null) Type.traverseTopDown(visitor);
         if(OptionalActPars!=null) OptionalActPars.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(Type!=null) Type.traverseBottomUp(visitor);
         if(OptionalActPars!=null) OptionalActPars.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -43,7 +57,13 @@ public class ExprOrActParsActPars extends ExprOrActPars {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("ExprOrActParsActPars(\n");
+        buffer.append("FactorNew(\n");
+
+        if(Type!=null)
+            buffer.append(Type.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(OptionalActPars!=null)
             buffer.append(OptionalActPars.toString("  "+tab));
@@ -52,7 +72,7 @@ public class ExprOrActParsActPars extends ExprOrActPars {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [ExprOrActParsActPars]");
+        buffer.append(") [FactorNew]");
         return buffer.toString();
     }
 }

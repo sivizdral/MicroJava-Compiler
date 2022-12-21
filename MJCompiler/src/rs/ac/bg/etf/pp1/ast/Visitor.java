@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/11/2022 20:19:22
+// 21/11/2022 21:13:21
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,8 +8,8 @@ package rs.ac.bg.etf.pp1.ast;
 public interface Visitor { 
 
     public void visit(GlobalVarDecl GlobalVarDecl);
-    public void visit(OptionalDesignatorList OptionalDesignatorList);
     public void visit(Factor Factor);
+    public void visit(OptionalDesignatorList OptionalDesignatorList);
     public void visit(Statement Statement);
     public void visit(OptionalRelopExpr OptionalRelopExpr);
     public void visit(ConstDeclList ConstDeclList);
@@ -39,7 +39,6 @@ public interface Visitor {
     public void visit(CondFactAndList CondFactAndList);
     public void visit(Addop Addop);
     public void visit(StatementList StatementList);
-    public void visit(OptOptActPars OptOptActPars);
     public void visit(ConstDecl ConstDecl);
     public void visit(ConstructorDeclList ConstructorDeclList);
     public void visit(OtherVarDeclList OtherVarDeclList);
@@ -59,7 +58,6 @@ public interface Visitor {
     public void visit(TypeIdentList TypeIdentList);
     public void visit(OptionalExpr OptionalExpr);
     public void visit(FormParsOptional FormParsOptional);
-    public void visit(ExprOrActPars ExprOrActPars);
     public void visit(MethodDeclList2 MethodDeclList2);
     public void visit(MulopP MulopP);
     public void visit(MulopD MulopD);
@@ -80,15 +78,13 @@ public interface Visitor {
     public void visit(DesignatorFE DesignatorFE);
     public void visit(Designator Designator);
     public void visit(DesignatorStart DesignatorStart);
-    public void visit(ExprOrActParsActPars ExprOrActParsActPars);
-    public void visit(ExprOrActParsExpr ExprOrActParsExpr);
-    public void visit(NoOptOptActPars NoOptOptActPars);
-    public void visit(OptOptActParsX OptOptActParsX);
     public void visit(FactorExpr FactorExpr);
-    public void visit(FactorExprActPars FactorExprActPars);
+    public void visit(FactorNew FactorNew);
+    public void visit(FactorNewArray FactorNewArray);
     public void visit(FactorBoolConst FactorBoolConst);
     public void visit(FactorCharConst FactorCharConst);
     public void visit(FactorNumConst FactorNumConst);
+    public void visit(FactorDesignatorOnly FactorDesignatorOnly);
     public void visit(FactorActPars FactorActPars);
     public void visit(NoMulopFactorList NoMulopFactorList);
     public void visit(MulopFactorListX MulopFactorListX);

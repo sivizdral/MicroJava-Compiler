@@ -656,5 +656,65 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	currentDesignator = null;
     }
     
+    /* FACTOR */
+    
+    public void visit(FactorActPars functionCall) {
+    	Designator d = functionCall.getDesignator();
+    	
+    	if (d.obj.getKind() != Obj.Meth) {
+    		report_error("Poziv metode mora pozvati metodu koja je deklarisana!", functionCall);
+    		functionCall.struct = Tab.noType;
+    	} else {
+    		report_info("Poziv metode/funkcije " + d.obj.getName(), functionCall);
+    		functionCall.struct = d.obj.getType();
+    	}
+    }
+    
+    public void visit(FactorExpr factor) {
+    	factor.struct = factor.getExpr().struct;
+    }
+    
+    public void visit(FactorNumConst fnc) {
+    	fnc.struct = Tab.intType;
+    }
+    
+    public void visit(FactorCharConst fcc) {
+    	fcc.struct = Tab.charType;
+    }
+    
+    public void visit(FactorBoolConst fbc) {
+    	fbc.struct = booleanType;
+    }
+    
+    public void visit(FactorDesignatorOnly factor) {
+    	factor.struct = factor.getDesignator().obj.getType();
+    }
+    
+    public void visit(FactorNew factor) {
+    	if (factor.getType().struct.getKind() != Struct.Class) {
+    		report_error("Operator new se moze pozivati samo za klasne tipove!",factor);
+    		factor.struct = Tab.noType;
+    	} else {
+    		report_info("Kreiran je objekat klase!", factor);
+    		factor.struct = factor.getType().struct;
+    	}
+    }
+    
+    public void visit(FactorNewArray factor) {
+    	if (factor.getType().struct.getKind() != Struct.Class) {
+    		report_error("Operator new se moze pozivati samo za klasne tipove!",factor);
+    		factor.struct = Tab.noType;
+    	} else {
+    		if (factor.getExpr().struct != Tab.intType) {
+    			report_error("Velicina mora biti int tipa!", factor);
+    			factor.struct = Tab.noType;
+    		}
+    		else {
+    			report_info("Kreiran je niz objekata klase!", factor);
+        		factor.struct = new Struct(Struct.Array, factor.getType().struct);
+    		}
+    	}
+    }
+    
     
 }

@@ -69,13 +69,13 @@ nonterminal FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, O
 nonterminal Statement, Unmatched, Matched, OptionalExpr, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
 nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, OptMinus, AddopTermList;
-nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Label, Assignop, Relop, Addop, Mulop, ElseElse;
+nonterminal Term, MulopFactorList, Label, Assignop, Relop, Addop, Mulop, ElseElse;
 nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail;
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
-nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
 precedence left ELSE;
@@ -315,18 +315,20 @@ MulopFactorList ::= (MulopFactorListX) MulopFactorList Mulop Factor |
 					
 /* FACTOR */
 
-Factor ::= (FactorActPars) Designator OptOptActPars |
+Factor ::= (FactorActPars) Designator LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+		   (FactorDesignatorOnly) Designator |
 		   (FactorNumConst) NUMCONST |
 		   (FactorCharConst) CHARCONST |
 		   (FactorBoolConst) BOOLCONST |
-		   (FactorExprActPars) NEW Type ExprOrActPars |
+		   (FactorNewArray) NEW Type LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
+		   (FactorNew) NEW Type LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
 		   (FactorExpr) LEFT_ROUND_PARENTHESES Expr RIGHT_ROUND_PARENTHESES;
 
-OptOptActPars ::= (OptOptActParsX) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
-				  (NoOptOptActPars) /* epsilon */;
+//OptOptActPars ::= (OptOptActParsX) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+//				  (NoOptOptActPars) /* epsilon */;
 
-ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
-				  (ExprOrActParsActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES;
+//ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
+//				  (ExprOrActParsActPars) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES;
 			  
 /* DESIGNATOR */
 

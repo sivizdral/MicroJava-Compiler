@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/11/2022 20:19:22
+// 21/11/2022 21:13:21
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,13 +8,13 @@ package rs.ac.bg.etf.pp1.ast;
 public class FactorActPars extends Factor {
 
     private Designator Designator;
-    private OptOptActPars OptOptActPars;
+    private OptionalActPars OptionalActPars;
 
-    public FactorActPars (Designator Designator, OptOptActPars OptOptActPars) {
+    public FactorActPars (Designator Designator, OptionalActPars OptionalActPars) {
         this.Designator=Designator;
         if(Designator!=null) Designator.setParent(this);
-        this.OptOptActPars=OptOptActPars;
-        if(OptOptActPars!=null) OptOptActPars.setParent(this);
+        this.OptionalActPars=OptionalActPars;
+        if(OptionalActPars!=null) OptionalActPars.setParent(this);
     }
 
     public Designator getDesignator() {
@@ -25,12 +25,12 @@ public class FactorActPars extends Factor {
         this.Designator=Designator;
     }
 
-    public OptOptActPars getOptOptActPars() {
-        return OptOptActPars;
+    public OptionalActPars getOptionalActPars() {
+        return OptionalActPars;
     }
 
-    public void setOptOptActPars(OptOptActPars OptOptActPars) {
-        this.OptOptActPars=OptOptActPars;
+    public void setOptionalActPars(OptionalActPars OptionalActPars) {
+        this.OptionalActPars=OptionalActPars;
     }
 
     public void accept(Visitor visitor) {
@@ -39,18 +39,18 @@ public class FactorActPars extends Factor {
 
     public void childrenAccept(Visitor visitor) {
         if(Designator!=null) Designator.accept(visitor);
-        if(OptOptActPars!=null) OptOptActPars.accept(visitor);
+        if(OptionalActPars!=null) OptionalActPars.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(Designator!=null) Designator.traverseTopDown(visitor);
-        if(OptOptActPars!=null) OptOptActPars.traverseTopDown(visitor);
+        if(OptionalActPars!=null) OptionalActPars.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(Designator!=null) Designator.traverseBottomUp(visitor);
-        if(OptOptActPars!=null) OptOptActPars.traverseBottomUp(visitor);
+        if(OptionalActPars!=null) OptionalActPars.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -65,8 +65,8 @@ public class FactorActPars extends Factor {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(OptOptActPars!=null)
-            buffer.append(OptOptActPars.toString("  "+tab));
+        if(OptionalActPars!=null)
+            buffer.append(OptionalActPars.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
