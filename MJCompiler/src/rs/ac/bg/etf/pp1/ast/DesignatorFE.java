@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 18/11/2022 23:50:57
+// 21/11/2022 20:19:22
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,21 +9,24 @@ public class DesignatorFE implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private String I1;
+    public rs.etf.pp1.symboltable.concepts.Struct struct = null;
+
+    private DesignatorStart DesignatorStart;
     private IdentExprList IdentExprList;
 
-    public DesignatorFE (String I1, IdentExprList IdentExprList) {
-        this.I1=I1;
+    public DesignatorFE (DesignatorStart DesignatorStart, IdentExprList IdentExprList) {
+        this.DesignatorStart=DesignatorStart;
+        if(DesignatorStart!=null) DesignatorStart.setParent(this);
         this.IdentExprList=IdentExprList;
         if(IdentExprList!=null) IdentExprList.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public DesignatorStart getDesignatorStart() {
+        return DesignatorStart;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setDesignatorStart(DesignatorStart DesignatorStart) {
+        this.DesignatorStart=DesignatorStart;
     }
 
     public IdentExprList getIdentExprList() {
@@ -55,15 +58,18 @@ public class DesignatorFE implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(DesignatorStart!=null) DesignatorStart.accept(visitor);
         if(IdentExprList!=null) IdentExprList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(DesignatorStart!=null) DesignatorStart.traverseTopDown(visitor);
         if(IdentExprList!=null) IdentExprList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(DesignatorStart!=null) DesignatorStart.traverseBottomUp(visitor);
         if(IdentExprList!=null) IdentExprList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -73,7 +79,10 @@ public class DesignatorFE implements SyntaxNode {
         buffer.append(tab);
         buffer.append("DesignatorFE(\n");
 
-        buffer.append(" "+tab+I1);
+        if(DesignatorStart!=null)
+            buffer.append(DesignatorStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(IdentExprList!=null)

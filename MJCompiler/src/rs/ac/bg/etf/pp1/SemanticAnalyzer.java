@@ -19,6 +19,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean errorDetected = false;
 	boolean arrayType = false;
 	int nVars;
+	int loop = 0;
+	
+	public Struct booleanType = new Struct(Struct.Bool);
 	
 	Struct currentType = null;
 	String subclass = "";
@@ -27,12 +30,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Struct superclassType = null;
 	public HashMap<Struct, String> allClasses = new HashMap<>();
 	
+	Obj iterating = null;
+	Obj currentDesignator = null;
+	
 	boolean inConstructor = false;
 	
 	Logger log = Logger.getLogger(getClass());
 	
 	public SemanticAnalyzer() {
-		Tab.currentScope.addToLocals(new Obj(Obj.Type, "bool", Tab.noType));
+		Tab.currentScope.addToLocals(new Obj(Obj.Type, "bool", booleanType));
 	}
 
 	public void report_error(String message, SyntaxNode info) {
@@ -92,6 +98,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Ime " + name + " ne predstavlja tip!", type);
 			type.struct = currentType = Tab.noType;
 		}
+    	
     } 
     
     /* GLOBAL CONST DECLARATION */
@@ -509,5 +516,145 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }*/
     
     // TODO: return naredba, globalne metode (jer sam ih razdvojio od klasnih)
+    
+    /* WHILE, BREAK, CONTINUE, FOREACH */
+    
+    public void visit(WhileStmtStart whileStart) {
+    	loop++;
+    }
+    
+    public void visit(WhileStmt whileEnd) {
+    	loop--;
+    }
+    
+    public void visit(BreakStmt breakStmt) {
+    	if (loop > 0) return;
+    	report_error("Break naredba nije unutar petlje!", breakStmt);
+    }
+    
+    public void visit(ContinueStmt continueStmt) {
+    	if (loop > 0) return;
+    	report_error("Continue naredba nije unutar petlje!", continueStmt);
+    }
+    
+    public void visit(DesignatorFE foreachDesignator) {
+    	Obj obj = foreachDesignator.getDesignatorStart().obj;
+    	loop++;
+    	
+    	if (obj.getType().getKind() != Struct.Array) {
+    		report_error("Foraech petlja moze samo da se pozove nad nizom!", foreachDesignator);
+    		foreachDesignator.struct = Tab.noType;
+    	}
+    	else {
+    		foreachDesignator.struct = obj.getType().getElemType();
+    	}
+    	
+    }
+    
+    public void visit(FEVar foreachVariable) {
+    	String name = foreachVariable.getName();
+    	Obj obj = Tab.find(name);
+    	
+    	if (obj == Tab.noObj) {
+    		report_error("Promenljiva sa nazivom " + name + " nije prethodno deklarisana!", foreachVariable);
+    		foreachVariable.obj = Tab.noObj;
+    		return;
+    	}
+    	
+    	foreachVariable.obj = obj;
+    	
+    	if (obj.getKind() != Obj.Var) {
+    		report_error("Varijabla u foreach petlji mora biti promenljiva!", foreachVariable);
+    		foreachVariable.obj = Tab.noObj;
+    	} else {
+    		iterating = obj;
+    	}
+    }
+    
+    public void visit(ForeachStmt foreach) {
+    	if (iterating.getType() != foreach.getDesignatorFE().struct) {
+    		report_error("Postoji nepoklapanje izmedju tipa elementa niza i iterirajuce varijable!", foreach);
+    	}
+    	iterating = null;
+    	loop--;
+    }
+    
+    /* PRINT, READ */
+    
+    public void visit(PrintStmt printStmt) {
+    	Struct type = printStmt.getExpr().struct;
+    	if (type != booleanType && type != Tab.intType && type != Tab.charType) report_error("Prvi argument mora biti int, char ili boolean!", printStmt);
+    }
+    
+    public void visit(ReadStmt readStmt) {
+    	Designator d = readStmt.getDesignator();
+    	Obj obj = d.obj;
+    	Struct type = obj.getType();
+    	int kind = obj.getKind();
+    	
+    	if (kind != Obj.Elem && kind != Obj.Var && kind != Obj.Fld) {
+    		report_error("Izraz mora biti promenljiva, element niza ili polje objekta!", readStmt);
+    	} else if (type != Tab.intType && type != Tab.charType && type != booleanType) {
+    		report_error("Izraz mora biti tipa int, char ili boolean!", readStmt);
+    	}  	
+    }
+    
+    /* DESIGNATOR */
+    
+    public void visit(DesignatorStart dStart) {
+    	String name = dStart.getName();
+    	Obj obj = Tab.find(name);
+    	
+    	if (obj == Tab.noObj) {
+    		report_error("Koristi se nedeklarisana promenljiva " + name + "!", dStart);
+    		dStart.obj = Tab.noObj;
+    		return;
+    	} else {
+    		dStart.obj = obj;
+    	}
+    	
+    	int kind = obj.getKind();
+    	currentDesignator = obj;
+    	
+    	if (kind == Obj.Var) {
+    		report_info("Pristup promenljivoj/parametru " + name + "!", dStart);
+    		return;
+    	}
+    	
+    	if (kind == Obj.Con) {
+    		report_info("Pristup konstanti " + name + "!", dStart);
+    		return;
+    	}	
+    }
+    
+    public void visit(IdentExprListExpr arrayDesignator) {
+    	Obj obj = arrayDesignator.getIdentExprList().obj;
+    	Expr expr = arrayDesignator.getExpr();
+    	
+    	if (expr.struct != Tab.intType) {
+    		report_error("Nekompatibilan tip za indeksiranje - mora biti ceo broj!", arrayDesignator);
+    		arrayDesignator.obj = Tab.noObj;
+    	} else if (currentDesignator != null) {
+    		if (currentDesignator.getType().getKind() != Struct.Array) {
+    			report_error("Promenljiva " + currentDesignator.getName() + " kojoj se pristupa nije niz!", arrayDesignator);
+    			arrayDesignator.obj = Tab.noObj;
+    		} else {
+    			arrayDesignator.obj = new Obj(Obj.Elem, currentDesignator.getName(), currentDesignator.getType().getElemType());
+    		}
+    	} else if (obj.getType().getKind() != Struct.Array) {
+    		report_error("Promenljiva " + currentDesignator.getName() + " kojoj se pristupa nije niz!", arrayDesignator);
+			arrayDesignator.obj = Tab.noObj;
+    	} else {
+			arrayDesignator.obj = new Obj(Obj.Elem, obj.getName(), obj.getType().getElemType());
+		}
+    	
+    	currentDesignator = null;
+    }
+    
+    public void visit(IdentExprListIdent fieldDesignator) {
+    	
+    	currentDesignator = null;
+    }
+    
     
 }

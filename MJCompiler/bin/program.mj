@@ -1,28 +1,10 @@
 program MJProgram
 
-const int a = 5;
+const int a = 5, q = true;
+const bool q = true;
 char b[], v;
 
-class B {
-	int a;
-	
-	{
-	B() {}
-	
-	B(int arg1) int x; {}
-	
-	void abc(int p, int q) {}
-	
-	int abcd(bool a, int p, char k) { }
-	
-	}
-}
 
-class Tabela extends B {
-{void abc(int c, char d) {}
-}
-	
-}
 
 {
 	

@@ -68,13 +68,14 @@ nonterminal VarDecl, FirstVarDecl, OtherVarDeclList, ClassDecl, VarDeclList, Con
 nonterminal FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList;
 nonterminal Statement, Unmatched, Matched, OptionalExpr, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
-nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, Expr, OptMinus, AddopTermList;
-nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Designator, IdentExprList, Label, Assignop, Relop, Addop, Mulop, DesignatorFE, ElseElse;
+nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, OptMinus, AddopTermList;
+nonterminal Term, MulopFactorList, Factor, OptOptActPars, ExprOrActPars, Label, Assignop, Relop, Addop, Mulop, ElseElse;
 nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail;
-nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList;
+nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart;
-nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
 precedence left ELSE;
@@ -223,14 +224,18 @@ Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PA
 
 Matched ::= (DesigStmt) DesignatorStatement |
 			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Matched |
-			(WhileStmt) WHILE LEFT_ROUND_PARENTHESES ConditionWHILE RIGHT_ROUND_PARENTHESES Statement |
+			(WhileStmt) WhileStmtStart LEFT_ROUND_PARENTHESES ConditionWHILE RIGHT_ROUND_PARENTHESES Statement |
 			(BreakStmt) BREAK SEMICOLON |
 			(ContinueStmt) CONTINUE SEMICOLON |
 			(ReturnStmt) RETURN OptionalExpr SEMICOLON |
 			(ReadStmt) READ LEFT_ROUND_PARENTHESES Designator RIGHT_ROUND_PARENTHESES SEMICOLON |
 			(PrintStmt) PRINT LEFT_ROUND_PARENTHESES Expr OptionalNumConst RIGHT_ROUND_PARENTHESES SEMICOLON |
-			(ForeachStmt) DesignatorFE LEFT_ROUND_PARENTHESES IDENT ARROW Statement RIGHT_ROUND_PARENTHESES SEMICOLON |
+			(ForeachStmt) DesignatorFE LEFT_ROUND_PARENTHESES FEVar ARROW Statement RIGHT_ROUND_PARENTHESES SEMICOLON |
 			(BlockStmt) LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;	
+			
+FEVar ::= (FEVar) IDENT:name;
+			
+WhileStmtStart ::= (WhileStmtStart) WHILE;
 			
 ElseElse ::= (ElseElse) ELSE;	  
 				 
@@ -325,9 +330,11 @@ ExprOrActPars ::= (ExprOrActParsExpr) LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_
 			  
 /* DESIGNATOR */
 
-Designator ::= (Designator) IDENT IdentExprList;
+DesignatorStart ::= (DesignatorStart) IDENT:name;
 
-DesignatorFE ::= (DesignatorFE) IDENT IdentExprList DOT FOREACH;
+Designator ::= (Designator) DesignatorStart IdentExprList;
+
+DesignatorFE ::= (DesignatorFE) DesignatorStart IdentExprList DOT FOREACH;
 
 IdentExprList ::= (IdentExprListIdent) IdentExprList DOT IDENT |
 				  (IdentExprListExpr) IdentExprList LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
