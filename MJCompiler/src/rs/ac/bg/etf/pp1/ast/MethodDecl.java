@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/11/2022 21:13:21
+// 26/11/2022 18:42:46
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,16 +9,14 @@ public class MethodDecl implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private ReturnType ReturnType;
-    private String I2;
+    private MethodStart MethodStart;
     private FormParsOptional FormParsOptional;
     private VarDeclList VarDeclList;
     private StatementList StatementList;
 
-    public MethodDecl (ReturnType ReturnType, String I2, FormParsOptional FormParsOptional, VarDeclList VarDeclList, StatementList StatementList) {
-        this.ReturnType=ReturnType;
-        if(ReturnType!=null) ReturnType.setParent(this);
-        this.I2=I2;
+    public MethodDecl (MethodStart MethodStart, FormParsOptional FormParsOptional, VarDeclList VarDeclList, StatementList StatementList) {
+        this.MethodStart=MethodStart;
+        if(MethodStart!=null) MethodStart.setParent(this);
         this.FormParsOptional=FormParsOptional;
         if(FormParsOptional!=null) FormParsOptional.setParent(this);
         this.VarDeclList=VarDeclList;
@@ -27,20 +25,12 @@ public class MethodDecl implements SyntaxNode {
         if(StatementList!=null) StatementList.setParent(this);
     }
 
-    public ReturnType getReturnType() {
-        return ReturnType;
+    public MethodStart getMethodStart() {
+        return MethodStart;
     }
 
-    public void setReturnType(ReturnType ReturnType) {
-        this.ReturnType=ReturnType;
-    }
-
-    public String getI2() {
-        return I2;
-    }
-
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setMethodStart(MethodStart MethodStart) {
+        this.MethodStart=MethodStart;
     }
 
     public FormParsOptional getFormParsOptional() {
@@ -88,7 +78,7 @@ public class MethodDecl implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(ReturnType!=null) ReturnType.accept(visitor);
+        if(MethodStart!=null) MethodStart.accept(visitor);
         if(FormParsOptional!=null) FormParsOptional.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
         if(StatementList!=null) StatementList.accept(visitor);
@@ -96,14 +86,14 @@ public class MethodDecl implements SyntaxNode {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(ReturnType!=null) ReturnType.traverseTopDown(visitor);
+        if(MethodStart!=null) MethodStart.traverseTopDown(visitor);
         if(FormParsOptional!=null) FormParsOptional.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
         if(StatementList!=null) StatementList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(ReturnType!=null) ReturnType.traverseBottomUp(visitor);
+        if(MethodStart!=null) MethodStart.traverseBottomUp(visitor);
         if(FormParsOptional!=null) FormParsOptional.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
         if(StatementList!=null) StatementList.traverseBottomUp(visitor);
@@ -115,13 +105,10 @@ public class MethodDecl implements SyntaxNode {
         buffer.append(tab);
         buffer.append("MethodDecl(\n");
 
-        if(ReturnType!=null)
-            buffer.append(ReturnType.toString("  "+tab));
+        if(MethodStart!=null)
+            buffer.append(MethodStart.toString("  "+tab));
         else
             buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        buffer.append(" "+tab+I2);
         buffer.append("\n");
 
         if(FormParsOptional!=null)

@@ -84,7 +84,6 @@ nonterminal TypeIdentList TypeIdentList;
 nonterminal Statement Statement;
 nonterminal Unmatched Unmatched;
 nonterminal Matched Matched;
-nonterminal OptionalExpr OptionalExpr;
 nonterminal OptionalNumConst OptionalNumConst;
 nonterminal DesignatorStatement DesignatorStatement;
 nonterminal DsgStmtEnd DsgStmtEnd;
@@ -98,12 +97,9 @@ nonterminal ConditionWHILE ConditionWHILE;
 nonterminal CondTermOrList CondTermOrList;
 nonterminal CondTerm CondTerm;
 nonterminal CondFactAndList CondFactAndList;
-nonterminal CondFact CondFact;
 nonterminal OptionalRelopExpr OptionalRelopExpr;
 nonterminal OptMinus OptMinus;
 nonterminal AddopTermList AddopTermList;
-nonterminal Term Term;
-nonterminal MulopFactorList MulopFactorList;
 nonterminal Label Label;
 nonterminal Assignop Assignop;
 nonterminal Relop Relop;
@@ -123,7 +119,7 @@ nonterminal WhileStmtStart WhileStmtStart;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
-nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
 nonterminal OtherGlobalVarDeclList OtherGlobalVarDeclList;
@@ -242,7 +238,7 @@ StatementList ::= (StatementListX) StatementList:S1 Statement:S2 {: RESULT=new S
 			
 /* METHOD DECL */
 
-MethodDecl ::= (MethodDecl) ReturnType:R1 IDENT:I2 LEFT_ROUND_PARENTHESES FormParsOptional:F3 RIGHT_ROUND_PARENTHESES VarDeclList:V4 LEFT_WIGGLY_PARENTHESES StatementList:S5 RIGHT_WIGGLY_PARENTHESES {: RESULT=new MethodDecl(R1, I2, F3, V4, S5); RESULT.setLine(R1left); :};
+MethodDecl ::= (MethodDecl) MethodStart:M1 LEFT_ROUND_PARENTHESES FormParsOptional:F2 RIGHT_ROUND_PARENTHESES VarDeclList:V3 LEFT_WIGGLY_PARENTHESES StatementList:S4 RIGHT_WIGGLY_PARENTHESES {: RESULT=new MethodDecl(M1, F2, V3, S4); RESULT.setLine(M1left); :};
 
 ReturnType ::= (ReturnTypeX) Type:T1 {: RESULT=new ReturnTypeX(T1); RESULT.setLine(T1left); :} |
 			   (NoReturnType) VOID {: RESULT=new NoReturnType(); :};
@@ -297,7 +293,10 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:N1 {: RESULT=new Optiona
 
 /* DESIGNATOR STATEMENT */
 
-DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator:D1 DsgStmtEnd:D2 SEMICOLON {: RESULT=new FirstTypeDesignatorStmt(D1, D2); RESULT.setLine(D1left); :} |
+DesignatorStatement ::= (DesignatorStmtAssign) Designator:D1 Assignop:A2 Expr:E3 SEMICOLON {: RESULT=new DesignatorStmtAssign(D1, A2, E3); RESULT.setLine(D1left); :} |
+						(DesignatorStmtCall) Designator:D1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES SEMICOLON {: RESULT=new DesignatorStmtCall(D1, O2); RESULT.setLine(D1left); :} |
+						(DesignatorStmtInc) Designator:D1 INCREMENT SEMICOLON {: RESULT=new DesignatorStmtInc(D1); RESULT.setLine(D1left); :} |
+						(DesignatorStmtDec) Designator:D1 DECREMENT SEMICOLON {: RESULT=new DesignatorStmtDec(D1); RESULT.setLine(D1left); :} |
 						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 SEMICOLON {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :} |
 						(ErrorDesignatorStmt) error SEMICOLON:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :} {: RESULT=new ErrorDesignatorStmt(); :};
 						
@@ -358,10 +357,11 @@ AddopTermList ::= (AddopTermListX) AddopTermList:A1 Addop:A2 Term:T3 {: RESULT=n
  				  
 /* TERM */
 
-Term ::= (Term) Factor:F1 MulopFactorList:M2 {: RESULT=new Term(F1, M2); RESULT.setLine(F1left); :};
+Term ::= (TermOne) Factor:F1 {: RESULT=new TermOne(F1); RESULT.setLine(F1left); :} |
+		 (TermFactorList) Term:T1 Mulop:M2 Factor:F3 {: RESULT=new TermFactorList(T1, M2, F3); RESULT.setLine(T1left); :};
 
-MulopFactorList ::= (MulopFactorListX) MulopFactorList:M1 Mulop:M2 Factor:F3 {: RESULT=new MulopFactorListX(M1, M2, F3); RESULT.setLine(M1left); :} |
-					(NoMulopFactorList) {: RESULT=new NoMulopFactorList(); :} /* epsilon */;
+//MulopFactorList ::= (MulopFactorListX) MulopFactorList Mulop Factor |
+//					(NoMulopFactorList) /* epsilon */;
 					
 /* FACTOR */
 
@@ -388,7 +388,7 @@ Designator ::= (Designator) DesignatorStart:D1 IdentExprList:I2 {: RESULT=new De
 
 DesignatorFE ::= (DesignatorFE) DesignatorStart:D1 IdentExprList:I2 DOT FOREACH {: RESULT=new DesignatorFE(D1, I2); RESULT.setLine(D1left); :};
 
-IdentExprList ::= (IdentExprListIdent) IdentExprList:I1 DOT IDENT:I2 {: RESULT=new IdentExprListIdent(I1, I2); RESULT.setLine(I1left); :} |
+IdentExprList ::= (IdentExprListIdent) IdentExprList:I1 DOT IDENT:field {: RESULT=new IdentExprListIdent(I1, field); RESULT.setLine(I1left); :} |
 				  (IdentExprListExpr) IdentExprList:I1 LEFT_SQUARE_PARENTHESES Expr:E2 RIGHT_SQUARE_PARENTHESES {: RESULT=new IdentExprListExpr(I1, E2); RESULT.setLine(I1left); :} |
 				  (NoIdentExprList) {: RESULT=new NoIdentExprList(); :} /* epsilon */;
 				  

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/11/2022 21:13:21
+// 26/11/2022 18:42:47
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,8 +8,8 @@ package rs.ac.bg.etf.pp1.ast;
 public interface Visitor { 
 
     public void visit(GlobalVarDecl GlobalVarDecl);
-    public void visit(Factor Factor);
     public void visit(OptionalDesignatorList OptionalDesignatorList);
+    public void visit(Factor Factor);
     public void visit(Statement Statement);
     public void visit(OptionalRelopExpr OptionalRelopExpr);
     public void visit(ConstDeclList ConstDeclList);
@@ -24,7 +24,6 @@ public interface Visitor {
     public void visit(FirstClassVarDecl FirstClassVarDecl);
     public void visit(OtherClassVarDeclList OtherClassVarDeclList);
     public void visit(OtherGlobalVarDeclList OtherGlobalVarDeclList);
-    public void visit(MulopFactorList MulopFactorList);
     public void visit(AddopTermList AddopTermList);
     public void visit(VarDecl VarDecl);
     public void visit(Unmatched Unmatched);
@@ -59,6 +58,7 @@ public interface Visitor {
     public void visit(OptionalExpr OptionalExpr);
     public void visit(FormParsOptional FormParsOptional);
     public void visit(MethodDeclList2 MethodDeclList2);
+    public void visit(Term Term);
     public void visit(MulopP MulopP);
     public void visit(MulopD MulopD);
     public void visit(MulopM MulopM);
@@ -86,9 +86,8 @@ public interface Visitor {
     public void visit(FactorNumConst FactorNumConst);
     public void visit(FactorDesignatorOnly FactorDesignatorOnly);
     public void visit(FactorActPars FactorActPars);
-    public void visit(NoMulopFactorList NoMulopFactorList);
-    public void visit(MulopFactorListX MulopFactorListX);
-    public void visit(Term Term);
+    public void visit(TermFactorList TermFactorList);
+    public void visit(TermOne TermOne);
     public void visit(NoAddopTermList NoAddopTermList);
     public void visit(AddopTermListX AddopTermListX);
     public void visit(NoOptMinus NoOptMinus);
@@ -120,7 +119,10 @@ public interface Visitor {
     public void visit(AssignDsgStmtEnd AssignDsgStmtEnd);
     public void visit(ErrorDesignatorStmt ErrorDesignatorStmt);
     public void visit(SecondTypeDesignatorStmt SecondTypeDesignatorStmt);
-    public void visit(FirstTypeDesignatorStmt FirstTypeDesignatorStmt);
+    public void visit(DesignatorStmtDec DesignatorStmtDec);
+    public void visit(DesignatorStmtInc DesignatorStmtInc);
+    public void visit(DesignatorStmtCall DesignatorStmtCall);
+    public void visit(DesignatorStmtAssign DesignatorStmtAssign);
     public void visit(NoOptionalNumConst NoOptionalNumConst);
     public void visit(OptionalNumConstX OptionalNumConstX);
     public void visit(NoOptionalExpr NoOptionalExpr);

@@ -66,16 +66,16 @@ terminal Character CHARCONST;
 nonterminal ConstDeclList, MethodDeclList, ConstDecl, OtherConstList;
 nonterminal VarDecl, FirstVarDecl, OtherVarDeclList, ClassDecl, VarDeclList, ConstructorMethodLists, ConstructorDeclList;
 nonterminal FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList;
-nonterminal Statement, Unmatched, Matched, OptionalExpr, OptionalNumConst;
+nonterminal Statement, Unmatched, Matched, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
-nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, CondFact, OptionalRelopExpr, OptMinus, AddopTermList;
-nonterminal Term, MulopFactorList, Label, Assignop, Relop, Addop, Mulop, ElseElse;
+nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, OptionalRelopExpr, OptMinus, AddopTermList;
+nonterminal Label, Assignop, Relop, Addop, Mulop, ElseElse;
 nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail;
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
-nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
 precedence left ELSE;
@@ -192,7 +192,7 @@ StatementList ::= (StatementListX) StatementList Statement |
 			
 /* METHOD DECL */
 
-MethodDecl ::= (MethodDecl) ReturnType IDENT LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
+MethodDecl ::= (MethodDecl) MethodStart LEFT_ROUND_PARENTHESES FormParsOptional RIGHT_ROUND_PARENTHESES VarDeclList LEFT_WIGGLY_PARENTHESES StatementList RIGHT_WIGGLY_PARENTHESES;
 
 ReturnType ::= (ReturnTypeX) Type |
 			   (NoReturnType) VOID;
@@ -247,7 +247,10 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST |
 
 /* DESIGNATOR STATEMENT */
 
-DesignatorStatement ::= (FirstTypeDesignatorStmt) Designator DsgStmtEnd SEMICOLON |
+DesignatorStatement ::= (DesignatorStmtAssign) Designator Assignop Expr SEMICOLON |
+						(DesignatorStmtCall) Designator LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES SEMICOLON |
+						(DesignatorStmtInc) Designator INCREMENT SEMICOLON |
+						(DesignatorStmtDec) Designator DECREMENT SEMICOLON |
 						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator SEMICOLON |
 						(ErrorDesignatorStmt) error SEMICOLON:l {: parser.report_error("Greska u konstrukciji iskaza dodele u liniji " + lleft, null); :};
 						
@@ -308,10 +311,11 @@ AddopTermList ::= (AddopTermListX) AddopTermList Addop Term |
  				  
 /* TERM */
 
-Term ::= (Term) Factor MulopFactorList;
+Term ::= (TermOne) Factor |
+		 (TermFactorList) Term Mulop Factor;
 
-MulopFactorList ::= (MulopFactorListX) MulopFactorList Mulop Factor |
-					(NoMulopFactorList) /* epsilon */;
+//MulopFactorList ::= (MulopFactorListX) MulopFactorList Mulop Factor |
+//					(NoMulopFactorList) /* epsilon */;
 					
 /* FACTOR */
 
@@ -338,7 +342,7 @@ Designator ::= (Designator) DesignatorStart IdentExprList;
 
 DesignatorFE ::= (DesignatorFE) DesignatorStart IdentExprList DOT FOREACH;
 
-IdentExprList ::= (IdentExprListIdent) IdentExprList DOT IDENT |
+IdentExprList ::= (IdentExprListIdent) IdentExprList DOT IDENT:field |
 				  (IdentExprListExpr) IdentExprList LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
 				  (NoIdentExprList) /* epsilon */;
 				  
