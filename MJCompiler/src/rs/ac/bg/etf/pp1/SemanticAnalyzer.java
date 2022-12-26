@@ -212,7 +212,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		return;
     	}
     	
-    	Tab.insert(Obj.Var, varName, new Struct(Struct.Array, currentType));
+    	Tab.insert(Obj.Fld, varName, new Struct(Struct.Array, currentType));
 		report_info("Deklarisana promenljiva klase (niz) " + varName + "!", classArrayVar);
     }
     
@@ -225,7 +225,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		return;
     	}
     	
-    	Tab.insert(Obj.Var, varName, currentType);
+    	Tab.insert(Obj.Fld, varName, currentType);
 		report_info("Deklarisana promenljiva klase " + varName + "!", classVar);
     }
     
@@ -292,10 +292,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	if (superclassType != Tab.noType) {
     		for (Obj field: superclassType.getMembers()) {
         		if (field.getName().equals("VFT") || field.getName().equals(superclass)) continue;
-        		if (field.getKind() == Obj.Fld) 
+        		if (field.getKind() == Obj.Fld) {
         			Tab.insert(Obj.Fld, field.getName(), field.getType());
-        		if (field.getKind() == Obj.Meth) 
+        		}
+        		if (field.getKind() == Obj.Meth) {
         			Tab.currentScope().addToLocals(field);
+        		}
         	}
     	}
 
@@ -453,6 +455,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	String name = methodStart.getName();
     	Obj obj = Tab.currentScope().findSymbol(name);
     	
+    	currentMethodName = name;
+    	
     	if (obj != null && subclassType == null) {
     		report_error("Metoda sa imenom " + name + " je vec deklarisana!", null);
     		currentMethod = Tab.noObj;
@@ -482,6 +486,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	String name = methodStart.getName();
     	Obj obj = Tab.currentScope().findSymbol(name);
     	
+    	currentMethodName = name;
+    	
     	if (obj != null && subclassType == null) {
     		report_error("Metoda sa imenom " + name + " je vec deklarisana!", null);
     		currentMethod = Tab.noObj;
@@ -492,6 +498,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	if (overrided != null) {
     		Tab.currentScope().getLocals().deleteKey(name);
+    	}
+    	
+    	if (name.equals("main")) {
+    		hasMainMethod = true;
     	}
     	
     	currentMethod = Tab.insert(Obj.Meth, name, Tab.noType);
@@ -554,7 +564,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
 		returnFound = true;
 		
-		if (currentMethod.getType() != Tab.noType) {
+		if (currentMethod.getType() == Tab.noType) {
 			report_error("Return je tipiziran, a metoda/funkcija je void povratnog tipa!", returnExpr);
     		returnExpr.struct = Tab.noType;
     		return;
@@ -673,6 +683,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     /* DESIGNATOR */
     
+    List<Obj> designators = new ArrayList<>();
+    
     public void visit(DesignatorStart dStart) {
     	String name = dStart.getName();
     	Obj obj = Tab.find(name);
@@ -686,7 +698,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     	
     	int kind = obj.getKind();
-    	currentDesignator = obj;
+    	designators.add(obj);
+    	//currentDesignator = obj;
     	
     	if (kind == Obj.Var) {
     		report_info("Pristup promenljivoj/parametru " + name + "!", dStart);
@@ -699,9 +712,23 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}	
     }
     
+    boolean hasList = false;
+    
+    public void visit(Designator d) {
+    	if (!hasList)
+    		d.obj = d.getDesignatorStart().obj;
+    	else d.obj = d.getIdentExprList().obj;
+    	hasList = false;
+    	designators.remove(designators.size() - 1);
+    }
+    
     public void visit(IdentExprListExpr arrayDesignator) {
     	Obj obj = arrayDesignator.getIdentExprList().obj;
     	Expr expr = arrayDesignator.getExpr();
+    	hasList = true;
+    	
+    	currentDesignator = designators.remove(designators.size() - 1);
+    	
     	
     	if (expr.struct != Tab.intType) {
     		report_error("Nekompatibilan tip za indeksiranje - mora biti ceo broj!", arrayDesignator);
@@ -712,18 +739,24 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			arrayDesignator.obj = Tab.noObj;
     		} else {
     			arrayDesignator.obj = new Obj(Obj.Elem, currentDesignator.getName(), currentDesignator.getType().getElemType());
+    			designators.add(arrayDesignator.obj);
     		}
     	} else if (obj.getType().getKind() != Struct.Array) {
     		report_error("Promenljiva " + currentDesignator.getName() + " kojoj se pristupa nije niz!", arrayDesignator);
 			arrayDesignator.obj = Tab.noObj;
     	} else {
 			arrayDesignator.obj = new Obj(Obj.Elem, obj.getName(), obj.getType().getElemType());
+			designators.add(arrayDesignator.obj);
 		}
     	
     	currentDesignator = null;
+    	
     }
     
     public void visit(IdentExprListIdent fieldDesignator) {
+    	hasList = true;
+    	
+    	currentDesignator = designators.remove(designators.size() - 1);
     	
     	if (currentDesignator == null || currentDesignator == Tab.noObj) {
     		fieldDesignator.obj = Tab.noObj;
@@ -745,6 +778,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			return;
     		} else {
     			report_info("Pristupa se polju " + fieldDesignator.getField() + " klase " + subclass + "!", fieldDesignator);
+    			designators.add(obj);
     			fieldDesignator.obj = obj;
     			return;
     		}
@@ -755,6 +789,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	for (Obj obj : arr) {
     		if (fieldDesignator.getField().equals(obj.getName())) {
     			report_info("Pristupa se polju/metodi " + obj.getName() + "!", fieldDesignator);
+    			designators.add(obj);
     			fieldDesignator.obj = obj;
     			return;
     		}
@@ -810,19 +845,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(FactorNewArray factor) {
-    	if (factor.getType().struct.getKind() != Struct.Class) {
-    		report_error("Operator new se moze pozivati samo za klasne tipove!",factor);
-    		factor.struct = Tab.noType;
-    	} else {
-    		if (factor.getExpr().struct != Tab.intType) {
-    			report_error("Velicina mora biti int tipa!", factor);
-    			factor.struct = Tab.noType;
-    		}
-    		else {
-    			report_info("Kreiran je niz objekata klase!", factor);
-        		factor.struct = new Struct(Struct.Array, factor.getType().struct);
-    		}
-    	}
+		if (factor.getExpr().struct != Tab.intType) {
+			report_error("Velicina mora biti int tipa!", factor);
+			factor.struct = Tab.noType;
+		}
+		else {
+			report_info("Kreiran je niz objekata klase!", factor);
+    		factor.struct = new Struct(Struct.Array, factor.getType().struct);
+		}
     }
     
     /* COND FACT */
@@ -913,6 +943,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	expr.struct = expr.getTerm().struct;
     	negation = false;
+    	addition = false;
     }
     
     /* OPERATORS */
@@ -1065,7 +1096,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(SecondTypeDesignatorStmt stmt) {
-    	if (stmt.getDesignator().obj.getKind() != Struct.Array) {
+    	if (stmt.getDesignator().obj.getType().getKind() != Struct.Array) {
     		report_error("Desna strana mora biti niz!", stmt);
     		return;
     	}
@@ -1077,7 +1108,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		}
     	}
     	
-    	assignList = null;
+    	assignList.clear();
     }
     
 }

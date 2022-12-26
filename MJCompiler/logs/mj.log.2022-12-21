@@ -1,0 +1,1306 @@
+INFO  18:18:47,496 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:18:47,652 - #2 program
+INFO  18:18:47,653 - #47 MJProgram
+INFO  18:18:47,653 - #7 const
+INFO  18:18:47,656 - #47 int
+INFO  18:18:47,657 - #47 a
+INFO  18:18:47,658 - #32 =
+INFO  18:18:47,659 - #46 5
+INFO  18:18:47,659 - #35 ;
+INFO  18:18:47,660 - #47 char
+INFO  18:18:47,661 - #47 b
+INFO  18:18:47,661 - #41 [
+INFO  18:18:47,661 - #42 ]
+INFO  18:18:47,662 - #37 ,
+INFO  18:18:47,664 - #47 v
+INFO  18:18:47,664 - #35 ;
+INFO  18:18:47,665 - #4 class
+INFO  18:18:47,665 - #47 B
+INFO  18:18:47,665 - #43 {
+INFO  18:18:47,669 - #47 int
+INFO  18:18:47,671 - #47 a
+INFO  18:18:47,672 - #35 ;
+INFO  18:18:47,674 - #43 {
+INFO  18:18:47,675 - #47 B
+INFO  18:18:47,675 - #39 (
+INFO  18:18:47,677 - #40 )
+INFO  18:18:47,679 - #43 {
+INFO  18:18:47,680 - #44 }
+INFO  18:18:47,682 - #47 B
+INFO  18:18:47,684 - #39 (
+INFO  18:18:47,685 - #47 int
+INFO  18:18:47,685 - #47 arg1
+INFO  18:18:47,685 - #40 )
+INFO  18:18:47,691 - #47 int
+INFO  18:18:47,691 - #47 x
+INFO  18:18:47,691 - #35 ;
+INFO  18:18:47,693 - #43 {
+INFO  18:18:47,693 - #44 }
+INFO  18:18:47,694 - #15 void
+INFO  18:18:47,694 - #47 abc
+INFO  18:18:47,694 - #39 (
+INFO  18:18:47,694 - #47 int
+INFO  18:18:47,694 - #47 p
+INFO  18:18:47,695 - #37 ,
+INFO  18:18:47,695 - #47 int
+INFO  18:18:47,695 - #47 q
+INFO  18:18:47,695 - #40 )
+INFO  18:18:47,695 - #43 {
+INFO  18:18:47,695 - #44 }
+INFO  18:18:47,695 - #47 int
+INFO  18:18:47,698 - #47 abcd
+INFO  18:18:47,698 - #39 (
+INFO  18:18:47,698 - #47 bool
+INFO  18:18:47,698 - #47 a
+INFO  18:18:47,699 - #37 ,
+INFO  18:18:47,699 - #47 int
+INFO  18:18:47,699 - #47 p
+INFO  18:18:47,699 - #37 ,
+INFO  18:18:47,700 - #47 char
+INFO  18:18:47,700 - #47 k
+INFO  18:18:47,700 - #40 )
+INFO  18:18:47,700 - #43 {
+INFO  18:18:47,701 - #44 }
+INFO  18:18:47,701 - #44 }
+INFO  18:18:47,702 - #44 }
+INFO  18:18:47,702 - #4 class
+INFO  18:18:47,705 - #47 Tabela
+INFO  18:18:47,705 - #16 extends
+INFO  18:18:47,705 - #47 B
+INFO  18:18:47,705 - #43 {
+INFO  18:18:47,706 - #43 {
+INFO  18:18:47,706 - #15 void
+INFO  18:18:47,706 - #47 abc
+INFO  18:18:47,706 - #39 (
+INFO  18:18:47,707 - #47 int
+INFO  18:18:47,707 - #47 c
+INFO  18:18:47,707 - #37 ,
+INFO  18:18:47,707 - #47 char
+INFO  18:18:47,707 - #47 d
+INFO  18:18:47,707 - #40 )
+INFO  18:18:47,708 - #43 {
+INFO  18:18:47,708 - #44 }
+INFO  18:18:47,708 - #44 }
+INFO  18:18:47,709 - #44 }
+INFO  18:18:47,709 - #43 {
+INFO  18:18:47,709 - #44 }
+INFO  18:18:47,727 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListConst(
+          NoConstDeclList(
+          ) [NoConstDeclList]
+          ConstDeclX(
+            Type(
+             int
+            ) [Type]
+           a
+            FirstConstNum(
+             5
+            ) [FirstConstNum]
+            NoOtherConstList(
+            ) [NoOtherConstList]
+          ) [ConstDeclX]
+        ) [ConstDeclListConst]
+        GlobalVarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstGlobalVarDeclArrayIdent(
+           b
+          ) [FirstGlobalVarDeclArrayIdent]
+          OtherGlobalVarDeclListX(
+            NoOtherGlobalVarDeclList(
+            ) [NoOtherGlobalVarDeclList]
+            FirstGlobalVarDeclIdentOnly(
+             v
+            ) [FirstGlobalVarDeclIdentOnly]
+          ) [OtherGlobalVarDeclListX]
+        ) [GlobalVarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+        ClassDeclStart(
+         B
+          NoExtension(
+          ) [NoExtension]
+        ) [ClassDeclStart]
+        ClassVarDeclListX(
+          NoClassVarDeclList(
+          ) [NoClassVarDeclList]
+          ClassVarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             a
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ConstructorMethodListsX(
+          ListsConMet(
+            ConstructorDeclStart(
+             B
+            ) [ConstructorDeclStart]
+            ConstructorDeclListX(
+              NoConstructorDeclList(
+                FirstConstructorDecl(
+                  NoFormParsOptional(
+                  ) [NoFormParsOptional]
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  NoStatementList(
+                  ) [NoStatementList]
+                ) [FirstConstructorDecl]
+              ) [NoConstructorDeclList]
+              ConstructorDeclStart(
+               B
+              ) [ConstructorDeclStart]
+              FirstConstructorDecl(
+                FormParsOptionalX(
+                  FormPars(
+                    IdentSquaresX(
+                      Type(
+                       int
+                      ) [Type]
+                     arg1
+                      NoOptionalSquares(
+                      ) [NoOptionalSquares]
+                    ) [IdentSquaresX]
+                    NoTypeIdentList(
+                    ) [NoTypeIdentList]
+                  ) [FormPars]
+                ) [FormParsOptionalX]
+                VarDeclListX(
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  VarDeclX(
+                    Type(
+                     int
+                    ) [Type]
+                    FirstVarDeclIdentOnly(
+                     x
+                    ) [FirstVarDeclIdentOnly]
+                    NoOtherVarDeclList(
+                    ) [NoOtherVarDeclList]
+                  ) [VarDeclX]
+                ) [VarDeclListX]
+                NoStatementList(
+                ) [NoStatementList]
+              ) [FirstConstructorDecl]
+            ) [ConstructorDeclListX]
+            MethodStartVoid(
+             abc
+            ) [MethodStartVoid]
+            MDL21(
+              MDL23(
+                MethodDecl2(
+                  FormParsOptionalX(
+                    FormPars(
+                      IdentSquaresX(
+                        Type(
+                         int
+                        ) [Type]
+                       p
+                        NoOptionalSquares(
+                        ) [NoOptionalSquares]
+                      ) [IdentSquaresX]
+                      TypeIdentListX(
+                        NoTypeIdentList(
+                        ) [NoTypeIdentList]
+                        IdentSquaresX(
+                          Type(
+                           int
+                          ) [Type]
+                         q
+                          NoOptionalSquares(
+                          ) [NoOptionalSquares]
+                        ) [IdentSquaresX]
+                      ) [TypeIdentListX]
+                    ) [FormPars]
+                  ) [FormParsOptionalX]
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  NoStatementList(
+                  ) [NoStatementList]
+                ) [MethodDecl2]
+              ) [MDL23]
+              MethodStartType(
+                Type(
+                 int
+                ) [Type]
+               abcd
+              ) [MethodStartType]
+              MethodDecl2(
+                FormParsOptionalX(
+                  FormPars(
+                    IdentSquaresX(
+                      Type(
+                       bool
+                      ) [Type]
+                     a
+                      NoOptionalSquares(
+                      ) [NoOptionalSquares]
+                    ) [IdentSquaresX]
+                    TypeIdentListX(
+                      TypeIdentListX(
+                        NoTypeIdentList(
+                        ) [NoTypeIdentList]
+                        IdentSquaresX(
+                          Type(
+                           int
+                          ) [Type]
+                         p
+                          NoOptionalSquares(
+                          ) [NoOptionalSquares]
+                        ) [IdentSquaresX]
+                      ) [TypeIdentListX]
+                      IdentSquaresX(
+                        Type(
+                         char
+                        ) [Type]
+                       k
+                        NoOptionalSquares(
+                        ) [NoOptionalSquares]
+                      ) [IdentSquaresX]
+                    ) [TypeIdentListX]
+                  ) [FormPars]
+                ) [FormParsOptionalX]
+                NoVarDeclList(
+                ) [NoVarDeclList]
+                NoStatementList(
+                ) [NoStatementList]
+              ) [MethodDecl2]
+            ) [MDL21]
+          ) [ListsConMet]
+        ) [ConstructorMethodListsX]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+      ClassDeclStart(
+       Tabela
+        ExtensionX(
+          Type(
+           B
+          ) [Type]
+        ) [ExtensionX]
+      ) [ClassDeclStart]
+      NoClassVarDeclList(
+      ) [NoClassVarDeclList]
+      ConstructorMethodListsX(
+        ListsMet(
+          MethodStartVoid(
+           abc
+          ) [MethodStartVoid]
+          MDL23(
+            MethodDecl2(
+              FormParsOptionalX(
+                FormPars(
+                  IdentSquaresX(
+                    Type(
+                     int
+                    ) [Type]
+                   c
+                    NoOptionalSquares(
+                    ) [NoOptionalSquares]
+                  ) [IdentSquaresX]
+                  TypeIdentListX(
+                    NoTypeIdentList(
+                    ) [NoTypeIdentList]
+                    IdentSquaresX(
+                      Type(
+                       char
+                      ) [Type]
+                     d
+                      NoOptionalSquares(
+                      ) [NoOptionalSquares]
+                    ) [IdentSquaresX]
+                  ) [TypeIdentListX]
+                ) [FormPars]
+              ) [FormParsOptionalX]
+              NoVarDeclList(
+              ) [NoVarDeclList]
+              NoStatementList(
+              ) [NoStatementList]
+            ) [MethodDecl2]
+          ) [MDL23]
+        ) [ListsMet]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:18:47,728 - ===================================
+INFO  18:18:47,741 - Konstanta definisana! na liniji 3
+INFO  18:18:47,741 - Deklarisana globalna promenljiva (niz)! na liniji 4
+INFO  18:18:47,741 - Deklarisana globalna promenljiva! na liniji 4
+INFO  18:18:47,741 - Kreirana je klasa B! na liniji 6
+INFO  18:18:47,742 - Deklarisana promenljiva klase! na liniji 7
+INFO  18:18:47,742 - Definisan konstruktor klase!
+INFO  18:18:47,742 - Deklarisana lokalna promenljiva! na liniji 12
+INFO  18:18:47,742 - Definisan konstruktor klase!
+INFO  18:18:47,743 - Metoda sa nazivom abc definisana u klasi B! na liniji 14
+INFO  18:18:47,743 - Metoda sa nazivom abcd definisana u klasi B! na liniji 16
+ERROR 18:18:47,743 - Metoda  nema return naredbu!
+INFO  18:18:47,744 - Kreirana je klasa Tabela! na liniji 21
+INFO  18:18:47,744 - Metoda sa nazivom abc definisana u klasi Tabela! na liniji 22
+ERROR 18:18:47,744 - Metod  ima pogresan tip parametra sa rednim brojem 2! na liniji 22
+INFO  18:18:47,744 - Definisan podrazumevani konstruktor klase!
+ERROR 18:18:47,744 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:18:47,744 - ===================================
+ERROR 18:18:47,745 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:20:22,004 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:20:22,167 - #2 program
+INFO  18:20:22,167 - #47 MJProgram
+INFO  18:20:22,167 - #7 const
+INFO  18:20:22,171 - #47 int
+INFO  18:20:22,171 - #47 a
+INFO  18:20:22,173 - #32 =
+INFO  18:20:22,173 - #46 5
+INFO  18:20:22,173 - #35 ;
+INFO  18:20:22,175 - #7 const
+INFO  18:20:22,176 - #47 bool
+INFO  18:20:22,176 - #47 q
+INFO  18:20:22,176 - #32 =
+INFO  18:20:22,176 - #46 2
+INFO  18:20:22,177 - #35 ;
+INFO  18:20:22,177 - #47 char
+INFO  18:20:22,177 - #47 b
+INFO  18:20:22,178 - #41 [
+INFO  18:20:22,178 - #42 ]
+INFO  18:20:22,178 - #37 ,
+INFO  18:20:22,180 - #47 v
+INFO  18:20:22,180 - #35 ;
+INFO  18:20:22,181 - #4 class
+INFO  18:20:22,182 - #47 B
+INFO  18:20:22,182 - #43 {
+INFO  18:20:22,186 - #47 int
+INFO  18:20:22,188 - #47 a
+INFO  18:20:22,189 - #35 ;
+INFO  18:20:22,190 - #43 {
+INFO  18:20:22,191 - #47 B
+INFO  18:20:22,191 - #39 (
+INFO  18:20:22,193 - #40 )
+INFO  18:20:22,194 - #43 {
+INFO  18:20:22,196 - #44 }
+INFO  18:20:22,197 - #47 B
+INFO  18:20:22,200 - #39 (
+INFO  18:20:22,200 - #47 int
+INFO  18:20:22,201 - #47 arg1
+INFO  18:20:22,201 - #40 )
+INFO  18:20:22,207 - #47 int
+INFO  18:20:22,207 - #47 x
+INFO  18:20:22,207 - #35 ;
+INFO  18:20:22,209 - #43 {
+INFO  18:20:22,209 - #44 }
+INFO  18:20:22,210 - #15 void
+INFO  18:20:22,210 - #47 abc
+INFO  18:20:22,210 - #39 (
+INFO  18:20:22,210 - #47 int
+INFO  18:20:22,210 - #47 p
+INFO  18:20:22,211 - #37 ,
+INFO  18:20:22,211 - #47 int
+INFO  18:20:22,211 - #47 q
+INFO  18:20:22,211 - #40 )
+INFO  18:20:22,211 - #43 {
+INFO  18:20:22,211 - #44 }
+INFO  18:20:22,212 - #47 int
+INFO  18:20:22,214 - #47 abcd
+INFO  18:20:22,214 - #39 (
+INFO  18:20:22,215 - #47 bool
+INFO  18:20:22,215 - #47 a
+INFO  18:20:22,215 - #37 ,
+INFO  18:20:22,215 - #47 int
+INFO  18:20:22,216 - #47 p
+INFO  18:20:22,216 - #37 ,
+INFO  18:20:22,216 - #47 char
+INFO  18:20:22,217 - #47 k
+INFO  18:20:22,217 - #40 )
+INFO  18:20:22,217 - #43 {
+INFO  18:20:22,217 - #44 }
+INFO  18:20:22,217 - #44 }
+INFO  18:20:22,218 - #44 }
+INFO  18:20:22,219 - #4 class
+INFO  18:20:22,221 - #47 Tabela
+INFO  18:20:22,221 - #16 extends
+INFO  18:20:22,221 - #47 B
+INFO  18:20:22,222 - #43 {
+INFO  18:20:22,222 - #43 {
+INFO  18:20:22,222 - #15 void
+INFO  18:20:22,222 - #47 abc
+INFO  18:20:22,222 - #39 (
+INFO  18:20:22,222 - #47 int
+INFO  18:20:22,222 - #47 c
+INFO  18:20:22,223 - #37 ,
+INFO  18:20:22,223 - #47 char
+INFO  18:20:22,223 - #47 d
+INFO  18:20:22,223 - #40 )
+INFO  18:20:22,224 - #43 {
+INFO  18:20:22,224 - #44 }
+INFO  18:20:22,224 - #44 }
+INFO  18:20:22,224 - #44 }
+INFO  18:20:22,225 - #43 {
+INFO  18:20:22,225 - #44 }
+INFO  18:20:22,244 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListClass(
+    ConstDeclListClass(
+      ConstDeclListVar(
+        ConstDeclListConst(
+          ConstDeclListConst(
+            NoConstDeclList(
+            ) [NoConstDeclList]
+            ConstDeclX(
+              Type(
+               int
+              ) [Type]
+             a
+              FirstConstNum(
+               5
+              ) [FirstConstNum]
+              NoOtherConstList(
+              ) [NoOtherConstList]
+            ) [ConstDeclX]
+          ) [ConstDeclListConst]
+          ConstDeclX(
+            Type(
+             bool
+            ) [Type]
+           q
+            FirstConstNum(
+             2
+            ) [FirstConstNum]
+            NoOtherConstList(
+            ) [NoOtherConstList]
+          ) [ConstDeclX]
+        ) [ConstDeclListConst]
+        GlobalVarDeclX(
+          Type(
+           char
+          ) [Type]
+          FirstGlobalVarDeclArrayIdent(
+           b
+          ) [FirstGlobalVarDeclArrayIdent]
+          OtherGlobalVarDeclListX(
+            NoOtherGlobalVarDeclList(
+            ) [NoOtherGlobalVarDeclList]
+            FirstGlobalVarDeclIdentOnly(
+             v
+            ) [FirstGlobalVarDeclIdentOnly]
+          ) [OtherGlobalVarDeclListX]
+        ) [GlobalVarDeclX]
+      ) [ConstDeclListVar]
+      ClassDecl(
+        ClassDeclStart(
+         B
+          NoExtension(
+          ) [NoExtension]
+        ) [ClassDeclStart]
+        ClassVarDeclListX(
+          NoClassVarDeclList(
+          ) [NoClassVarDeclList]
+          ClassVarDeclX(
+            Type(
+             int
+            ) [Type]
+            FirstClassVarDeclIdentOnly(
+             a
+            ) [FirstClassVarDeclIdentOnly]
+            NoOtherClassVarDeclList(
+            ) [NoOtherClassVarDeclList]
+          ) [ClassVarDeclX]
+        ) [ClassVarDeclListX]
+        ConstructorMethodListsX(
+          ListsConMet(
+            ConstructorDeclStart(
+             B
+            ) [ConstructorDeclStart]
+            ConstructorDeclListX(
+              NoConstructorDeclList(
+                FirstConstructorDecl(
+                  NoFormParsOptional(
+                  ) [NoFormParsOptional]
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  NoStatementList(
+                  ) [NoStatementList]
+                ) [FirstConstructorDecl]
+              ) [NoConstructorDeclList]
+              ConstructorDeclStart(
+               B
+              ) [ConstructorDeclStart]
+              FirstConstructorDecl(
+                FormParsOptionalX(
+                  FormPars(
+                    IdentSquaresX(
+                      Type(
+                       int
+                      ) [Type]
+                     arg1
+                      NoOptionalSquares(
+                      ) [NoOptionalSquares]
+                    ) [IdentSquaresX]
+                    NoTypeIdentList(
+                    ) [NoTypeIdentList]
+                  ) [FormPars]
+                ) [FormParsOptionalX]
+                VarDeclListX(
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  VarDeclX(
+                    Type(
+                     int
+                    ) [Type]
+                    FirstVarDeclIdentOnly(
+                     x
+                    ) [FirstVarDeclIdentOnly]
+                    NoOtherVarDeclList(
+                    ) [NoOtherVarDeclList]
+                  ) [VarDeclX]
+                ) [VarDeclListX]
+                NoStatementList(
+                ) [NoStatementList]
+              ) [FirstConstructorDecl]
+            ) [ConstructorDeclListX]
+            MethodStartVoid(
+             abc
+            ) [MethodStartVoid]
+            MDL21(
+              MDL23(
+                MethodDecl2(
+                  FormParsOptionalX(
+                    FormPars(
+                      IdentSquaresX(
+                        Type(
+                         int
+                        ) [Type]
+                       p
+                        NoOptionalSquares(
+                        ) [NoOptionalSquares]
+                      ) [IdentSquaresX]
+                      TypeIdentListX(
+                        NoTypeIdentList(
+                        ) [NoTypeIdentList]
+                        IdentSquaresX(
+                          Type(
+                           int
+                          ) [Type]
+                         q
+                          NoOptionalSquares(
+                          ) [NoOptionalSquares]
+                        ) [IdentSquaresX]
+                      ) [TypeIdentListX]
+                    ) [FormPars]
+                  ) [FormParsOptionalX]
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  NoStatementList(
+                  ) [NoStatementList]
+                ) [MethodDecl2]
+              ) [MDL23]
+              MethodStartType(
+                Type(
+                 int
+                ) [Type]
+               abcd
+              ) [MethodStartType]
+              MethodDecl2(
+                FormParsOptionalX(
+                  FormPars(
+                    IdentSquaresX(
+                      Type(
+                       bool
+                      ) [Type]
+                     a
+                      NoOptionalSquares(
+                      ) [NoOptionalSquares]
+                    ) [IdentSquaresX]
+                    TypeIdentListX(
+                      TypeIdentListX(
+                        NoTypeIdentList(
+                        ) [NoTypeIdentList]
+                        IdentSquaresX(
+                          Type(
+                           int
+                          ) [Type]
+                         p
+                          NoOptionalSquares(
+                          ) [NoOptionalSquares]
+                        ) [IdentSquaresX]
+                      ) [TypeIdentListX]
+                      IdentSquaresX(
+                        Type(
+                         char
+                        ) [Type]
+                       k
+                        NoOptionalSquares(
+                        ) [NoOptionalSquares]
+                      ) [IdentSquaresX]
+                    ) [TypeIdentListX]
+                  ) [FormPars]
+                ) [FormParsOptionalX]
+                NoVarDeclList(
+                ) [NoVarDeclList]
+                NoStatementList(
+                ) [NoStatementList]
+              ) [MethodDecl2]
+            ) [MDL21]
+          ) [ListsConMet]
+        ) [ConstructorMethodListsX]
+      ) [ClassDecl]
+    ) [ConstDeclListClass]
+    ClassDecl(
+      ClassDeclStart(
+       Tabela
+        ExtensionX(
+          Type(
+           B
+          ) [Type]
+        ) [ExtensionX]
+      ) [ClassDeclStart]
+      NoClassVarDeclList(
+      ) [NoClassVarDeclList]
+      ConstructorMethodListsX(
+        ListsMet(
+          MethodStartVoid(
+           abc
+          ) [MethodStartVoid]
+          MDL23(
+            MethodDecl2(
+              FormParsOptionalX(
+                FormPars(
+                  IdentSquaresX(
+                    Type(
+                     int
+                    ) [Type]
+                   c
+                    NoOptionalSquares(
+                    ) [NoOptionalSquares]
+                  ) [IdentSquaresX]
+                  TypeIdentListX(
+                    NoTypeIdentList(
+                    ) [NoTypeIdentList]
+                    IdentSquaresX(
+                      Type(
+                       char
+                      ) [Type]
+                     d
+                      NoOptionalSquares(
+                      ) [NoOptionalSquares]
+                    ) [IdentSquaresX]
+                  ) [TypeIdentListX]
+                ) [FormPars]
+              ) [FormParsOptionalX]
+              NoVarDeclList(
+              ) [NoVarDeclList]
+              NoStatementList(
+              ) [NoStatementList]
+            ) [MethodDecl2]
+          ) [MDL23]
+        ) [ListsMet]
+      ) [ConstructorMethodListsX]
+    ) [ClassDecl]
+  ) [ConstDeclListClass]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:20:22,245 - ===================================
+INFO  18:20:22,255 - Konstanta definisana! na liniji 3
+ERROR 18:20:22,255 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 4
+INFO  18:20:22,256 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:20:22,256 - Deklarisana globalna promenljiva! na liniji 5
+INFO  18:20:22,256 - Kreirana je klasa B! na liniji 7
+INFO  18:20:22,256 - Deklarisana promenljiva klase! na liniji 8
+INFO  18:20:22,256 - Definisan konstruktor klase!
+INFO  18:20:22,257 - Deklarisana lokalna promenljiva! na liniji 13
+INFO  18:20:22,257 - Definisan konstruktor klase!
+INFO  18:20:22,257 - Metoda sa nazivom abc definisana u klasi B! na liniji 15
+INFO  18:20:22,257 - Metoda sa nazivom abcd definisana u klasi B! na liniji 17
+ERROR 18:20:22,257 - Metoda  nema return naredbu!
+INFO  18:20:22,258 - Kreirana je klasa Tabela! na liniji 22
+INFO  18:20:22,258 - Metoda sa nazivom abc definisana u klasi Tabela! na liniji 23
+ERROR 18:20:22,258 - Metod  ima pogresan tip parametra sa rednim brojem 2! na liniji 23
+INFO  18:20:22,259 - Definisan podrazumevani konstruktor klase!
+ERROR 18:20:22,259 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:20:22,259 - ===================================
+ERROR 18:20:22,260 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:21:24,644 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:21:24,727 - #2 program
+INFO  18:21:24,727 - #47 MJProgram
+INFO  18:21:24,728 - #7 const
+INFO  18:21:24,729 - #47 int
+INFO  18:21:24,730 - #47 a
+INFO  18:21:24,730 - #32 =
+INFO  18:21:24,731 - #46 5
+INFO  18:21:24,731 - #35 ;
+INFO  18:21:24,732 - #7 const
+INFO  18:21:24,732 - #47 bool
+INFO  18:21:24,732 - #47 q
+INFO  18:21:24,733 - #32 =
+INFO  18:21:24,733 - #46 2
+INFO  18:21:24,733 - #35 ;
+INFO  18:21:24,733 - #47 char
+INFO  18:21:24,734 - #47 b
+INFO  18:21:24,734 - #41 [
+INFO  18:21:24,734 - #42 ]
+INFO  18:21:24,734 - #37 ,
+INFO  18:21:24,736 - #47 v
+INFO  18:21:24,736 - #35 ;
+INFO  18:21:24,736 - #43 {
+INFO  18:21:24,736 - #44 }
+INFO  18:21:24,745 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListConst(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         a
+          FirstConstNum(
+           5
+          ) [FirstConstNum]
+          NoOtherConstList(
+          ) [NoOtherConstList]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      ConstDeclX(
+        Type(
+         bool
+        ) [Type]
+       q
+        FirstConstNum(
+         2
+        ) [FirstConstNum]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    GlobalVarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstGlobalVarDeclArrayIdent(
+       b
+      ) [FirstGlobalVarDeclArrayIdent]
+      OtherGlobalVarDeclListX(
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+        FirstGlobalVarDeclIdentOnly(
+         v
+        ) [FirstGlobalVarDeclIdentOnly]
+      ) [OtherGlobalVarDeclListX]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:21:24,745 - ===================================
+INFO  18:21:24,751 - Konstanta definisana! na liniji 3
+ERROR 18:21:24,752 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 4
+INFO  18:21:24,752 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:21:24,752 - Deklarisana globalna promenljiva! na liniji 5
+ERROR 18:21:24,752 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:21:24,752 - ===================================
+ERROR 18:21:24,753 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:21:50,795 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:21:50,873 - #2 program
+INFO  18:21:50,874 - #47 MJProgram
+INFO  18:21:50,874 - #7 const
+INFO  18:21:50,875 - #47 int
+INFO  18:21:50,875 - #47 a
+INFO  18:21:50,876 - #32 =
+INFO  18:21:50,876 - #46 5
+INFO  18:21:50,876 - #37 ,
+INFO  18:21:50,877 - #47 q
+INFO  18:21:50,878 - #32 =
+INFO  18:21:50,878 - #46 2
+INFO  18:21:50,878 - #35 ;
+INFO  18:21:50,878 - #7 const
+INFO  18:21:50,879 - #47 bool
+INFO  18:21:50,879 - #47 q
+INFO  18:21:50,879 - #32 =
+INFO  18:21:50,879 - #46 2
+INFO  18:21:50,879 - #35 ;
+INFO  18:21:50,879 - #47 char
+INFO  18:21:50,879 - #47 b
+INFO  18:21:50,880 - #41 [
+INFO  18:21:50,880 - #42 ]
+INFO  18:21:50,880 - #37 ,
+INFO  18:21:50,881 - #47 v
+INFO  18:21:50,881 - #35 ;
+INFO  18:21:50,882 - #43 {
+INFO  18:21:50,882 - #44 }
+INFO  18:21:50,890 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListConst(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         a
+          FirstConstNum(
+           5
+          ) [FirstConstNum]
+          OtherConstListX(
+            NoOtherConstList(
+            ) [NoOtherConstList]
+            ConstTailX(
+             q
+              FirstConstNum(
+               2
+              ) [FirstConstNum]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      ConstDeclX(
+        Type(
+         bool
+        ) [Type]
+       q
+        FirstConstNum(
+         2
+        ) [FirstConstNum]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    GlobalVarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstGlobalVarDeclArrayIdent(
+       b
+      ) [FirstGlobalVarDeclArrayIdent]
+      OtherGlobalVarDeclListX(
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+        FirstGlobalVarDeclIdentOnly(
+         v
+        ) [FirstGlobalVarDeclIdentOnly]
+      ) [OtherGlobalVarDeclListX]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:21:50,891 - ===================================
+INFO  18:21:50,895 - Konstanta definisana! na liniji 3
+INFO  18:21:50,895 - Konstanta definisana! na liniji 3
+ERROR 18:21:50,896 - Vec postoji konstanta sa ovim imenom! na liniji 4
+INFO  18:21:50,896 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:21:50,896 - Deklarisana globalna promenljiva! na liniji 5
+ERROR 18:21:50,896 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:21:50,897 - ===================================
+ERROR 18:21:50,898 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:22:02,087 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:22:02,254 - #2 program
+INFO  18:22:02,256 - #47 MJProgram
+INFO  18:22:02,256 - #7 const
+INFO  18:22:02,259 - #47 int
+INFO  18:22:02,259 - #47 a
+INFO  18:22:02,261 - #32 =
+INFO  18:22:02,261 - #46 5
+INFO  18:22:02,261 - #37 ,
+INFO  18:22:02,263 - #47 q
+INFO  18:22:02,263 - #32 =
+INFO  18:22:02,263 - #48 true
+INFO  18:22:02,264 - #35 ;
+INFO  18:22:02,265 - #7 const
+INFO  18:22:02,265 - #47 bool
+INFO  18:22:02,266 - #47 q
+INFO  18:22:02,266 - #32 =
+INFO  18:22:02,266 - #46 2
+INFO  18:22:02,266 - #35 ;
+INFO  18:22:02,266 - #47 char
+INFO  18:22:02,266 - #47 b
+INFO  18:22:02,266 - #41 [
+INFO  18:22:02,266 - #42 ]
+INFO  18:22:02,266 - #37 ,
+INFO  18:22:02,269 - #47 v
+INFO  18:22:02,269 - #35 ;
+INFO  18:22:02,270 - #43 {
+INFO  18:22:02,271 - #44 }
+INFO  18:22:02,286 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListConst(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         a
+          FirstConstNum(
+           5
+          ) [FirstConstNum]
+          OtherConstListX(
+            NoOtherConstList(
+            ) [NoOtherConstList]
+            ConstTailX(
+             q
+              FirstConstBool(
+               true
+              ) [FirstConstBool]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      ConstDeclX(
+        Type(
+         bool
+        ) [Type]
+       q
+        FirstConstNum(
+         2
+        ) [FirstConstNum]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    GlobalVarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstGlobalVarDeclArrayIdent(
+       b
+      ) [FirstGlobalVarDeclArrayIdent]
+      OtherGlobalVarDeclListX(
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+        FirstGlobalVarDeclIdentOnly(
+         v
+        ) [FirstGlobalVarDeclIdentOnly]
+      ) [OtherGlobalVarDeclListX]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:22:02,287 - ===================================
+ERROR 18:22:02,296 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 3
+INFO  18:22:02,296 - Konstanta definisana! na liniji 3
+ERROR 18:22:02,297 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 4
+INFO  18:22:02,297 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:22:02,297 - Deklarisana globalna promenljiva! na liniji 5
+ERROR 18:22:02,297 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:22:02,297 - ===================================
+ERROR 18:22:02,298 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:22:28,160 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:22:28,296 - #2 program
+INFO  18:22:28,296 - #47 MJProgram
+INFO  18:22:28,296 - #7 const
+INFO  18:22:28,300 - #47 int
+INFO  18:22:28,301 - #47 a
+INFO  18:22:28,303 - #32 =
+INFO  18:22:28,303 - #46 5
+INFO  18:22:28,304 - #37 ,
+INFO  18:22:28,306 - #47 q
+INFO  18:22:28,306 - #32 =
+INFO  18:22:28,306 - #48 true
+INFO  18:22:28,306 - #35 ;
+INFO  18:22:28,307 - #7 const
+INFO  18:22:28,308 - #47 bool
+INFO  18:22:28,308 - #47 q
+INFO  18:22:28,308 - #32 =
+INFO  18:22:28,308 - #48 true
+INFO  18:22:28,309 - #35 ;
+INFO  18:22:28,309 - #47 char
+INFO  18:22:28,309 - #47 b
+INFO  18:22:28,309 - #41 [
+INFO  18:22:28,309 - #42 ]
+INFO  18:22:28,309 - #37 ,
+INFO  18:22:28,311 - #47 v
+INFO  18:22:28,311 - #35 ;
+INFO  18:22:28,312 - #43 {
+INFO  18:22:28,313 - #44 }
+INFO  18:22:28,329 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListConst(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         a
+          FirstConstNum(
+           5
+          ) [FirstConstNum]
+          OtherConstListX(
+            NoOtherConstList(
+            ) [NoOtherConstList]
+            ConstTailX(
+             q
+              FirstConstBool(
+               true
+              ) [FirstConstBool]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      ConstDeclX(
+        Type(
+         bool
+        ) [Type]
+       q
+        FirstConstBool(
+         true
+        ) [FirstConstBool]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    GlobalVarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstGlobalVarDeclArrayIdent(
+       b
+      ) [FirstGlobalVarDeclArrayIdent]
+      OtherGlobalVarDeclListX(
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+        FirstGlobalVarDeclIdentOnly(
+         v
+        ) [FirstGlobalVarDeclIdentOnly]
+      ) [OtherGlobalVarDeclListX]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:22:28,330 - ===================================
+ERROR 18:22:28,338 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 3
+INFO  18:22:28,338 - Konstanta definisana! na liniji 3
+INFO  18:22:28,339 - Konstanta definisana! na liniji 4
+INFO  18:22:28,339 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:22:28,339 - Deklarisana globalna promenljiva! na liniji 5
+ERROR 18:22:28,339 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:22:28,340 - ===================================
+ERROR 18:22:28,341 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:23:27,119 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:23:27,268 - #2 program
+INFO  18:23:27,269 - #47 MJProgram
+INFO  18:23:27,269 - #7 const
+INFO  18:23:27,274 - #47 int
+INFO  18:23:27,274 - #47 a
+INFO  18:23:27,276 - #32 =
+INFO  18:23:27,277 - #46 5
+INFO  18:23:27,277 - #37 ,
+INFO  18:23:27,279 - #47 q
+INFO  18:23:27,279 - #32 =
+INFO  18:23:27,279 - #48 true
+INFO  18:23:27,280 - #35 ;
+INFO  18:23:27,281 - #7 const
+INFO  18:23:27,281 - #47 bool
+INFO  18:23:27,281 - #47 q
+INFO  18:23:27,282 - #32 =
+INFO  18:23:27,282 - #48 true
+INFO  18:23:27,282 - #35 ;
+INFO  18:23:27,282 - #47 char
+INFO  18:23:27,283 - #47 b
+INFO  18:23:27,283 - #41 [
+INFO  18:23:27,283 - #42 ]
+INFO  18:23:27,283 - #37 ,
+INFO  18:23:27,285 - #47 v
+INFO  18:23:27,285 - #35 ;
+INFO  18:23:27,286 - #43 {
+INFO  18:23:27,288 - #44 }
+INFO  18:23:27,306 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListConst(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         a
+          FirstConstNum(
+           5
+          ) [FirstConstNum]
+          OtherConstListX(
+            NoOtherConstList(
+            ) [NoOtherConstList]
+            ConstTailX(
+             q
+              FirstConstBool(
+               true
+              ) [FirstConstBool]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      ConstDeclX(
+        Type(
+         bool
+        ) [Type]
+       q
+        FirstConstBool(
+         true
+        ) [FirstConstBool]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    GlobalVarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstGlobalVarDeclArrayIdent(
+       b
+      ) [FirstGlobalVarDeclArrayIdent]
+      OtherGlobalVarDeclListX(
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+        FirstGlobalVarDeclIdentOnly(
+         v
+        ) [FirstGlobalVarDeclIdentOnly]
+      ) [OtherGlobalVarDeclListX]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:23:27,307 - ===================================
+INFO  18:23:27,316 - int na liniji 3
+ERROR 18:23:27,316 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 3
+INFO  18:23:27,317 - Konstanta definisana! na liniji 3
+INFO  18:23:27,317 - bool na liniji 4
+INFO  18:23:27,317 - Konstanta definisana! na liniji 4
+INFO  18:23:27,317 - char na liniji 5
+INFO  18:23:27,317 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:23:27,318 - Deklarisana globalna promenljiva! na liniji 5
+ERROR 18:23:27,318 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:23:27,318 - ===================================
+ERROR 18:23:27,320 - Parsiranje NIJE uspesno zavrseno!
+INFO  18:26:32,198 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  18:26:32,357 - #2 program
+INFO  18:26:32,358 - #47 MJProgram
+INFO  18:26:32,358 - #7 const
+INFO  18:26:32,361 - #47 int
+INFO  18:26:32,362 - #47 a
+INFO  18:26:32,364 - #32 =
+INFO  18:26:32,364 - #46 5
+INFO  18:26:32,364 - #37 ,
+INFO  18:26:32,367 - #47 q
+INFO  18:26:32,367 - #32 =
+INFO  18:26:32,367 - #48 true
+INFO  18:26:32,367 - #35 ;
+INFO  18:26:32,368 - #7 const
+INFO  18:26:32,369 - #47 bool
+INFO  18:26:32,369 - #47 q
+INFO  18:26:32,369 - #32 =
+INFO  18:26:32,370 - #48 true
+INFO  18:26:32,370 - #35 ;
+INFO  18:26:32,370 - #47 char
+INFO  18:26:32,370 - #47 b
+INFO  18:26:32,371 - #41 [
+INFO  18:26:32,371 - #42 ]
+INFO  18:26:32,371 - #37 ,
+INFO  18:26:32,373 - #47 v
+INFO  18:26:32,373 - #35 ;
+INFO  18:26:32,374 - #43 {
+INFO  18:26:32,375 - #44 }
+INFO  18:26:32,393 - Program(
+  ProgName(
+   MJProgram
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListConst(
+      ConstDeclListConst(
+        NoConstDeclList(
+        ) [NoConstDeclList]
+        ConstDeclX(
+          Type(
+           int
+          ) [Type]
+         a
+          FirstConstNum(
+           5
+          ) [FirstConstNum]
+          OtherConstListX(
+            NoOtherConstList(
+            ) [NoOtherConstList]
+            ConstTailX(
+             q
+              FirstConstBool(
+               true
+              ) [FirstConstBool]
+            ) [ConstTailX]
+          ) [OtherConstListX]
+        ) [ConstDeclX]
+      ) [ConstDeclListConst]
+      ConstDeclX(
+        Type(
+         bool
+        ) [Type]
+       q
+        FirstConstBool(
+         true
+        ) [FirstConstBool]
+        NoOtherConstList(
+        ) [NoOtherConstList]
+      ) [ConstDeclX]
+    ) [ConstDeclListConst]
+    GlobalVarDeclX(
+      Type(
+       char
+      ) [Type]
+      FirstGlobalVarDeclArrayIdent(
+       b
+      ) [FirstGlobalVarDeclArrayIdent]
+      OtherGlobalVarDeclListX(
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+        FirstGlobalVarDeclIdentOnly(
+         v
+        ) [FirstGlobalVarDeclIdentOnly]
+      ) [OtherGlobalVarDeclListX]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  18:26:32,394 - ===================================
+ERROR 18:26:32,403 - Tip i vrednost nisu kompatibilni u deklaraciji konstante! na liniji 3
+INFO  18:26:32,403 - Konstanta definisana! na liniji 3
+INFO  18:26:32,403 - Konstanta definisana! na liniji 4
+INFO  18:26:32,403 - Deklarisana globalna promenljiva (niz)! na liniji 5
+INFO  18:26:32,404 - Deklarisana globalna promenljiva! na liniji 5
+ERROR 18:26:32,404 - Greska: program ne sadrzi main metodu! na liniji 1
+INFO  18:26:32,404 - ===================================
+ERROR 18:26:32,405 - Parsiranje NIJE uspesno zavrseno!
