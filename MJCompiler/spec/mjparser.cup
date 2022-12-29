@@ -242,7 +242,7 @@ ElseElse ::= (ElseElse) ELSE;
 OptionalExpr ::= (OptionalExprX) Expr |
 				 (NoOptionalExpr) /* epsilon */;
 				 
-OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST |
+OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:width |
 					 (NoOptionalNumConst) /* epsilon */;
 
 /* DESIGNATOR STATEMENT */

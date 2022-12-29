@@ -22,7 +22,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int nVars;
 	int loop = 0;
 	
-	public Struct booleanType = new Struct(Struct.Bool);
+	public static Struct booleanType = new Struct(Struct.Bool);
 	
 	Struct currentType = null;
 	String subclass = "";

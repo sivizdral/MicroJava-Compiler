@@ -288,7 +288,7 @@ ElseElse ::= (ElseElse) ELSE {: RESULT=new ElseElse(); :};
 OptionalExpr ::= (OptionalExprX) Expr:E1 {: RESULT=new OptionalExprX(E1); RESULT.setLine(E1left); :} |
 				 (NoOptionalExpr) {: RESULT=new NoOptionalExpr(); :} /* epsilon */;
 				 
-OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:N1 {: RESULT=new OptionalNumConstX(N1); RESULT.setLine(N1left); :} |
+OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:width {: RESULT=new OptionalNumConstX(width); RESULT.setLine(widthleft); :} |
 					 (NoOptionalNumConst) {: RESULT=new NoOptionalNumConst(); :} /* epsilon */;
 
 /* DESIGNATOR STATEMENT */
