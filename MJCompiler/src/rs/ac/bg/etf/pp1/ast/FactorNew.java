@@ -1,28 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/11/2022 21:24:45
+// 3/0/2023 20:15:41
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FactorNew extends Factor {
 
-    private Type Type;
+    private ConstructorType ConstructorType;
     private OptionalActPars OptionalActPars;
 
-    public FactorNew (Type Type, OptionalActPars OptionalActPars) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
+    public FactorNew (ConstructorType ConstructorType, OptionalActPars OptionalActPars) {
+        this.ConstructorType=ConstructorType;
+        if(ConstructorType!=null) ConstructorType.setParent(this);
         this.OptionalActPars=OptionalActPars;
         if(OptionalActPars!=null) OptionalActPars.setParent(this);
     }
 
-    public Type getType() {
-        return Type;
+    public ConstructorType getConstructorType() {
+        return ConstructorType;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
+    public void setConstructorType(ConstructorType ConstructorType) {
+        this.ConstructorType=ConstructorType;
     }
 
     public OptionalActPars getOptionalActPars() {
@@ -38,18 +38,18 @@ public class FactorNew extends Factor {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
+        if(ConstructorType!=null) ConstructorType.accept(visitor);
         if(OptionalActPars!=null) OptionalActPars.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
+        if(ConstructorType!=null) ConstructorType.traverseTopDown(visitor);
         if(OptionalActPars!=null) OptionalActPars.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
+        if(ConstructorType!=null) ConstructorType.traverseBottomUp(visitor);
         if(OptionalActPars!=null) OptionalActPars.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -59,8 +59,8 @@ public class FactorNew extends Factor {
         buffer.append(tab);
         buffer.append("FactorNew(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
+        if(ConstructorType!=null)
+            buffer.append(ConstructorType.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

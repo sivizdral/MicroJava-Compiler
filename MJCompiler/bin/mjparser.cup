@@ -69,12 +69,12 @@ nonterminal FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, O
 nonterminal Statement, Unmatched, Matched, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
 nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, OptionalRelopExpr, OptMinus, AddopTermList;
-nonterminal Label, Assignop, Relop, Addop, Mulop, ElseElse;
+nonterminal Label, Assignop, Relop, Addop, Mulop, ElseElse, FuncDesig;
 nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail;
-nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart;
+nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart, Param;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
@@ -248,7 +248,7 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:width |
 /* DESIGNATOR STATEMENT */
 
 DesignatorStatement ::= (DesignatorStmtAssign) Designator Assignop Expr SEMICOLON |
-						(DesignatorStmtCall) Designator LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES SEMICOLON |
+						(DesignatorStmtCall) FuncDesig LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES SEMICOLON |
 						(DesignatorStmtInc) Designator INCREMENT SEMICOLON |
 						(DesignatorStmtDec) Designator DECREMENT SEMICOLON |
 						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator OptionalDesignatorList RIGHT_SQUARE_PARENTHESES EQUALS Designator SEMICOLON |
@@ -270,10 +270,12 @@ OptionalDesignatorList ::= (OptionalDesignatorListX) OptionalDesignatorList COMM
 						   
 /* ACT PARS */
 
-ActPars ::= (ActPars) Expr ExprList;
+ActPars ::= (ActPars) Param ExprList;
 
-ExprList ::= (ExprListX) ExprList COMMA Expr |
+ExprList ::= (ExprListX) ExprList COMMA Param |
 			 (NoExprList) /* epsilon */;
+			 
+Param ::= (Param) Expr;
 
 /* CONDITION */
 
@@ -319,14 +321,20 @@ Term ::= (TermOne) Factor |
 					
 /* FACTOR */
 
-Factor ::= (FactorActPars) Designator LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+FuncDesig ::= (FuncDesig) Designator;
+
+Factor ::= (FactorActPars) FuncDesig LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
 		   (FactorDesignatorOnly) Designator |
 		   (FactorNumConst) NUMCONST |
 		   (FactorCharConst) CHARCONST |
 		   (FactorBoolConst) BOOLCONST |
 		   (FactorNewArray) NEW Type LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
-		   (FactorNew) NEW Type LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
+		   (FactorNew) NEW ConstructorType LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
 		   (FactorExpr) LEFT_ROUND_PARENTHESES Expr RIGHT_ROUND_PARENTHESES;
+		   
+ConstructorType ::= (ConstructorType) Type;
+
+
 
 //OptOptActPars ::= (OptOptActParsX) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
 //				  (NoOptOptActPars) /* epsilon */;

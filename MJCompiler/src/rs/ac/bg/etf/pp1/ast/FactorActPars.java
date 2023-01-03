@@ -1,28 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/11/2022 21:24:45
+// 3/0/2023 20:15:41
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FactorActPars extends Factor {
 
-    private Designator Designator;
+    private FuncDesig FuncDesig;
     private OptionalActPars OptionalActPars;
 
-    public FactorActPars (Designator Designator, OptionalActPars OptionalActPars) {
-        this.Designator=Designator;
-        if(Designator!=null) Designator.setParent(this);
+    public FactorActPars (FuncDesig FuncDesig, OptionalActPars OptionalActPars) {
+        this.FuncDesig=FuncDesig;
+        if(FuncDesig!=null) FuncDesig.setParent(this);
         this.OptionalActPars=OptionalActPars;
         if(OptionalActPars!=null) OptionalActPars.setParent(this);
     }
 
-    public Designator getDesignator() {
-        return Designator;
+    public FuncDesig getFuncDesig() {
+        return FuncDesig;
     }
 
-    public void setDesignator(Designator Designator) {
-        this.Designator=Designator;
+    public void setFuncDesig(FuncDesig FuncDesig) {
+        this.FuncDesig=FuncDesig;
     }
 
     public OptionalActPars getOptionalActPars() {
@@ -38,18 +38,18 @@ public class FactorActPars extends Factor {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Designator!=null) Designator.accept(visitor);
+        if(FuncDesig!=null) FuncDesig.accept(visitor);
         if(OptionalActPars!=null) OptionalActPars.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Designator!=null) Designator.traverseTopDown(visitor);
+        if(FuncDesig!=null) FuncDesig.traverseTopDown(visitor);
         if(OptionalActPars!=null) OptionalActPars.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Designator!=null) Designator.traverseBottomUp(visitor);
+        if(FuncDesig!=null) FuncDesig.traverseBottomUp(visitor);
         if(OptionalActPars!=null) OptionalActPars.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -59,8 +59,8 @@ public class FactorActPars extends Factor {
         buffer.append(tab);
         buffer.append("FactorActPars(\n");
 
-        if(Designator!=null)
-            buffer.append(Designator.toString("  "+tab));
+        if(FuncDesig!=null)
+            buffer.append(FuncDesig.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

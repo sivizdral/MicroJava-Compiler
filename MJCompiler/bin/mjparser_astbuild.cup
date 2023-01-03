@@ -106,6 +106,7 @@ nonterminal Relop Relop;
 nonterminal Addop Addop;
 nonterminal Mulop Mulop;
 nonterminal ElseElse ElseElse;
+nonterminal FuncDesig FuncDesig;
 nonterminal FirstConstructorDecl FirstConstructorDecl;
 nonterminal Lists Lists;
 nonterminal MethodDecl2 MethodDecl2;
@@ -116,9 +117,10 @@ nonterminal ClassVarDeclList ClassVarDeclList;
 nonterminal FirstClassVarDecl FirstClassVarDecl;
 nonterminal OtherClassVarDeclList OtherClassVarDeclList;
 nonterminal WhileStmtStart WhileStmtStart;
+nonterminal Param Param;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
@@ -294,7 +296,7 @@ OptionalNumConst ::= (OptionalNumConstX) COMMA NUMCONST:width {: RESULT=new Opti
 /* DESIGNATOR STATEMENT */
 
 DesignatorStatement ::= (DesignatorStmtAssign) Designator:D1 Assignop:A2 Expr:E3 SEMICOLON {: RESULT=new DesignatorStmtAssign(D1, A2, E3); RESULT.setLine(D1left); :} |
-						(DesignatorStmtCall) Designator:D1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES SEMICOLON {: RESULT=new DesignatorStmtCall(D1, O2); RESULT.setLine(D1left); :} |
+						(DesignatorStmtCall) FuncDesig:F1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES SEMICOLON {: RESULT=new DesignatorStmtCall(F1, O2); RESULT.setLine(F1left); :} |
 						(DesignatorStmtInc) Designator:D1 INCREMENT SEMICOLON {: RESULT=new DesignatorStmtInc(D1); RESULT.setLine(D1left); :} |
 						(DesignatorStmtDec) Designator:D1 DECREMENT SEMICOLON {: RESULT=new DesignatorStmtDec(D1); RESULT.setLine(D1left); :} |
 						(SecondTypeDesignatorStmt) LEFT_SQUARE_PARENTHESES OptionalDesignator:O1 OptionalDesignatorList:O2 RIGHT_SQUARE_PARENTHESES EQUALS Designator:D3 SEMICOLON {: RESULT=new SecondTypeDesignatorStmt(O1, O2, D3); RESULT.setLine(O1left); :} |
@@ -316,10 +318,12 @@ OptionalDesignatorList ::= (OptionalDesignatorListX) OptionalDesignatorList:O1 C
 						   
 /* ACT PARS */
 
-ActPars ::= (ActPars) Expr:E1 ExprList:E2 {: RESULT=new ActPars(E1, E2); RESULT.setLine(E1left); :};
+ActPars ::= (ActPars) Param:P1 ExprList:E2 {: RESULT=new ActPars(P1, E2); RESULT.setLine(P1left); :};
 
-ExprList ::= (ExprListX) ExprList:E1 COMMA Expr:E2 {: RESULT=new ExprListX(E1, E2); RESULT.setLine(E1left); :} |
+ExprList ::= (ExprListX) ExprList:E1 COMMA Param:P2 {: RESULT=new ExprListX(E1, P2); RESULT.setLine(E1left); :} |
 			 (NoExprList) {: RESULT=new NoExprList(); :} /* epsilon */;
+			 
+Param ::= (Param) Expr:E1 {: RESULT=new Param(E1); RESULT.setLine(E1left); :};
 
 /* CONDITION */
 
@@ -365,14 +369,20 @@ Term ::= (TermOne) Factor:F1 {: RESULT=new TermOne(F1); RESULT.setLine(F1left); 
 					
 /* FACTOR */
 
-Factor ::= (FactorActPars) Designator:D1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorActPars(D1, O2); RESULT.setLine(D1left); :} |
+FuncDesig ::= (FuncDesig) Designator:D1 {: RESULT=new FuncDesig(D1); RESULT.setLine(D1left); :};
+
+Factor ::= (FactorActPars) FuncDesig:F1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorActPars(F1, O2); RESULT.setLine(F1left); :} |
 		   (FactorDesignatorOnly) Designator:D1 {: RESULT=new FactorDesignatorOnly(D1); RESULT.setLine(D1left); :} |
 		   (FactorNumConst) NUMCONST:N1 {: RESULT=new FactorNumConst(N1); RESULT.setLine(N1left); :} |
 		   (FactorCharConst) CHARCONST:C1 {: RESULT=new FactorCharConst(C1); RESULT.setLine(C1left); :} |
 		   (FactorBoolConst) BOOLCONST:B1 {: RESULT=new FactorBoolConst(B1); RESULT.setLine(B1left); :} |
 		   (FactorNewArray) NEW Type:T1 LEFT_SQUARE_PARENTHESES Expr:E2 RIGHT_SQUARE_PARENTHESES {: RESULT=new FactorNewArray(T1, E2); RESULT.setLine(T1left); :} |
-		   (FactorNew) NEW Type:T1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorNew(T1, O2); RESULT.setLine(T1left); :} |
+		   (FactorNew) NEW ConstructorType:C1 LEFT_ROUND_PARENTHESES OptionalActPars:O2 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorNew(C1, O2); RESULT.setLine(C1left); :} |
 		   (FactorExpr) LEFT_ROUND_PARENTHESES Expr:E1 RIGHT_ROUND_PARENTHESES {: RESULT=new FactorExpr(E1); RESULT.setLine(E1left); :};
+		   
+ConstructorType ::= (ConstructorType) Type:T1 {: RESULT=new ConstructorType(T1); RESULT.setLine(T1left); :};
+
+
 
 //OptOptActPars ::= (OptOptActParsX) LEFT_ROUND_PARENTHESES OptionalActPars RIGHT_ROUND_PARENTHESES |
 //				  (NoOptOptActPars) /* epsilon */;

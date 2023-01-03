@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/11/2022 21:24:45
+// 3/0/2023 20:15:41
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,8 +8,8 @@ package rs.ac.bg.etf.pp1.ast;
 public abstract class VisitorAdaptor implements Visitor { 
 
     public void visit(GlobalVarDecl GlobalVarDecl) { }
-    public void visit(OptionalDesignatorList OptionalDesignatorList) { }
     public void visit(Factor Factor) { }
+    public void visit(OptionalDesignatorList OptionalDesignatorList) { }
     public void visit(Statement Statement) { }
     public void visit(OptionalRelopExpr OptionalRelopExpr) { }
     public void visit(ConstDeclList ConstDeclList) { }
@@ -57,8 +57,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(TypeIdentList TypeIdentList) { }
     public void visit(OptionalExpr OptionalExpr) { }
     public void visit(FormParsOptional FormParsOptional) { }
-    public void visit(MethodDeclList2 MethodDeclList2) { }
     public void visit(Term Term) { }
+    public void visit(MethodDeclList2 MethodDeclList2) { }
     public void visit(MulopP MulopP) { visit(); }
     public void visit(MulopD MulopD) { visit(); }
     public void visit(MulopM MulopM) { visit(); }
@@ -78,6 +78,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorFE DesignatorFE) { visit(); }
     public void visit(Designator Designator) { visit(); }
     public void visit(DesignatorStart DesignatorStart) { visit(); }
+    public void visit(ConstructorType ConstructorType) { visit(); }
     public void visit(FactorExpr FactorExpr) { visit(); }
     public void visit(FactorNew FactorNew) { visit(); }
     public void visit(FactorNewArray FactorNewArray) { visit(); }
@@ -86,6 +87,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(FactorNumConst FactorNumConst) { visit(); }
     public void visit(FactorDesignatorOnly FactorDesignatorOnly) { visit(); }
     public void visit(FactorActPars FactorActPars) { visit(); }
+    public void visit(FuncDesig FuncDesig) { visit(); }
     public void visit(TermFactorList TermFactorList) { visit(); }
     public void visit(TermOne TermOne) { visit(); }
     public void visit(NoAddopTermList NoAddopTermList) { visit(); }
@@ -104,6 +106,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ConditionWHILE ConditionWHILE) { visit(); }
     public void visit(ConditionIFError ConditionIFError) { visit(); }
     public void visit(ConditionIFX ConditionIFX) { visit(); }
+    public void visit(Param Param) { visit(); }
     public void visit(NoExprList NoExprList) { visit(); }
     public void visit(ExprListX ExprListX) { visit(); }
     public void visit(ActPars ActPars) { visit(); }

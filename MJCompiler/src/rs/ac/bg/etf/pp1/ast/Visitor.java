@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/11/2022 21:24:45
+// 3/0/2023 20:15:41
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,8 +8,8 @@ package rs.ac.bg.etf.pp1.ast;
 public interface Visitor { 
 
     public void visit(GlobalVarDecl GlobalVarDecl);
-    public void visit(OptionalDesignatorList OptionalDesignatorList);
     public void visit(Factor Factor);
+    public void visit(OptionalDesignatorList OptionalDesignatorList);
     public void visit(Statement Statement);
     public void visit(OptionalRelopExpr OptionalRelopExpr);
     public void visit(ConstDeclList ConstDeclList);
@@ -57,8 +57,8 @@ public interface Visitor {
     public void visit(TypeIdentList TypeIdentList);
     public void visit(OptionalExpr OptionalExpr);
     public void visit(FormParsOptional FormParsOptional);
-    public void visit(MethodDeclList2 MethodDeclList2);
     public void visit(Term Term);
+    public void visit(MethodDeclList2 MethodDeclList2);
     public void visit(MulopP MulopP);
     public void visit(MulopD MulopD);
     public void visit(MulopM MulopM);
@@ -78,6 +78,7 @@ public interface Visitor {
     public void visit(DesignatorFE DesignatorFE);
     public void visit(Designator Designator);
     public void visit(DesignatorStart DesignatorStart);
+    public void visit(ConstructorType ConstructorType);
     public void visit(FactorExpr FactorExpr);
     public void visit(FactorNew FactorNew);
     public void visit(FactorNewArray FactorNewArray);
@@ -86,6 +87,7 @@ public interface Visitor {
     public void visit(FactorNumConst FactorNumConst);
     public void visit(FactorDesignatorOnly FactorDesignatorOnly);
     public void visit(FactorActPars FactorActPars);
+    public void visit(FuncDesig FuncDesig);
     public void visit(TermFactorList TermFactorList);
     public void visit(TermOne TermOne);
     public void visit(NoAddopTermList NoAddopTermList);
@@ -104,6 +106,7 @@ public interface Visitor {
     public void visit(ConditionWHILE ConditionWHILE);
     public void visit(ConditionIFError ConditionIFError);
     public void visit(ConditionIFX ConditionIFX);
+    public void visit(Param Param);
     public void visit(NoExprList NoExprList);
     public void visit(ExprListX ExprListX);
     public void visit(ActPars ActPars);

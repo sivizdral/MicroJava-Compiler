@@ -3,6 +3,9 @@ package rs.ac.bg.etf.pp1;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
 
 import org.apache.log4j.Logger;
 
@@ -34,12 +37,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Obj iterating = null;
 	Obj currentDesignator = null;
 	
-	boolean inConstructor = false;
-	
 	Logger log = Logger.getLogger(getClass());
 	
 	public SemanticAnalyzer() {
 		Tab.currentScope.addToLocals(new Obj(Obj.Type, "bool", booleanType));
+		globals.add(Tab.find("chr"));
+		globals.add(Tab.find("ord"));
+		globals.add(Tab.find("len"));
 	}
 
 	public void report_error(String message, SyntaxNode info) {
@@ -121,7 +125,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	Obj found = Tab.find(constName);
     	
     	if (found != Tab.noObj) {
-    		report_error("Vec postoji konstanta sa ovim imenom!", constTailX);
+    		report_error("Vec postoji konstanta sa imenom " + constName + "!", constTailX);
     		return; 
     	}
     	
@@ -131,7 +135,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     	
     	Obj obj = Tab.insert(Obj.Con, constName, currentType);
-    	report_info("Konstanta definisana!", constTailX);
+    	report_info("Konstanta " + constName + " definisana!", constTailX);
     	
     	FirstConst fc = constTailX.getFirstConst();
     	
@@ -149,7 +153,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	Obj found = Tab.find(constName);
     	
     	if (found != Tab.noObj) {
-    		report_error("Vec postoji konstanta sa ovim imenom!", constDeclX);
+    		report_error("Vec postoji konstanta sa imenom " + constName + "!", constDeclX);
     		return; 
     	}
     	
@@ -159,7 +163,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     	
     	Obj obj = Tab.insert(Obj.Con, constName, currentType);
-    	report_info("Konstanta definisana!", constDeclX);
+    	report_info("Konstanta " + constName + " definisana!", constDeclX);
     	
     	FirstConst fc = constDeclX.getFirstConst();
     	
@@ -179,7 +183,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {
-    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", globalArrayVar);
+    		report_error("Vec postoji globalna promenljiva sa imenom " + varName + "!", globalArrayVar);
     		return;
     	}
     	
@@ -192,7 +196,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {
-    		report_error("Vec postoji globalna promenljiva sa ovim imenom!", globalVar);
+    		report_error("Vec postoji globalna promenljiva sa imenom " + varName + "!", globalVar);
     		return;
     	}
     	
@@ -208,7 +212,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {  
-    		report_error("Vec postoji promenljiva klase sa ovim imenom!", classArrayVar);
+    		report_error("Vec postoji promenljiva klase sa imenom " + varName + "!", classArrayVar);
     		return;
     	}
     	
@@ -221,7 +225,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {
-    		report_error("Vec postoji promenljiva klase sa ovim imenom!", classVar);
+    		report_error("Vec postoji promenljiva klase sa imenom " + varName + "!", classVar);
     		return;
     	}
     	
@@ -236,7 +240,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {
-    		report_error("Vec postoji lokalna promenljiva sa ovim imenom!", arrayVar);
+    		report_error("Vec postoji lokalna promenljiva sa imenom " + varName +"!", arrayVar);
     		return;
     	}
     	
@@ -249,7 +253,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Obj obj = Tab.find(varName);
     	if (obj != Tab.noObj && Tab.currentScope.findSymbol(varName) != null) {
-    		report_error("Vec postoji lokalna promenljiva sa ovim imenom!", var);
+    		report_error("Vec postoji lokalna promenljiva sa imenom " + varName + "!", var);
     		return;
     	}
     	
@@ -258,6 +262,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     /* CLASS DECLARATION START */
+    
+    HashMap<Obj, List<Obj>> constructors = new HashMap<>();
     
     public void visit(ClassDeclStart classDeclStart) {
     	String varName = classDeclStart.getClassName();
@@ -296,6 +302,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
         			Tab.insert(Obj.Fld, field.getName(), field.getType());
         		}
         		if (field.getKind() == Obj.Meth) {
+        			if (field.getName().split("-")[0].equals(superclass)) continue;
         			Tab.currentScope().addToLocals(field);
         		}
         	}
@@ -306,6 +313,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     /* CLASS DECLARATION SUCCESSFUL END */
     
     public void visit(ClassDecl classDecl) {
+    	constructors.clear();
     	allClasses.put(subclassType, subclass);
     	Tab.chainLocalSymbols(subclassType);
     	Tab.closeScope();
@@ -342,7 +350,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     public void visit(ConstructorDeclStart constructorStart) {
     	String constructorName = constructorStart.getConstructorName();
-    	inConstructor = true;
     	
     	if (!constructorName.equals(subclass)) {
     		report_error("Ime konstruktora se ne poklapa sa imenom okruzujuce klase!", null);
@@ -352,22 +359,49 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		return;
     	}
     	
+    	constructorName += "-" + constructors.size();
+    	
     	constructorStart.obj = currentMethod = Tab.insert(Obj.Meth, constructorName, Tab.noType);
     	Tab.openScope();
     	Tab.insert(Obj.Var, "this", subclassType);
     	paramCount++;  	
     }
     
+    List<Obj> params = new ArrayList<>();
+    
     public void visit(FirstConstructorDecl constructorDecl) {
+    	boolean exists = false;
+    	for (Map.Entry<Obj, List<Obj>> entry : constructors.entrySet()) {
+    		if (entry.getValue().size() != params.size()) continue;
+    		int size = entry.getValue().size();
+    		boolean same = true;
+    		for (int i = 0; i < size; i++) {
+    			Obj obj = entry.getValue().get(i);
+    			Obj param = params.get(i);
+    			if (!obj.getType().equals(param.getType())) {
+    				same = false;
+    				break;
+    			}
+    		}
+    		if (same) {
+    			exists = true;
+    			break;
+    		}
+    	}
+    	
+    	if (exists) report_error("U klasi je vec definisan konstruktor sa zadatim parametrima!", constructorDecl);
+    	else {
+    		report_info("Definisan konstruktor klase " + subclass + "!", null);
+    		constructors.put(currentMethod, params);
+    	}
+    	
     	currentMethod.setLevel(paramCount);
     	Tab.chainLocalSymbols(currentMethod);
     	Tab.closeScope();
     	
-    	inConstructor = false;
+    	params = new ArrayList<>();
     	paramCount = 0;
     	currentMethod = null;
-    	
-    	report_info("Definisan konstruktor klase!", null);
     }
     
     public void addDefaultConstructor() {
@@ -375,14 +409,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	Tab.openScope();
     	Tab.insert(Obj.Var, "this", subclassType);
     	paramCount++;
-    	inConstructor = true;
     	currentMethod.setLevel(paramCount);
     	Tab.chainLocalSymbols(currentMethod);
     	Tab.closeScope();
     	paramCount = 0;
-    	inConstructor = false;
     	currentMethod = null;
-    	report_info("Definisan podrazumevani konstruktor klase!", null);
+    	report_info("Definisan podrazumevani konstruktor klase" + subclass + "!", null);
     }
     
     public void visit(ListsMet lists) {
@@ -444,11 +476,19 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     	
     	if (arrayType) {
-    		Tab.insert(Obj.Var, paramName, new Struct(Struct.Array, currentType));
+    		obj = Tab.insert(Obj.Var, paramName, new Struct(Struct.Array, currentType));
+    		report_info("Deklarisan parametar (niz) " + paramName + "!", param);
     	} else {
-    		Tab.insert(Obj.Var, paramName, currentType);
+    		obj = Tab.insert(Obj.Var, paramName, currentType);
+    		report_info("Deklarisan parametar " + paramName + "!", param);
     	}  	
+    	
+    	params.add(obj);
     	arrayType = false;
+    }
+    
+    public void visit(NoFormParsOptional nopars) {
+    	params.clear();
     }
     
     public void visit(MethodStartType methodStart) {
@@ -519,6 +559,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     /* GLOBAL METHOD DECL */
     
+    List<Obj> globals = new ArrayList<>();
+    
     public void visit(MethodDecl methodDeclaration) {
     	if (currentMethod.getType() != Tab.noType && !returnFound) {
     		report_error("Funkcija " + currentMethodName + " nema return naredbu!", null);
@@ -530,6 +572,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	currentMethod.setLevel(paramCount);
     	Tab.chainLocalSymbols(currentMethod);
+    	
+    	globals.add(currentMethod);
     	
     	/*if (overrided != null) {
     		if (overrided.getLevel() != currentMethod.getLevel()) {
@@ -803,7 +847,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     /* FACTOR */
     
     public void visit(FactorActPars functionCall) {
-    	Designator d = functionCall.getDesignator();
+    	Designator d = functionCall.getFuncDesig().getDesignator();
     	
     	if (d.obj.getKind() != Obj.Meth) {
     		report_error("Poziv metode mora pozvati metodu koja je deklarisana!", functionCall);
@@ -835,12 +879,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(FactorNew factor) {
-    	if (factor.getType().struct.getKind() != Struct.Class) {
+    	if (factor.getConstructorType().getType().struct.getKind() != Struct.Class) {
     		report_error("Operator new se moze pozivati samo za klasne tipove!",factor);
     		factor.struct = Tab.noType;
     	} else {
     		report_info("Kreiran je objekat klase!", factor);
-    		factor.struct = factor.getType().struct;
+    		factor.struct = factor.getConstructorType().getType().struct;
+    		factor.getConstructorType().obj = calledConstructor;
+    		calledConstructor = null;
     	}
     }
     
@@ -853,6 +899,138 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_info("Kreiran je niz objekata klase!", factor);
     		factor.struct = new Struct(Struct.Array, factor.getType().struct);
 		}
+    }
+    
+    /* ACT PARS */
+    
+    Stack<Obj> calls = new Stack<>();
+    Stack<List<Struct>> pars = new Stack<>();
+    Obj calledConstructor = null;
+    
+    public void visit(Param param) {
+    	List<Struct> list = pars.pop();
+    	list.add(param.getExpr().struct);
+    	pars.push(list);
+    }
+    
+    public void visit(NoOptionalActPars prms) {
+    	Obj called = calls.pop();
+    	List<Struct> params = pars.pop();
+    	String message = "";
+    	
+    	if (called.getKind() == Obj.Type) {
+    		for (Obj mem : called.getType().getMembers()) {
+    			if (mem.getName().split("-")[0].equals(called.getName())) {
+    				message = "";
+    				if (mem.getLevel() != params.size() + 1) {
+    					message = "Brojnost formalnih i stvarnih parametara se ne poklapa!" + mem.getLevel() + " " + (params.size() + 1);
+    				}
+    				else {
+    					int ind = 0;
+    					for (Obj formal : mem.getLocalSymbols()) {
+    						if (!formal.getName().equals("this")) {
+    							if (!canBeAssigned(params.get(ind - 1), formal.getType())) {
+    								message = "Stvarni i formalni parametar se ne poklapaju (redni broj + " + ind + ")!";
+    							}
+    						}
+    						ind++;
+    						if (ind == mem.getLevel()) break;
+    					}
+    				}
+    				if (message.equals("")) {
+    					calledConstructor = mem;
+    					break;
+    				}
+    			}
+    		}
+    		if (!message.equals("")) {
+    			report_error(message, null);
+    			report_error("Ne postoji konstruktor koji se poklapa sa zadatim parametrima!", prms);
+    		}
+    	} else if (called.getKind() == Obj.Meth) {
+    		message = "";
+    		int one = !globals.contains(called) ? 1 : 0;
+			if (called.getLevel() != params.size() + one) {
+				report_error("Brojnost formalnih i stvarnih parametara se ne poklapa!" + called.getLevel() + " " + (params.size() + 1), prms);
+			}
+			else {
+				int ind = 0;
+				for (Obj formal : called.getLocalSymbols()) {
+					if (!formal.getName().equals("this")) {
+						if (!canBeAssigned(params.get(ind), formal.getType())) {
+							report_error("Stvarni i formalni parametar se ne poklapaju (redni broj + " + ind + ")!", prms);
+						}
+						ind++;
+					}
+					if (ind == called.getLevel()) break;
+				}
+			}
+    	}
+    }
+    
+    public void visit(ActPars prms) {
+    	Obj called = calls.pop();
+    	List<Struct> params = pars.pop();
+    	String message = "";
+    	
+    	if (called.getKind() == Obj.Type) {
+    		for (Obj mem : called.getType().getMembers()) {
+    			if (mem.getName().split("-")[0].equals(called.getName())) {
+    				message = "";
+    				if (mem.getLevel() != params.size() + 1) {
+    					message = "Brojnost formalnih i stvarnih parametara se ne poklapa!";
+    				}
+    				else {
+    					int ind = 0;
+    					for (Obj formal : mem.getLocalSymbols()) {
+    						if (!formal.getName().equals("this")) {
+    							if (!canBeAssigned(params.get(ind - 1), formal.getType())) {
+    								message = "Stvarni i formalni parametar se ne poklapaju (redni broj + " + ind + ")!";
+    							}
+    						}
+    						ind++;
+    						if (ind == mem.getLevel()) break;
+    					}
+    				}
+    				if (message.equals("")) {
+    					calledConstructor = mem;
+    					break;
+    				}
+    			}
+    		}
+    		if (!message.equals("")) {
+    			report_error(message, null);
+    			report_error("Ne postoji konstruktor koji se poklapa sa zadatim parametrima!", prms);
+    		}
+    	} else if (called.getKind() == Obj.Meth) {
+    		message = "";
+    		int one = !globals.contains(called) ? 1 : 0;
+			if (called.getLevel() != params.size() + one) {
+				report_error("Brojnost formalnih i stvarnih parametara se ne poklapa!", prms);
+			}
+			else {
+				int ind = 0;
+				for (Obj formal : called.getLocalSymbols()) {
+					if (!formal.getName().equals("this")) {
+						if (!canBeAssigned(params.get(ind), formal.getType())) {
+							report_error("Stvarni i formalni parametar se ne poklapaju (redni broj + " + ind + ")!", prms);
+						}
+						ind++;
+					}
+					if (ind == called.getLevel()) break;
+				}
+			}
+    	}
+    }
+    
+    public void visit(ConstructorType type) {
+    	calls.push(Tab.find(allClasses.get(type.getType().struct)));
+    	pars.push(new ArrayList<>());
+    }
+    
+    public void visit(FuncDesig desig) {
+    	calls.push(desig.getDesignator().obj);
+    	pars.push(new ArrayList<>());
     }
     
     /* COND FACT */
@@ -1050,7 +1228,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(DesignatorStmtCall call) {
-    	if (call.getDesignator().obj.getKind() != Obj.Meth) {
+    	if (call.getFuncDesig().getDesignator().obj.getKind() != Obj.Meth) {
     		report_error("Poziv se mora vrsiti nad funkcijom/metodom!", call);
     		return;
     	}
