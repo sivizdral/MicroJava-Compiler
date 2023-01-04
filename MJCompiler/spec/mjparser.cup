@@ -74,7 +74,7 @@ nonterminal FirstConstructorDecl, Lists, MethodDeclList2, ConstTail, DummyAfterT
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart, Param;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType, MethodDecl, MethodDecl2;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType, MethodDecl, MethodDecl2, LeftIdent;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
@@ -356,8 +356,10 @@ Designator ::= (Designator) DesignatorStart IdentExprList;
 DesignatorFE ::= (DesignatorFE) DesignatorStart IdentExprList DOT FOREACH;
 
 IdentExprList ::= (IdentExprListIdent) IdentExprList DOT IDENT:field |
-				  (IdentExprListExpr) IdentExprList LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
+				  (IdentExprListExpr) LeftIdent LEFT_SQUARE_PARENTHESES Expr RIGHT_SQUARE_PARENTHESES |
 				  (NoIdentExprList) /* epsilon */;
+				  
+LeftIdent ::= (LeftIdent) IdentExprList;
 				  
 /* LABEL */
 

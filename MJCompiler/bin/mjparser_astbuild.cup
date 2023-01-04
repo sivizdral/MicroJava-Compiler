@@ -121,7 +121,7 @@ nonterminal WhileStmtStart WhileStmtStart;
 nonterminal Param Param;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType, MethodDecl, MethodDecl2;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType, MethodDecl, MethodDecl2, LeftIdent;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FirstGlobalVarDecl FirstGlobalVarDecl;
@@ -405,8 +405,10 @@ Designator ::= (Designator) DesignatorStart:D1 IdentExprList:I2 {: RESULT=new De
 DesignatorFE ::= (DesignatorFE) DesignatorStart:D1 IdentExprList:I2 DOT FOREACH {: RESULT=new DesignatorFE(D1, I2); RESULT.setLine(D1left); :};
 
 IdentExprList ::= (IdentExprListIdent) IdentExprList:I1 DOT IDENT:field {: RESULT=new IdentExprListIdent(I1, field); RESULT.setLine(I1left); :} |
-				  (IdentExprListExpr) IdentExprList:I1 LEFT_SQUARE_PARENTHESES Expr:E2 RIGHT_SQUARE_PARENTHESES {: RESULT=new IdentExprListExpr(I1, E2); RESULT.setLine(I1left); :} |
+				  (IdentExprListExpr) LeftIdent:L1 LEFT_SQUARE_PARENTHESES Expr:E2 RIGHT_SQUARE_PARENTHESES {: RESULT=new IdentExprListExpr(L1, E2); RESULT.setLine(L1left); :} |
 				  (NoIdentExprList) {: RESULT=new NoIdentExprList(); :} /* epsilon */;
+				  
+LeftIdent ::= (LeftIdent) IdentExprList:I1 {: RESULT=new LeftIdent(I1); RESULT.setLine(I1left); :};
 				  
 /* LABEL */
 

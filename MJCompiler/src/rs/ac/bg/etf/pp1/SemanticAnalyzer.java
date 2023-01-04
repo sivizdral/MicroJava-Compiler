@@ -773,7 +773,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(IdentExprListExpr arrayDesignator) {
-    	Obj obj = arrayDesignator.getIdentExprList().obj;
+    	Obj obj = arrayDesignator.getLeftIdent().getIdentExprList().obj;
     	Expr expr = arrayDesignator.getExpr();
     	hasList = true;
     	
@@ -849,6 +849,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	currentDesignator = null;
     }
+    
+    /*public void visit(NoIdentExprList dsg) {
+    	dsg.obj = currentDesignator;
+    }*/
     
     /* FACTOR */
     

@@ -19,6 +19,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	Obj currentMethod = null;
 	boolean returnFound = false;
 	Obj currentClass = null;
+	List<Obj> methodsInClass = new ArrayList<>();
 	
 	/* PRINT */
 	
@@ -61,10 +62,6 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	/* FACTOR */
-	
-	public void visit(FactorActPars functionCall) {
-		
-    }
     
     public void visit(FactorExpr factor) {
     	factor.struct = factor.getExpr().struct;
@@ -215,6 +212,21 @@ public class CodeGenerator extends VisitorAdaptor {
     	returnFound = false;
     }
     
+    public void visit(MethodDecl2 methodDecl) {
+    	if (!returnFound) {
+    		if (methodDecl.obj.getType() != Tab.noType) {
+    			Code.put(Code.trap);
+    			Code.put(1);
+    		} else {
+    			Code.put(Code.exit);
+    			Code.put(Code.return_);
+    		}
+    	}
+    	methodsInClass.add(currentMethod);
+    	currentMethod = null;
+    	returnFound = false;
+    }
+    
     /* CONSTRUCTORS */
     
     public void visit(ConstructorDeclStart constructorStart) {
@@ -270,6 +282,27 @@ public class CodeGenerator extends VisitorAdaptor {
     
     /* DESIGNATOR */
     
+    DesignatorStart designator = null;
+    
+    public void visit(DesignatorStart dsgStart) {
+    	if ((dsgStart.obj.getKind() == Obj.Meth && methodsInClass.contains(dsgStart.obj) && dsgStart.getParent() instanceof FuncDesig)
+    			|| (dsgStart.obj.getKind() == Obj.Fld && (dsgStart.getParent() instanceof FactorDesignatorOnly || dsgStart.getParent() instanceof DesignatorStatement))) 
+    		Code.put(Code.load_n + 0);
+    	designator = dsgStart;
+    }
+    
+    public void visit(IdentExprListIdent fieldDsg) {
+    	Code.load(fieldDsg.getIdentExprList().obj);
+    }
+    
+    public void visit(LeftIdent arrayDsg) {
+    	Code.load(arrayDsg.getIdentExprList().obj);
+    }
+    
+    public void visit(NoIdentExprList dsg) {
+    	dsg.obj = designator.obj;
+    }
+    
     /* WHILE, BREAK, CONTINUE, FOREACH */
     
     Stack<Integer> loopStack = new Stack<>();
@@ -277,7 +310,7 @@ public class CodeGenerator extends VisitorAdaptor {
     Stack<List<Integer>> andStack = new Stack<>();
     Stack<List<Integer>> elseStack = new Stack<>();
     Stack<List<Integer>> breakStack = new Stack<>();
-    Stack<List<Integer>> foreachStack = new Stack<>();
+    Stack<Integer> foreachStack = new Stack<>();
     
     public void visit(WhileStmt whileStmt) {
     	List<Integer> ands = andStack.pop();
@@ -321,7 +354,32 @@ public class CodeGenerator extends VisitorAdaptor {
     	Code.loadConst(-1);
     	loopStack.push(Code.pc);
     	breakStack.push(new ArrayList<>());
-    	/* ********************************************************************************************************************************* */
+    	Code.loadConst(1);
+    	Code.put(Code.add);
+    	Code.put(Code.dup2);
+    	Code.put(Code.pop);
+    	Code.put(Code.arraylength);
+    	Code.put(Code.dup2);
+    	Code.put(Code.pop);
+    	Code.put(Code.dup_x1);
+    	Code.put(Code.pop);
+    	foreachStack.push(Code.pc + 1);
+    	Code.putFalseJump(Code.lt, 0);
+    	Code.put(Code.dup2);
+    	if (((ForeachStmt)foreach.getParent()).getFEVar().obj.getType() == Tab.charType) Code.put(Code.baload);
+    	else Code.put(Code.aload);
+    	Code.store(((ForeachStmt)foreach.getParent()).getFEVar().obj);
+    }
+    
+    public void visit(ForeachStmt foreach) {
+    	Code.putJump(loopStack.pop());
+    	Code.fixup(foreachStack.pop());
+    	List<Integer> breaks = breakStack.pop();
+    	for (int br : breaks) {
+    		Code.fixup(br);
+    	}
+    	Code.put(Code.pop);
+    	Code.put(Code.pop);
     }
     
     /* CONDITION */
@@ -387,6 +445,145 @@ public class CodeGenerator extends VisitorAdaptor {
     
     /* IF */
     
+    public void visit(StartIF startIF) {
+    	elseStack.push(new ArrayList<>());
+    	andStack.push(new ArrayList<>());
+    	orStack.push(new ArrayList<>());
+    }
     
+    public void visit(UnmatchedIf uif) {
+    	List<Integer> ands = andStack.pop();
+    	for (int and : ands) {
+    		Code.fixup(and);
+    	}
+    	ands.clear();
+    	orStack.pop();
+    	elseStack.pop();
+    }
     
+    public void visit(UnmatchedIfElse uifelse) {
+    	List<Integer> elses = elseStack.pop();
+    	for (int el : elses) {
+    		Code.fixup(el);
+    	}
+    	elses.clear();
+    	orStack.pop();
+    	andStack.pop();
+    }
+    
+    public void visit(MatchedIfElseStmt mif) {
+    	List<Integer> elses = elseStack.pop();
+    	for (int el : elses) {
+    		Code.fixup(el);
+    	}
+    	elses.clear();
+    	orStack.pop();
+    	andStack.pop();
+    }
+    
+    /* DESIGNATOR STATEMENT */
+    
+    public void visit(FuncDesig desig) {
+    	callingStack.push(desig.getDesignator().obj);
+    	if (methodsInClass.contains(desig.getDesignator().obj)) Code.put(Code.dup);
+    }
+    
+    public void visit(DesignatorStmtCall call) {
+    	if (methodsInClass.contains(call.getFuncDesig().getDesignator().obj)) {
+    		Code.put(Code.getfield);
+        	Code.put2(0);
+        	Code.put(Code.invokevirtual);
+        	String name = call.getFuncDesig().getDesignator().obj.getName();
+        	for (int i = 0; i < name.length(); i++) {
+        		Code.put4(name.charAt(i));
+        	}
+        	Code.put4(-1);
+    	} else {
+    		Obj called = call.getFuncDesig().getDesignator().obj;
+        	if (called.getName().equals("len")) Code.put(Code.arraylength);
+        	Code.put(Code.call);
+        	Code.put2(called.getAdr() - Code.pc);
+    	}
+    	if (Tab.noType != call.getFuncDesig().getDesignator().obj.getType()) Code.put(Code.pop);
+    	callingStack.pop();
+    }
+    
+    public void visit(Param param) {
+    	if (methodsInClass.contains(callingStack.peek())) {
+    		Code.put(Code.dup_x1);
+    		Code.put(Code.pop);
+    	}
+    }
+    
+	public void visit(FactorActPars call) {
+		if (methodsInClass.contains(call.getFuncDesig().getDesignator().obj)) {
+    		Code.put(Code.getfield);
+        	Code.put2(0);
+        	Code.put(Code.invokevirtual);
+        	String name = call.getFuncDesig().getDesignator().obj.getName();
+        	for (int i = 0; i < name.length(); i++) {
+        		Code.put4(name.charAt(i));
+        	}
+        	Code.put4(-1);
+    	} else {
+    		Obj called = call.getFuncDesig().getDesignator().obj;
+        	if (called.getName().equals("len")) Code.put(Code.arraylength);
+        	Code.put(Code.call);
+        	Code.put2(called.getAdr() - Code.pc);
+    	}
+    	callingStack.pop();
+    }
+	
+	public void visit(DesignatorStmtAssign assign) {
+		Code.store(assign.getDesignator().obj);
+	}
+	
+	public void visit(DesignatorStmtInc inc) {
+		if (inc.getDesignator().obj.getKind() == Obj.Fld) Code.put(Code.dup);
+		else if (inc.getDesignator().obj.getKind() == Obj.Elem) Code.put(Code.dup2);
+		Code.load(inc.getDesignator().obj);
+		Code.loadConst(1);
+		Code.put(Code.add);
+		Code.store(inc.getDesignator().obj);
+	}
+	
+	public void visit(DesignatorStmtDec dec) {
+		if (dec.getDesignator().obj.getKind() == Obj.Fld) Code.put(Code.dup);
+		else if (dec.getDesignator().obj.getKind() == Obj.Elem) Code.put(Code.dup2);
+		Code.load(dec.getDesignator().obj);
+		Code.loadConst(1);
+		Code.put(Code.sub);
+		Code.store(dec.getDesignator().obj);
+	}
+	
+	List<Obj> assignList = new ArrayList<>();
+	
+	public void visit(NoOptionalDesignator dsg) {
+		assignList.add(null);
+	}
+	
+	public void visit(OptionalDesignatorX dsg) {
+		assignList.add(dsg.getDesignator().obj);
+	}
+	
+	public void visit(SecondTypeDesignatorStmt dsgArrayAssign) {
+		Code.loadConst(assignList.size());
+		Code.load(dsgArrayAssign.getDesignator().obj);
+		Code.put(Code.arraylength);
+		Code.put(Code.jcc + Code.le);
+    	Code.put2(5);
+    	Code.put(Code.trap);
+    	Code.put(2);
+    	for (Obj obj : assignList) {
+    		if (obj != null) {
+    			Code.load(dsgArrayAssign.getDesignator().obj);
+    			Code.loadConst(assignList.indexOf(obj));
+    			Code.put(Code.aload);
+    			Code.store(obj);
+    		}
+    	}
+    	assignList.clear();
+	}
+	
+	
 }
