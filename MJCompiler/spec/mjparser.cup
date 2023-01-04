@@ -70,7 +70,7 @@ nonterminal Statement, Unmatched, Matched, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
 nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, OptionalRelopExpr, OptMinus, AddopTermList;
 nonterminal Label, Assignop, Relop, Addop, Mulop, ElseElse, FuncDesig, StartIF;
-nonterminal FirstConstructorDecl, Lists, MethodDeclList2, ConstTail, DummyAfterTerm, DummyAfterCond;
+nonterminal FirstConstructorDecl, Lists, MethodDeclList2, ConstTail, DummyAfterTerm, DummyAfterCond, DummyMinus;
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart, Param;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
@@ -308,10 +308,12 @@ OptionalRelopExpr ::= (OptionalRelopExprX) Relop Expr |
 					  
 /* EXPR */
 
-Expr ::= (Expr) OptMinus Term AddopTermList;
+Expr ::= (Expr) OptMinus Term DummyMinus AddopTermList;
 
 OptMinus ::= (OptMinusX) MINUS |
 			 (NoOptMinus) /* epsilon */;
+			 
+DummyMinus ::= (DummyMinus) /* epsilon */;
 			 
 AddopTermList ::= (AddopTermListX) AddopTermList Addop Term |
 				  (NoAddopTermList) /* epsilon */;

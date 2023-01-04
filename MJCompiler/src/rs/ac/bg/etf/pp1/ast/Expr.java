@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 4/0/2023 21:53:13
+// 4/0/2023 23:30:38
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -13,13 +13,16 @@ public class Expr implements SyntaxNode {
 
     private OptMinus OptMinus;
     private Term Term;
+    private DummyMinus DummyMinus;
     private AddopTermList AddopTermList;
 
-    public Expr (OptMinus OptMinus, Term Term, AddopTermList AddopTermList) {
+    public Expr (OptMinus OptMinus, Term Term, DummyMinus DummyMinus, AddopTermList AddopTermList) {
         this.OptMinus=OptMinus;
         if(OptMinus!=null) OptMinus.setParent(this);
         this.Term=Term;
         if(Term!=null) Term.setParent(this);
+        this.DummyMinus=DummyMinus;
+        if(DummyMinus!=null) DummyMinus.setParent(this);
         this.AddopTermList=AddopTermList;
         if(AddopTermList!=null) AddopTermList.setParent(this);
     }
@@ -38,6 +41,14 @@ public class Expr implements SyntaxNode {
 
     public void setTerm(Term Term) {
         this.Term=Term;
+    }
+
+    public DummyMinus getDummyMinus() {
+        return DummyMinus;
+    }
+
+    public void setDummyMinus(DummyMinus DummyMinus) {
+        this.DummyMinus=DummyMinus;
     }
 
     public AddopTermList getAddopTermList() {
@@ -71,6 +82,7 @@ public class Expr implements SyntaxNode {
     public void childrenAccept(Visitor visitor) {
         if(OptMinus!=null) OptMinus.accept(visitor);
         if(Term!=null) Term.accept(visitor);
+        if(DummyMinus!=null) DummyMinus.accept(visitor);
         if(AddopTermList!=null) AddopTermList.accept(visitor);
     }
 
@@ -78,12 +90,14 @@ public class Expr implements SyntaxNode {
         accept(visitor);
         if(OptMinus!=null) OptMinus.traverseTopDown(visitor);
         if(Term!=null) Term.traverseTopDown(visitor);
+        if(DummyMinus!=null) DummyMinus.traverseTopDown(visitor);
         if(AddopTermList!=null) AddopTermList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(OptMinus!=null) OptMinus.traverseBottomUp(visitor);
         if(Term!=null) Term.traverseBottomUp(visitor);
+        if(DummyMinus!=null) DummyMinus.traverseBottomUp(visitor);
         if(AddopTermList!=null) AddopTermList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -101,6 +115,12 @@ public class Expr implements SyntaxNode {
 
         if(Term!=null)
             buffer.append(Term.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(DummyMinus!=null)
+            buffer.append(DummyMinus.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

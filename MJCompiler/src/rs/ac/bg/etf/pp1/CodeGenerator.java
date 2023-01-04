@@ -86,9 +86,12 @@ public class CodeGenerator extends VisitorAdaptor {
     public void visit(FactorNew factor) {
     	Obj called = callingStack.pop();
     	if (called.getName().equals("ord") || called.getName().equals("chr")) return;
-    	if (called.getName().equals("len")) Code.put(Code.arraylength);
+    	if (called.getName().equals("len")) {
+    		Code.put(Code.arraylength);
+    		return;
+    	}
     	Code.put(Code.call);
-    	Code.put2(called.getAdr() - Code.pc);
+    	Code.put2(called.getAdr() - Code.pc + 1);
     }
     
     public void visit(ConstructorType type) {
@@ -130,8 +133,9 @@ public class CodeGenerator extends VisitorAdaptor {
     
     /* EXPR */
     
-    public void visit(OptMinusX negative) {
-    	Code.put(Code.neg);
+    public void visit(DummyMinus negative) {
+    	Expr parent = (Expr) negative.getParent();
+    	if (parent.getOptMinus() instanceof OptMinusX) Code.put(Code.neg);
     }
     
     public void visit(AddopTermListX addition) {
@@ -225,6 +229,12 @@ public class CodeGenerator extends VisitorAdaptor {
     	methodsInClass.add(currentMethod);
     	currentMethod = null;
     	returnFound = false;
+    }
+    
+    public void visit(ReturnStmt ret) {
+    	Code.put(Code.exit);
+		Code.put(Code.return_);
+    	returnFound = true;
     }
     
     /* CONSTRUCTORS */
@@ -500,9 +510,12 @@ public class CodeGenerator extends VisitorAdaptor {
         	Code.put4(-1);
     	} else {
     		Obj called = call.getFuncDesig().getDesignator().obj;
-        	if (called.getName().equals("len")) Code.put(Code.arraylength);
-        	Code.put(Code.call);
-        	Code.put2(called.getAdr() - Code.pc);
+        	if (called.getName().equals("len")) {
+        		Code.put(Code.arraylength);
+        	} else if (!called.getName().equals("ord") && !called.getName().equals("chr")) {
+        		Code.put(Code.call);
+            	Code.put2(called.getAdr() - Code.pc + 1);
+        	}
     	}
     	if (Tab.noType != call.getFuncDesig().getDesignator().obj.getType()) Code.put(Code.pop);
     	callingStack.pop();
@@ -527,9 +540,12 @@ public class CodeGenerator extends VisitorAdaptor {
         	Code.put4(-1);
     	} else {
     		Obj called = call.getFuncDesig().getDesignator().obj;
-        	if (called.getName().equals("len")) Code.put(Code.arraylength);
-        	Code.put(Code.call);
-        	Code.put2(called.getAdr() - Code.pc);
+        	if (called.getName().equals("len")) {
+        		Code.put(Code.arraylength);
+        	} else if (!called.getName().equals("ord") && !called.getName().equals("chr")) {
+        		Code.put(Code.call);
+            	Code.put2(called.getAdr() - Code.pc + 1);
+        	}
     	}
     	callingStack.pop();
     }

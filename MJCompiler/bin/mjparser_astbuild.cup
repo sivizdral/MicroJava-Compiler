@@ -113,6 +113,7 @@ nonterminal MethodDeclList2 MethodDeclList2;
 nonterminal ConstTail ConstTail;
 nonterminal DummyAfterTerm DummyAfterTerm;
 nonterminal DummyAfterCond DummyAfterCond;
+nonterminal DummyMinus DummyMinus;
 nonterminal ClassVarDecl ClassVarDecl;
 nonterminal ClassVarDeclList ClassVarDeclList;
 nonterminal FirstClassVarDecl FirstClassVarDecl;
@@ -357,10 +358,12 @@ OptionalRelopExpr ::= (OptionalRelopExprX) Relop:R1 Expr:E2 {: RESULT=new Option
 					  
 /* EXPR */
 
-Expr ::= (Expr) OptMinus:O1 Term:T2 AddopTermList:A3 {: RESULT=new Expr(O1, T2, A3); RESULT.setLine(O1left); :};
+Expr ::= (Expr) OptMinus:O1 Term:T2 DummyMinus:D3 AddopTermList:A4 {: RESULT=new Expr(O1, T2, D3, A4); RESULT.setLine(O1left); :};
 
 OptMinus ::= (OptMinusX) MINUS {: RESULT=new OptMinusX(); :} |
 			 (NoOptMinus) {: RESULT=new NoOptMinus(); :} /* epsilon */;
+			 
+DummyMinus ::= (DummyMinus) {: RESULT=new DummyMinus(); :} /* epsilon */;
 			 
 AddopTermList ::= (AddopTermListX) AddopTermList:A1 Addop:A2 Term:T3 {: RESULT=new AddopTermListX(A1, A2, T3); RESULT.setLine(A1left); :} |
 				  (NoAddopTermList) {: RESULT=new NoAddopTermList(); :} /* epsilon */;
