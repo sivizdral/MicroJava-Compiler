@@ -22,7 +22,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean returnFound = false;
 	boolean errorDetected = false;
 	boolean arrayType = false;
-	int nVars;
+	public static int nVars;
 	int loop = 0;
 	
 	public static Struct booleanType = new Struct(Struct.Bool);
@@ -202,7 +202,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	
     	Tab.insert(Obj.Var, varName, currentType);
 		report_info("Deklarisana globalna promenljiva " + varName + "!", globalVar);
-		nVars++;
+		//nVars++;
     }
     
     /* CLASS VAR DECLARATION */
