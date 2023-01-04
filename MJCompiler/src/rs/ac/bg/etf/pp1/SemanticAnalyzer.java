@@ -425,9 +425,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	addDefaultConstructor();
     }
     
+    public void visit(NoConstructorMethodLists lists) {
+    	addDefaultConstructor();
+    }
+    
     /* METHOD DECLARATION */
     
     public void visit(MethodDecl2 methodDeclaration) {
+    	methodDeclaration.obj = currentMethod;
     	if (currentMethod.getType() != Tab.noType && !returnFound) {
     		report_error("Metoda " + currentMethodName + " nema return naredbu!", null);
     	}
@@ -562,6 +567,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     List<Obj> globals = new ArrayList<>();
     
     public void visit(MethodDecl methodDeclaration) {
+    	methodDeclaration.obj = currentMethod;
     	if (currentMethod.getType() != Tab.noType && !returnFound) {
     		report_error("Funkcija " + currentMethodName + " nema return naredbu!", null);
     	}

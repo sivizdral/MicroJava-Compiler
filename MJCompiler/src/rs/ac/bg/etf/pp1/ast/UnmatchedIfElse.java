@@ -1,20 +1,26 @@
 // generated with ast extension for cup
 // version 0.8
-// 3/0/2023 20:15:41
+// 4/0/2023 19:43:26
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class UnmatchedIfElse extends Unmatched {
 
+    private StartIF StartIF;
     private ConditionIF ConditionIF;
+    private DummyAfterCond DummyAfterCond;
     private Matched Matched;
     private ElseElse ElseElse;
     private Unmatched Unmatched;
 
-    public UnmatchedIfElse (ConditionIF ConditionIF, Matched Matched, ElseElse ElseElse, Unmatched Unmatched) {
+    public UnmatchedIfElse (StartIF StartIF, ConditionIF ConditionIF, DummyAfterCond DummyAfterCond, Matched Matched, ElseElse ElseElse, Unmatched Unmatched) {
+        this.StartIF=StartIF;
+        if(StartIF!=null) StartIF.setParent(this);
         this.ConditionIF=ConditionIF;
         if(ConditionIF!=null) ConditionIF.setParent(this);
+        this.DummyAfterCond=DummyAfterCond;
+        if(DummyAfterCond!=null) DummyAfterCond.setParent(this);
         this.Matched=Matched;
         if(Matched!=null) Matched.setParent(this);
         this.ElseElse=ElseElse;
@@ -23,12 +29,28 @@ public class UnmatchedIfElse extends Unmatched {
         if(Unmatched!=null) Unmatched.setParent(this);
     }
 
+    public StartIF getStartIF() {
+        return StartIF;
+    }
+
+    public void setStartIF(StartIF StartIF) {
+        this.StartIF=StartIF;
+    }
+
     public ConditionIF getConditionIF() {
         return ConditionIF;
     }
 
     public void setConditionIF(ConditionIF ConditionIF) {
         this.ConditionIF=ConditionIF;
+    }
+
+    public DummyAfterCond getDummyAfterCond() {
+        return DummyAfterCond;
+    }
+
+    public void setDummyAfterCond(DummyAfterCond DummyAfterCond) {
+        this.DummyAfterCond=DummyAfterCond;
     }
 
     public Matched getMatched() {
@@ -60,7 +82,9 @@ public class UnmatchedIfElse extends Unmatched {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(StartIF!=null) StartIF.accept(visitor);
         if(ConditionIF!=null) ConditionIF.accept(visitor);
+        if(DummyAfterCond!=null) DummyAfterCond.accept(visitor);
         if(Matched!=null) Matched.accept(visitor);
         if(ElseElse!=null) ElseElse.accept(visitor);
         if(Unmatched!=null) Unmatched.accept(visitor);
@@ -68,14 +92,18 @@ public class UnmatchedIfElse extends Unmatched {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(StartIF!=null) StartIF.traverseTopDown(visitor);
         if(ConditionIF!=null) ConditionIF.traverseTopDown(visitor);
+        if(DummyAfterCond!=null) DummyAfterCond.traverseTopDown(visitor);
         if(Matched!=null) Matched.traverseTopDown(visitor);
         if(ElseElse!=null) ElseElse.traverseTopDown(visitor);
         if(Unmatched!=null) Unmatched.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(StartIF!=null) StartIF.traverseBottomUp(visitor);
         if(ConditionIF!=null) ConditionIF.traverseBottomUp(visitor);
+        if(DummyAfterCond!=null) DummyAfterCond.traverseBottomUp(visitor);
         if(Matched!=null) Matched.traverseBottomUp(visitor);
         if(ElseElse!=null) ElseElse.traverseBottomUp(visitor);
         if(Unmatched!=null) Unmatched.traverseBottomUp(visitor);
@@ -87,8 +115,20 @@ public class UnmatchedIfElse extends Unmatched {
         buffer.append(tab);
         buffer.append("UnmatchedIfElse(\n");
 
+        if(StartIF!=null)
+            buffer.append(StartIF.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
         if(ConditionIF!=null)
             buffer.append(ConditionIF.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(DummyAfterCond!=null)
+            buffer.append(DummyAfterCond.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

@@ -1,6 +1,8 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 import rs.ac.bg.etf.pp1.ast.*;
@@ -14,6 +16,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	HashMap<Obj, Integer> objVFT = new HashMap<>();
 	Stack<Obj> callingStack = new Stack<>();
 	int mainPC = 0;
+	Obj currentMethod = null;
+	boolean returnFound = false;
+	Obj currentClass = null;
 	
 	/* PRINT */
 	
@@ -185,6 +190,7 @@ public class CodeGenerator extends VisitorAdaptor {
     	Code.put(Code.enter);
     	Code.put(methodStart.obj.getLevel());
     	Code.put(methodStart.obj.getLocalSymbols().size());
+    	currentMethod = methodStart.obj;
     }
     
     public void visit(MethodStartType methodStart) {
@@ -192,6 +198,195 @@ public class CodeGenerator extends VisitorAdaptor {
     	Code.put(Code.enter);
     	Code.put(methodStart.obj.getLevel());
     	Code.put(methodStart.obj.getLocalSymbols().size());
+    	currentMethod = methodStart.obj;
     }
-
+    
+    public void visit(MethodDecl methodDecl) {
+    	if (!returnFound) {
+    		if (methodDecl.obj.getType() != Tab.noType) {
+    			Code.put(Code.trap);
+    			Code.put(1);
+    		} else {
+    			Code.put(Code.exit);
+    			Code.put(Code.return_);
+    		}
+    	}
+    	currentMethod = null;
+    	returnFound = false;
+    }
+    
+    /* CONSTRUCTORS */
+    
+    public void visit(ConstructorDeclStart constructorStart) {
+    	constructorStart.obj.setAdr(Code.pc);
+    	Code.put(Code.enter);
+    	Code.put(constructorStart.obj.getLevel());
+    	Code.put(constructorStart.obj.getLocalSymbols().size());
+    	currentMethod = constructorStart.obj;
+    }
+    
+    public void visit(FirstConstructorDecl constructor) {
+    	Code.put(Code.exit);
+		Code.put(Code.return_);
+		currentMethod = null;
+    }
+    
+    public void visit(ListsMet lists) {
+    	addDefaultConstructor();
+    }
+    
+    public void visit(ListsNoConNoMet lists) {
+    	addDefaultConstructor();
+    }
+    
+    public void visit(NoConstructorMethodLists lists) {
+    	addDefaultConstructor();
+    }
+    
+    public void addDefaultConstructor() {
+    	for (Obj mem : currentClass.getType().getMembers()) {
+    		String className = currentClass.getName();
+    		String consName = mem.getName();
+    		if (className.equals(consName) && mem.getKind() == Obj.Meth) {
+    			mem.setAdr(Code.pc);
+    			Code.put(Code.enter);
+    			Code.put(1);
+    			Code.put(1);
+    			Code.put(Code.exit);
+    			Code.put(Code.return_);
+    			break;
+    		}
+    	}
+    }
+    
+    public void visit(ClassDecl classDecl) {
+    	objVFT.put(currentClass, -1);
+    	currentClass = null;
+    }
+    
+    public void visit(ClassDeclStart classStart) {
+    	currentClass = classStart.obj;
+    }
+    
+    /* DESIGNATOR */
+    
+    /* WHILE, BREAK, CONTINUE, FOREACH */
+    
+    Stack<Integer> loopStack = new Stack<>();
+    Stack<List<Integer>> orStack = new Stack<>();
+    Stack<List<Integer>> andStack = new Stack<>();
+    Stack<List<Integer>> elseStack = new Stack<>();
+    Stack<List<Integer>> breakStack = new Stack<>();
+    Stack<List<Integer>> foreachStack = new Stack<>();
+    
+    public void visit(WhileStmt whileStmt) {
+    	List<Integer> ands = andStack.pop();
+    	List<Integer> ors = orStack.pop();
+    	List<Integer> elses = elseStack.pop();
+    	List<Integer> breaks = breakStack.pop();
+    	
+    	for (int and : ands) {
+    		Code.fixup(and);
+    	}
+    	
+    	for (int brk : breaks) {
+    		Code.fixup(brk);
+    	}
+    	
+    	Code.putJump(loopStack.pop());
+    }
+    
+    public void visit(WhileStmtStart whileStart) {
+    	loopStack.push(Code.pc); // address of current while
+    	breakStack.push(new ArrayList<>());
+    	elseStack.push(new ArrayList<>());
+    	andStack.push(new ArrayList<>());
+    	orStack.push(new ArrayList<>());
+    }
+    
+    public void visit(ContinueStmt continueStmt) {
+    	Code.putJump(loopStack.peek());
+    }
+    
+    public void visit(BreakStmt breakStmt) {
+    	List<Integer> breaks = breakStack.pop();
+    	breaks.add(Code.pc + 1);
+    	Code.putJump(0);
+    	breakStack.push(breaks);
+    }
+    
+    public void visit(DesignatorFE foreach) {
+    	if (foreach.getIdentExprList() instanceof NoIdentExprList) Code.load(foreach.getIdentExprList().obj);
+    	else Code.load(foreach.getDesignatorStart().obj);
+    	Code.loadConst(-1);
+    	loopStack.push(Code.pc);
+    	breakStack.push(new ArrayList<>());
+    	/* ********************************************************************************************************************************* */
+    }
+    
+    /* CONDITION */
+    
+    public void visit(OptionalRelopExprX relopCond) {
+    	List<Integer> ands = andStack.pop();
+    	ands.add(Code.pc + 1);
+    	andStack.push(ands);
+    	if (relopCond.getRelop() instanceof RelopEq) Code.putFalseJump(Code.eq, 0);
+    	if (relopCond.getRelop() instanceof RelopNE) Code.putFalseJump(Code.ne, 0);
+    	if (relopCond.getRelop() instanceof RelopGT) Code.putFalseJump(Code.gt, 0);
+    	if (relopCond.getRelop() instanceof RelopGTE) Code.putFalseJump(Code.ge, 0);
+    	if (relopCond.getRelop() instanceof RelopLT) Code.putFalseJump(Code.lt, 0);
+    	if (relopCond.getRelop() instanceof RelopLTE) Code.putFalseJump(Code.le, 0);
+    }
+    
+    public void visit(NoOptionalRelopExpr cond) {
+    	Code.loadConst(1);
+    	List<Integer> ands = andStack.pop();
+    	ands.add(Code.pc + 1);
+    	andStack.push(ands);
+    	Code.putFalseJump(Code.eq, 0);
+    }
+    
+    public void visit(DummyAfterTerm dummy) {
+    	
+    	// TRUE
+    	List<Integer> ors = orStack.pop();
+    	ors.add(Code.pc + 1);
+    	orStack.push(ors);
+    	Code.putJump(0);
+    	
+    	// FALSE
+    	List<Integer> ands = andStack.pop();
+    	for (int and : ands) {
+    		Code.fixup(and);
+    	}
+    	ands.clear();
+    	andStack.push(ands);
+    }
+    
+    public void visit(DummyAfterCond dummy) {
+    	List<Integer> ors = orStack.pop();
+    	for (int or : ors) {
+    		Code.fixup(or);
+    	}
+    	ors.clear();
+    	orStack.push(ors);
+    }
+    
+    public void visit(ElseElse elseElse) {
+    	List<Integer> elses = elseStack.pop();
+    	elses.add(Code.pc + 1);
+    	elseStack.push(elses);
+    	Code.putJump(0);
+    	List<Integer> ands = andStack.pop();
+    	for (int and : ands) {
+    		Code.fixup(and);
+    	}
+    	ands.clear();
+    	andStack.push(ands);
+    }
+    
+    /* IF */
+    
+    
+    
 }

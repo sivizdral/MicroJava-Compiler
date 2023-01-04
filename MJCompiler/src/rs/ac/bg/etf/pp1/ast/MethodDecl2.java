@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 3/0/2023 20:15:41
+// 4/0/2023 19:43:26
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,6 +9,8 @@ public class MethodDecl2 implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
+    public rs.etf.pp1.symboltable.concepts.Obj obj = null;
+
     private FormParsOptional FormParsOptional;
     private VarDeclList VarDeclList;
     private StatementList StatementList;

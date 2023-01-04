@@ -65,16 +65,16 @@ terminal Character CHARCONST;
 
 nonterminal ConstDeclList, MethodDeclList, ConstDecl, OtherConstList;
 nonterminal VarDecl, FirstVarDecl, OtherVarDeclList, ClassDecl, VarDeclList, ConstructorMethodLists, ConstructorDeclList;
-nonterminal FormParsOptional, StatementList, MethodDecl, ReturnType, FormPars, OptionalSquares, TypeIdentList;
+nonterminal FormParsOptional, StatementList, ReturnType, FormPars, OptionalSquares, TypeIdentList;
 nonterminal Statement, Unmatched, Matched, OptionalNumConst;
 nonterminal DesignatorStatement, DsgStmtEnd, OptionalActPars, OptionalDesignator, OptionalDesignatorList, ActPars, ExprList;
 nonterminal ConditionIF, ConditionWHILE, CondTermOrList, CondTerm, CondFactAndList, OptionalRelopExpr, OptMinus, AddopTermList;
-nonterminal Label, Assignop, Relop, Addop, Mulop, ElseElse, FuncDesig;
-nonterminal FirstConstructorDecl, Lists, MethodDecl2, MethodDeclList2, ConstTail;
+nonterminal Label, Assignop, Relop, Addop, Mulop, ElseElse, FuncDesig, StartIF;
+nonterminal FirstConstructorDecl, Lists, MethodDeclList2, ConstTail, DummyAfterTerm, DummyAfterCond;
 nonterminal ClassVarDecl, ClassVarDeclList, FirstClassVarDecl, OtherClassVarDeclList, WhileStmtStart, Param;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, ClassDeclStart, ConstructorDeclStart, IdentSquares, MethodStart, Designator, DesignatorStart, FEVar;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj IdentExprList, ConstructorType, MethodDecl, MethodDecl2;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct FirstConst, Type, Extension, Expr, DesignatorFE, Factor, Term, CondFact, OptionalExpr;
 nonterminal GlobalVarDecl, FirstGlobalVarDecl, OtherGlobalVarDeclList;
 
@@ -219,11 +219,11 @@ Type ::= (Type) IDENT:name;
 Statement ::= (MatchedStmt) Matched |
 			  (UnmatchedStmt) Unmatched;
 			  
-Unmatched ::= (UnmatchedIf) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Statement |
-			  (UnmatchedIfElse) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Unmatched;
+Unmatched ::= (UnmatchedIf) IF StartIF ConditionIF DummyAfterCond RIGHT_ROUND_PARENTHESES Statement |
+			  (UnmatchedIfElse) IF StartIF ConditionIF DummyAfterCond RIGHT_ROUND_PARENTHESES Matched ElseElse Unmatched;
 
 Matched ::= (DesigStmt) DesignatorStatement |
-			(MatchedIfElseStmt) IF LEFT_ROUND_PARENTHESES ConditionIF RIGHT_ROUND_PARENTHESES Matched ElseElse Matched |
+			(MatchedIfElseStmt) IF StartIF ConditionIF DummyAfterCond RIGHT_ROUND_PARENTHESES Matched ElseElse Matched |
 			(WhileStmt) WhileStmtStart LEFT_ROUND_PARENTHESES ConditionWHILE RIGHT_ROUND_PARENTHESES Statement |
 			(BreakStmt) BREAK SEMICOLON |
 			(ContinueStmt) CONTINUE SEMICOLON |
@@ -237,7 +237,9 @@ FEVar ::= (FEVar) IDENT:name;
 			
 WhileStmtStart ::= (WhileStmtStart) WHILE;
 			
-ElseElse ::= (ElseElse) ELSE;	  
+ElseElse ::= (ElseElse) ELSE;
+
+StartIF ::= (StartIF) LEFT_ROUND_PARENTHESES;	  
 				 
 OptionalExpr ::= (OptionalExprX) Expr |
 				 (NoOptionalExpr) /* epsilon */;
@@ -284,8 +286,11 @@ ConditionIF ::= (ConditionIFX) CondTerm CondTermOrList |
 
 ConditionWHILE ::= (ConditionWHILE) CondTerm CondTermOrList;
 
-CondTermOrList ::= (CondTermOrListX) CondTermOrList OR CondTerm |
+CondTermOrList ::= (CondTermOrListX) CondTermOrList DummyAfterTerm OR CondTerm |
 				   (NoCondTermOrList) /* epsilon */;
+				   
+DummyAfterTerm ::= (DummyAfterTerm) /* epsilon */;
+DummyAfterCond ::= (DummyAfterCond) /* epsilon */;
 
 /* COND TERM */
 
