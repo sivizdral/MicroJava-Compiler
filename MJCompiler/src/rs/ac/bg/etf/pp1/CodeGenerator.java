@@ -85,11 +85,11 @@ public class CodeGenerator extends VisitorAdaptor {
     
     public void visit(FactorNew factor) {
     	Obj called = callingStack.pop();
-    	if (called.getName().equals("ord") || called.getName().equals("chr")) return;
+    	/*if (called.getName().equals("ord") || called.getName().equals("chr")) return;
     	if (called.getName().equals("len")) {
     		Code.put(Code.arraylength);
     		return;
-    	}
+    	}*/
     	Code.put(Code.call);
     	Code.put2(called.getAdr() - Code.pc + 1);
     }
@@ -101,10 +101,10 @@ public class CodeGenerator extends VisitorAdaptor {
     	// alokacija u bajtovima za objekat
     	Code.put2(((FactorNew) type.getParent()).struct.getNumberOfFields() * 4);
     	
-    	// za this
+    	// sad mi je na steku adresa za alocirani novi objekat, pa dupliram za this
     	Code.put(Code.dup);
     	
-    	// za VFT
+    	// a isto dupliram i za VFT
     	Code.put(Code.dup);
     	
     	String name = type.obj.getName().split("-")[0];
@@ -115,9 +115,10 @@ public class CodeGenerator extends VisitorAdaptor {
     			break;
     		}
     	}
+    	// dakle, nadjem VFT adresu
     	Code.loadConst(objVFT.getOrDefault(classObj, -1));
     	
-    	// VFT ide na prvo mesto
+    	// i onda VFT ide na prvo mesto
     	Code.put(Code.putfield);
     	Code.put2(0);
     }
@@ -295,8 +296,9 @@ public class CodeGenerator extends VisitorAdaptor {
     DesignatorStart designator = null;
     
     public void visit(DesignatorStart dsgStart) {
-    	if ((dsgStart.obj.getKind() == Obj.Meth && methodsInClass.contains(dsgStart.obj) && dsgStart.getParent() instanceof FuncDesig)
-    			|| (dsgStart.obj.getKind() == Obj.Fld && (dsgStart.getParent() instanceof FactorDesignatorOnly || dsgStart.getParent() instanceof DesignatorStatement))) 
+    	SyntaxNode parent = ((Designator) dsgStart.getParent()).getParent();
+    	if ((dsgStart.obj.getKind() == Obj.Meth && methodsInClass.contains(dsgStart.obj) && parent instanceof FuncDesig)
+    			|| (dsgStart.obj.getKind() == Obj.Fld && (parent instanceof FactorDesignatorOnly || parent instanceof DesignatorStatement))) 
     		Code.put(Code.load_n + 0);
     	designator = dsgStart;
     }
@@ -328,15 +330,16 @@ public class CodeGenerator extends VisitorAdaptor {
     	List<Integer> elses = elseStack.pop();
     	List<Integer> breaks = breakStack.pop();
     	
+    	Code.putJump(loopStack.pop());
+    	
     	for (int and : ands) {
     		Code.fixup(and);
     	}
     	
     	for (int brk : breaks) {
     		Code.fixup(brk);
-    	}
+    	}	
     	
-    	Code.putJump(loopStack.pop());
     }
     
     public void visit(WhileStmtStart whileStart) {

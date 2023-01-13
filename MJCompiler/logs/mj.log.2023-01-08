@@ -1,0 +1,121 @@
+INFO  19:46:03,014 - Compiling source file: C:\Users\Ivan\Desktop\Fakultet\7. semestar\PP1\Izvorni kod\MJCompiler\test\program.mj
+INFO  19:46:03,340 - #2 program
+INFO  19:46:03,341 - #47 p
+INFO  19:46:03,341 - #47 int
+INFO  19:46:03,346 - #47 x
+INFO  19:46:03,349 - #35 ;
+INFO  19:46:03,352 - #47 int
+INFO  19:46:03,353 - #47 y
+INFO  19:46:03,353 - #35 ;
+INFO  19:46:03,353 - #43 {
+INFO  19:46:03,353 - #15 void
+INFO  19:46:03,356 - #47 main
+INFO  19:46:03,356 - #39 (
+INFO  19:46:03,356 - #40 )
+INFO  19:46:03,359 - #43 {
+INFO  19:46:03,362 - #12 print
+INFO  19:46:03,364 - #39 (
+INFO  19:46:03,365 - #46 1
+INFO  19:46:03,370 - #40 )
+INFO  19:46:03,382 - #35 ;
+INFO  19:46:03,382 - #12 print
+INFO  19:46:03,383 - #39 (
+INFO  19:46:03,383 - #46 3
+INFO  19:46:03,383 - #40 )
+INFO  19:46:03,384 - #35 ;
+INFO  19:46:03,384 - #44 }
+INFO  19:46:03,384 - #44 }
+INFO  19:46:03,396 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  ConstDeclListVar(
+    ConstDeclListVar(
+      NoConstDeclList(
+      ) [NoConstDeclList]
+      GlobalVarDeclX(
+        Type(
+         int
+        ) [Type]
+        FirstGlobalVarDeclIdentOnly(
+         x
+        ) [FirstGlobalVarDeclIdentOnly]
+        NoOtherGlobalVarDeclList(
+        ) [NoOtherGlobalVarDeclList]
+      ) [GlobalVarDeclX]
+    ) [ConstDeclListVar]
+    GlobalVarDeclX(
+      Type(
+       int
+      ) [Type]
+      FirstGlobalVarDeclIdentOnly(
+       y
+      ) [FirstGlobalVarDeclIdentOnly]
+      NoOtherGlobalVarDeclList(
+      ) [NoOtherGlobalVarDeclList]
+    ) [GlobalVarDeclX]
+  ) [ConstDeclListVar]
+  MethodDeclListX(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodStartVoid(
+       main
+      ) [MethodStartVoid]
+      NoFormParsOptional(
+      ) [NoFormParsOptional]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListX(
+        StatementListX(
+          NoStatementList(
+          ) [NoStatementList]
+          MatchedStmt(
+            PrintStmt(
+              Expr(
+                NoOptMinus(
+                ) [NoOptMinus]
+                TermOne(
+                  FactorNumConst(
+                   1
+                  ) [FactorNumConst]
+                ) [TermOne]
+                DummyMinus(
+                ) [DummyMinus]
+                NoAddopTermList(
+                ) [NoAddopTermList]
+              ) [Expr]
+              NoOptionalNumConst(
+              ) [NoOptionalNumConst]
+            ) [PrintStmt]
+          ) [MatchedStmt]
+        ) [StatementListX]
+        MatchedStmt(
+          PrintStmt(
+            Expr(
+              NoOptMinus(
+              ) [NoOptMinus]
+              TermOne(
+                FactorNumConst(
+                 3
+                ) [FactorNumConst]
+              ) [TermOne]
+              DummyMinus(
+              ) [DummyMinus]
+              NoAddopTermList(
+              ) [NoAddopTermList]
+            ) [Expr]
+            NoOptionalNumConst(
+            ) [NoOptionalNumConst]
+          ) [PrintStmt]
+        ) [MatchedStmt]
+      ) [StatementListX]
+    ) [MethodDecl]
+  ) [MethodDeclListX]
+) [Program]
+INFO  19:46:03,397 - ===================================
+INFO  19:46:03,409 - Deklarisana globalna promenljiva x! na liniji 2
+INFO  19:46:03,409 - Deklarisana globalna promenljiva y! na liniji 2
+INFO  19:46:03,409 - Definisana funkcija sa nazivom main na liniji 4
+INFO  19:46:03,410 - ===================================
+INFO  19:46:03,421 - Parsiranje uspesno zavrseno!
